@@ -165,7 +165,10 @@ describe('crpsFair', () => {
   })
 
   it('converges to the standard estimator for large samples', () => {
-    // The correction is O(1/n), so the two must agree once n is large.
+    // The two estimators differ only in the spread divisor, n² vs n(n−1), so
+    // they diverge by a factor of n/(n−1) — about 1/n. At n = 20 000 that is
+    // 5e-5, comfortably inside the 3-decimal tolerance below, while at our
+    // real ensemble size of 7 it would be ~17% and this test would fail.
     const draws = sample(20_000, normalSampler(11, 12, 3))
     expect(crpsFair(draws, 14)).toBeCloseTo(crpsEmpirical(draws, 14), 3)
   })
