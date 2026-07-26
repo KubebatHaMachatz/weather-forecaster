@@ -1,4 +1,4 @@
-import { PlaceholderScreen } from '../components/PlaceholderScreen.js'
+import { PlaceholderScreen } from '../components/PlaceholderScreen'
 
 export default function ChartScreen() {
   return (
