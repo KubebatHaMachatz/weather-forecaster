@@ -29,7 +29,7 @@ const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
  * Both discovered empirically (see the mismatch log from the first run),
  * not guessed — `codes` are the standard ISO 3166-1 alpha-2 codes.
  */
-const COUNTRY_ALIASES = {
+export const COUNTRY_ALIASES = {
   'United States': { names: ['United States', 'United States of America'] },
   'United Kingdom': { names: ['United Kingdom', 'United Kingdom of Great Britain and Northern Ireland'] },
   'South Korea': { names: ['South Korea', 'Republic of Korea'] },
@@ -64,11 +64,11 @@ const COUNTRY_ALIASES = {
   Bermuda: { names: ['Bermuda'], codes: ['BM'] },
 }
 
-function aliasFor(expectedCountry) {
+export function aliasFor(expectedCountry) {
   return COUNTRY_ALIASES[expectedCountry] ?? { names: [expectedCountry], codes: [] }
 }
 
-function countryMatches(expected, result) {
+export function countryMatches(expected, result) {
   const alias = aliasFor(expected)
   if (result.country && alias.names.some((n) => n.toLowerCase() === result.country.toLowerCase())) {
     return true
@@ -76,12 +76,28 @@ function countryMatches(expected, result) {
   return alias.codes?.includes(result.country_code) ?? false
 }
 
-const normalise = (s) =>
-  s
-    .toLowerCase()
-    .normalize('NFD')
-    .replace(/[̀-ͯ]/g, '') // strip accents for comparison only
-    .replace(/['’ʻ]/g, '')
+/**
+ * Explicit character folding for letters that ICU/Unicode NFD normalisation
+ * does NOT decompose into a base letter + combining mark — found by review:
+ * é → e + combining-acute under NFD, but ø, Æ, Å, ß are their own distinct
+ * code points with nothing to strip, so they silently survived the original
+ * accent-stripping pass and could reject a legitimate ASCII-transliterated
+ * match ("Tromsø" would never equal "Tromso").
+ */
+const NON_DECOMPOSING_FOLDS = [
+  [/æ/gi, 'ae'],
+  [/ø/gi, 'o'],
+  [/å/gi, 'a'],
+  [/ß/g, 'ss'],
+]
+
+export const normalise = (s) => {
+  let folded = s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '')
+  for (const [pattern, replacement] of NON_DECOMPOSING_FOLDS) {
+    folded = folded.replace(pattern, replacement)
+  }
+  return folded.replace(/['’ʻ]/g, '')
+}
 
 async function geocode(name) {
   const url = new URL('https://geocoding-api.open-meteo.com/v1/search')
@@ -100,41 +116,48 @@ async function geocode(name) {
 
 /**
  * Picks the best candidate from a geocoding response. Order of preference:
- *   1. Country-matching AND the national capital (PPLC) — checked across the
- *      WHOLE country-matching pool, not just exact-name matches. An earlier
- *      version checked this only within the exact-name subset and broke on
- *      "Washington": the real capital's name field is "Washington D.C.",
- *      which fails an exact match against the query "Washington", so it was
- *      excluded in favour of an same-named-but-wrong small town in
- *      Pennsylvania that did match exactly. A capital hit is essentially
- *      never the wrong answer for a country-matching query, so it must
- *      outrank exact-name filtering, not be subordinate to it.
- *   2. Country-matching AND exact name match (fixes a different real bug:
- *      "Alert" was losing to "Alert Bay" purely because the latter had
- *      non-null population data to sort on).
+ *   1. Country-matching AND exact name match (fixes a real bug found while
+ *      smoke-testing: "Alert" was losing to "Alert Bay" purely because the
+ *      latter had non-null population data to sort on) — but capital match
+ *      (below) is checked FIRST, across the whole pool, ahead of this.
+ *   2. Country-matching, preferring the national/regional capital (PPLC).
  *   3. Country-matching, highest population.
  *   4. If nothing matched the expected country, fall back to the same
  *      preference order over the whole result set (flagged for review).
+ *
+ * Returns `ambiguous: true` when NONE of capital, exact-name, or population
+ * data provided a real signal — i.e. the final population sort compared
+ * `0 ?? 0` for every candidate and, because Array.prototype.sort is stable,
+ * silently returned whichever result the API happened to list first. This
+ * was a review finding: that case previously produced no diagnostic at all
+ * (countryMatched stays true), unlike a genuine country mismatch — a
+ * silent, unflagged recurrence of exactly the bug class this function was
+ * built to catch.
  */
-function pickBest(results, queryName, expectedCountry) {
+export function pickBest(results, queryName, expectedCountry) {
   const matching = results.filter((r) => countryMatches(expectedCountry, r))
   const pool = matching.length > 0 ? matching : results
   const countryMatched = matching.length > 0
 
   const capital = pool.find((r) => r.feature_code === 'PPLC')
-  if (capital) return { record: capital, countryMatched }
+  if (capital) return { record: capital, countryMatched, ambiguous: false }
 
   const exact = pool.filter((r) => normalise(r.name) === normalise(queryName))
-  const ranked = exact.length > 0 ? exact : pool
+  if (exact.length > 0) {
+    const byPopulation = [...exact].sort((a, b) => (b.population ?? 0) - (a.population ?? 0))
+    return { record: byPopulation[0], countryMatched, ambiguous: false }
+  }
 
-  const byPopulation = [...ranked].sort((a, b) => (b.population ?? 0) - (a.population ?? 0))
-  return { record: byPopulation[0], countryMatched }
+  const byPopulation = [...pool].sort((a, b) => (b.population ?? 0) - (a.population ?? 0))
+  const ambiguous = pool.length > 1 && pool.every((r) => r.population === null || r.population === undefined)
+  return { record: byPopulation[0], countryMatched, ambiguous }
 }
 
 async function main() {
   const resolved = []
   const failures = []
   const countryMismatches = []
+  const ambiguousPicks = []
 
   for (let i = 0; i < CANDIDATES.length; i++) {
     const candidate = CANDIDATES[i]
@@ -146,10 +169,13 @@ async function main() {
         process.stderr.write('NO RESULTS\n')
         failures.push({ ...candidate, reason: 'no geocoding results' })
       } else {
-        const { record, countryMatched } = pickBest(results, candidate.name, candidate.country)
+        const { record, countryMatched, ambiguous } = pickBest(results, candidate.name, candidate.country)
         if (!countryMatched) {
           process.stderr.write(`COUNTRY MISMATCH (got "${record.country}", code ${record.country_code})\n`)
           countryMismatches.push({ ...candidate, gotCountry: record.country, gotCountryCode: record.country_code, gotName: record.name })
+        } else if (ambiguous) {
+          process.stderr.write(`AMBIGUOUS PICK (no capital/exact-match/population signal) -> ${record.name}\n`)
+          ambiguousPicks.push({ ...candidate, gotName: record.name })
         } else {
           process.stderr.write(`OK -> ${record.name}, ${record.country ?? record.country_code} (${record.latitude}, ${record.longitude})\n`)
         }
@@ -158,6 +184,7 @@ async function main() {
           expectedCountry: candidate.country,
           climateRegime: candidate.climateRegime,
           countryMatched,
+          ambiguous,
           name: record.name,
           country: record.country,
           countryCode: record.country_code,
@@ -178,7 +205,8 @@ async function main() {
   }
 
   process.stderr.write(
-    `\n${resolved.length} resolved, ${failures.length} failed, ${countryMismatches.length} country mismatches\n`,
+    `\n${resolved.length - ambiguousPicks.length} resolved cleanly, ${failures.length} failed, ` +
+      `${countryMismatches.length} country mismatches, ${ambiguousPicks.length} ambiguous picks\n`,
   )
   if (failures.length > 0) {
     process.stderr.write(`\nFAILURES:\n${failures.map((f) => `  ${f.name}, ${f.country}: ${f.reason}`).join('\n')}\n`)
@@ -190,8 +218,21 @@ async function main() {
         .join('\n')}\n`,
     )
   }
+  if (ambiguousPicks.length > 0) {
+    process.stderr.write(
+      `\nAMBIGUOUS PICKS (no real signal broke the tie — review manually):\n${ambiguousPicks
+        .map((a) => `  "${a.name}, ${a.country}" -> picked "${a.gotName}" arbitrarily`)
+        .join('\n')}\n`,
+    )
+  }
 
-  console.log(JSON.stringify({ resolved, failures, countryMismatches }, null, 2))
+  console.log(JSON.stringify({ resolved, failures, countryMismatches, ambiguousPicks }, null, 2))
 }
 
-main()
+// Only run when this file is the actual entrypoint, not when imported (by
+// tests, or by another script) — a bare top-level `main()` call previously
+// fired a full live-API batch run just from `import()`-ing this module for
+// inspection.
+if (import.meta.url === `file://${process.argv[1]}`) {
+  main()
+}

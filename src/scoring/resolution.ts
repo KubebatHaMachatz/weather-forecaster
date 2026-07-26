@@ -14,10 +14,18 @@
  * Hermes, and trivially testable.
  */
 
+import { REAL_MAX_UTC_OFFSET_SECONDS } from '../geo/utcOffsetRange.js'
+
 const ISO_DATE = /^\d{4}-\d{2}-\d{2}$/
 
-/** Real offsets span UTC−12 to UTC+14; a little slack, but 20 hours is a bug. */
-const MAX_OFFSET_SECONDS = 15 * 3600
+/**
+ * Real offsets span UTC−12 to UTC+14 (REAL_MAX_UTC_OFFSET_SECONDS); this adds
+ * one hour of deliberate slack on top since this is a defensive runtime
+ * assertion, not strict data validation (that's stationData.ts's job) — 20
+ * hours is a bug regardless, but there's no need to be exact to the minute
+ * here the way a content schema should be.
+ */
+const MAX_OFFSET_SECONDS = REAL_MAX_UTC_OFFSET_SECONDS + 3600
 
 function assertValidClock(now: Date): void {
   if (Number.isNaN(now.getTime())) {
