@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { formatStation } from './station.js'
+import { CLIMATE_REGIMES, formatStation } from './station.js'
 import type { Station } from './station.js'
 
 /**
@@ -49,5 +49,15 @@ describe('formatStation', () => {
 
   it('ignores an empty sub-national qualifier rather than emitting a stray comma', () => {
     expect(formatStation({ ...VALPARAISO, admin1: '  ' })).toBe('Valparaíso, Chile')
+  })
+
+  it('is unaffected by an optional climateRegime, present or absent', () => {
+    expect(formatStation(VALPARAISO)).toBe(formatStation({ ...VALPARAISO, climateRegime: 'mediterranean' }))
+  })
+})
+
+describe('CLIMATE_REGIMES', () => {
+  it('has no duplicate entries', () => {
+    expect(new Set(CLIMATE_REGIMES).size).toBe(CLIMATE_REGIMES.length)
   })
 })
