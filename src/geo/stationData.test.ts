@@ -136,6 +136,29 @@ describe('validateStationList', () => {
     expect(() => validateStationList([cordobaSpain, cordobaArgentina])).not.toThrow()
   })
 
+  /**
+   * Regression test for a review finding: the duplicate-identity key used to
+   * be built by string concatenation with a literal NUL byte as separator
+   * (`${country}\0${name}`) — a bug in its own right (made the source file
+   * unreadable as text to git/GitHub/grep, all three treated it as binary).
+   *
+   * Fixing *that* isn't enough on its own: concatenating with ANY separator
+   * that can legitimately appear inside real country/city text (a space, a
+   * hyphen) reintroduces the exact collision risk src/puzzle/daily.ts was
+   * specifically redesigned to avoid — "South Africa"+"Town" and
+   * "South"+"Africa Town" both flatten to "South Africa Town" with a plain
+   * space separator (verified: NUL happens NOT to collide here, precisely
+   * because it's unusual enough to never occur naturally inside a name —
+   * which is a coincidence of that one bad choice, not a property worth
+   * relying on). The fix removes concatenation entirely (a nested
+   * country->name structure), so no separator choice can ever matter again.
+   */
+  it('does not alias two distinct stations whose country/name split differently but would concatenate identically with a space separator', () => {
+    const a = { ...VALID_RECORD, country: 'South Africa', name: 'Town' }
+    const b = { ...otherStation, country: 'South', name: 'Africa Town' }
+    expect(() => validateStationList([a, b])).not.toThrow()
+  })
+
   it('rejects a list containing an invalid record, reporting which one', () => {
     const broken = { ...otherStation, lat: 999 }
     expect(() => validateStationList([VALID_RECORD, broken])).toThrow(/Reykjavík/)

@@ -1,10 +1,11 @@
 import { readFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
-import { describe, expect, it } from 'vitest'
+import { beforeAll, describe, expect, it } from 'vitest'
 import { formatStation } from './station.js'
 import { CLIMATE_REGIMES } from './station.js'
 import { validateStationList } from './stationData.js'
 import { assertQueryableLatLon } from './coordinates.js'
+import type { Station } from './station.js'
 
 /**
  * Validates the real bundled content (assets/stations.json, DESIGN §9.5) —
@@ -17,11 +18,24 @@ const STATIONS_PATH = fileURLToPath(new URL('../../assets/stations.json', import
 const raw: unknown[] = JSON.parse(readFileSync(STATIONS_PATH, 'utf8'))
 
 describe('assets/stations.json', () => {
-  it('passes full schema validation', () => {
-    expect(() => validateStationList(raw)).not.toThrow()
+  // Validated once in beforeAll, not per-test and not at module-collection
+  // time: parsing+validating 314 records on every `it` would be wasteful,
+  // but doing it as a bare top-level call was tried and reverted — a throw
+  // there crashes this whole file's test COLLECTION (Vitest reports "0
+  // tests ran" for the file, not one clean failing test), which is a worse
+  // failure mode than the double-parse it was meant to avoid. beforeAll
+  // keeps the single shared call but reports a failure the normal way.
+  let stations: Station[]
+  beforeAll(() => {
+    stations = validateStationList(raw)
   })
 
-  const stations = validateStationList(raw)
+  it('passes full schema validation', () => {
+    // beforeAll already ran validateStationList once for the whole suite;
+    // if it hadn't thrown by the time this test body runs, every record
+    // already passed schema validation — no need to call it a second time.
+    expect(stations).toHaveLength(raw.length)
+  })
 
   it('has a substantial number of stations', () => {
     // DESIGN §9.5 targets ~300; not pinned exactly since this is real
@@ -35,6 +49,13 @@ describe('assets/stations.json', () => {
     }
   })
 
+  /**
+   * Mechanically implied by 'passes full schema validation' above now that
+   * stationRecordSchema calls assertQueryableLatLon internally (a review
+   * finding: the schema used to re-state -90/90/-180/180 as separate
+   * literals instead of reusing this function). Kept as an explicit,
+   * readable assertion of the invariant itself rather than removed.
+   */
   it('passes the stricter network-boundary coordinate check for every station', () => {
     for (const station of stations) {
       expect(() => assertQueryableLatLon({ lat: station.lat, lon: station.lon }, station.name)).not.toThrow()

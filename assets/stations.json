@@ -64,8 +64,8 @@
     "country": "Canada",
     "lat": 82.50169,
     "lon": -62.34735,
-    "timezone": "America/Halifax",
-    "utcOffsetSeconds": -10800,
+    "timezone": "America/Iqaluit",
+    "utcOffsetSeconds": -14400,
     "descriptor": "The northernmost permanently inhabited place on Earth, just 800 km from the North Pole.",
     "climateRegime": "polar"
   },
@@ -331,7 +331,7 @@
   },
   {
     "name": "Amsterdam",
-    "country": "The Netherlands",
+    "country": "Netherlands",
     "lat": 52.37403,
     "lon": 4.88969,
     "timezone": "Europe/Amsterdam",
@@ -1231,7 +1231,7 @@
   },
   {
     "name": "İzmir",
-    "country": "Republic of Türkiye",
+    "country": "Turkey",
     "lat": 38.41273,
     "lon": 27.13838,
     "timezone": "Europe/Istanbul",
@@ -1501,7 +1501,7 @@
   },
   {
     "name": "Ankara",
-    "country": "Republic of Türkiye",
+    "country": "Turkey",
     "lat": 39.91987,
     "lon": 32.85427,
     "timezone": "Europe/Istanbul",
@@ -1951,7 +1951,7 @@
   },
   {
     "name": "Kinshasa",
-    "country": "Democratic Republic of Congo",
+    "country": "Democratic Republic of the Congo",
     "lat": -4.32758,
     "lon": 15.31357,
     "timezone": "Africa/Kinshasa",
@@ -2101,7 +2101,7 @@
   },
   {
     "name": "Abidjan",
-    "country": "Ivory Coast",
+    "country": "Côte d'Ivoire",
     "lat": 5.35444,
     "lon": -4.00167,
     "timezone": "Africa/Abidjan",
@@ -2684,7 +2684,7 @@
     "country": "Vietnam",
     "lat": 21.0245,
     "lon": 105.84117,
-    "timezone": "Asia/Bangkok",
+    "timezone": "Asia/Ho_Chi_Minh",
     "utcOffsetSeconds": 25200,
     "descriptor": "Northern Vietnam's capital — unusually for the tropics, has a real cool, occasionally chilly winter.",
     "climateRegime": "humid-subtropical"
