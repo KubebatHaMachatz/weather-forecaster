@@ -1,4 +1,29 @@
 /**
+ * Loosely Köppen-inspired, but organised around what makes a station
+ * interesting to forecast (DESIGN §9.5: "a climate-regime tag used to bias
+ * question selection toward interesting weather") rather than strict
+ * climatology — e.g. 'arid' groups stations by "huge diurnal swings, almost
+ * no precipitation signal" regardless of whether they're hot or cold deserts.
+ */
+export const CLIMATE_REGIMES = [
+  'polar',
+  'subarctic',
+  'temperate-maritime',
+  'temperate-continental',
+  'mediterranean',
+  'arid',
+  'semi-arid',
+  'tropical-monsoon',
+  'tropical-rainforest',
+  'tropical-savanna',
+  'humid-subtropical',
+  'highland',
+  'oceanic-island',
+] as const
+
+export type ClimateRegime = (typeof CLIMATE_REGIMES)[number]
+
+/**
  * A forecast station, and the single place its name is turned into display
  * text.
  *
@@ -21,6 +46,15 @@ export interface Station {
   readonly utcOffsetSeconds: number
   /** One line orienting the player, e.g. "Pacific coast, 120 km west of Santiago". */
   readonly descriptor: string
+  /**
+   * Optional here, not on the content schema: the real bundled station list
+   * (assets/stations.json, validated separately) always sets this; making it
+   * required on this interface would force every existing test fixture to
+   * set an irrelevant field. Not yet consumed by puzzle generation — DESIGN
+   * §9.5's "bias toward interesting weather" is deferred, this only carries
+   * the data forward.
+   */
+  readonly climateRegime?: ClimateRegime
 }
 
 export function formatStation(station: Station): string {

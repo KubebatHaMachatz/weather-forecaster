@@ -1,0 +1,3142 @@
+[
+  {
+    "name": "Longyearbyen",
+    "country": "Norway",
+    "lat": 78.22334,
+    "lon": 15.64689,
+    "timezone": "Arctic/Longyearbyen",
+    "utcOffsetSeconds": 7200,
+    "descriptor": "The world's northernmost town of any size, on Svalbard — polar night runs from late October to mid-February.",
+    "climateRegime": "polar"
+  },
+  {
+    "name": "Nuuk",
+    "country": "Greenland",
+    "lat": 64.18347,
+    "lon": -51.72157,
+    "timezone": "America/Nuuk",
+    "utcOffsetSeconds": -3600,
+    "descriptor": "Greenland's capital, on a fjord coast kept ice-free by the sea despite the latitude.",
+    "climateRegime": "polar"
+  },
+  {
+    "name": "Ilulissat",
+    "country": "Greenland",
+    "lat": 69.21981,
+    "lon": -51.09861,
+    "timezone": "America/Nuuk",
+    "utcOffsetSeconds": -3600,
+    "descriptor": "Named \"icebergs\" in Greenlandic — sits beside a fjord that calves some of the fastest-moving ice on Earth.",
+    "climateRegime": "polar"
+  },
+  {
+    "name": "Utqiagvik",
+    "country": "United States",
+    "lat": 71.29058,
+    "lon": -156.78873,
+    "timezone": "America/Anchorage",
+    "utcOffsetSeconds": -28800,
+    "descriptor": "America's northernmost town — the sun doesn't rise at all for over two months each winter.",
+    "climateRegime": "polar"
+  },
+  {
+    "name": "Noril'sk",
+    "country": "Russia",
+    "lat": 69.3535,
+    "lon": 88.2027,
+    "timezone": "Asia/Krasnoyarsk",
+    "utcOffsetSeconds": 25200,
+    "descriptor": "One of the coldest cities of its size on Earth, built on Siberian permafrost above the Arctic Circle.",
+    "climateRegime": "polar"
+  },
+  {
+    "name": "Tiksi",
+    "country": "Russia",
+    "lat": 71.69075,
+    "lon": 128.86523,
+    "timezone": "Asia/Yakutsk",
+    "utcOffsetSeconds": 32400,
+    "descriptor": "A remote Arctic Ocean port on the Laptev Sea, among the coldest inhabited places in Russia.",
+    "climateRegime": "polar"
+  },
+  {
+    "name": "Alert",
+    "country": "Canada",
+    "lat": 82.50169,
+    "lon": -62.34735,
+    "timezone": "America/Halifax",
+    "utcOffsetSeconds": -10800,
+    "descriptor": "The northernmost permanently inhabited place on Earth, just 800 km from the North Pole.",
+    "climateRegime": "polar"
+  },
+  {
+    "name": "Resolute",
+    "country": "Canada",
+    "lat": 74.69736,
+    "lon": -94.83062,
+    "timezone": "America/Resolute",
+    "utcOffsetSeconds": -18000,
+    "descriptor": "A tiny High Arctic hamlet on Cornwallis Island, a staging post for polar expeditions.",
+    "climateRegime": "polar"
+  },
+  {
+    "name": "McMurdo Station",
+    "country": "Antarctica",
+    "lat": -77.96306,
+    "lon": 166.50862,
+    "timezone": "Antarctica/McMurdo",
+    "utcOffsetSeconds": 43200,
+    "descriptor": "Antarctica's largest research station, on Ross Island — summer brings 24-hour daylight, winter none at all.",
+    "climateRegime": "polar"
+  },
+  {
+    "name": "Yakutsk",
+    "country": "Russia",
+    "lat": 62.03114,
+    "lon": 129.72289,
+    "timezone": "Asia/Yakutsk",
+    "utcOffsetSeconds": 32400,
+    "descriptor": "The coldest large city on Earth, where winter temperatures regularly fall below -40°C.",
+    "climateRegime": "subarctic"
+  },
+  {
+    "name": "Murmansk",
+    "country": "Russia",
+    "lat": 68.96778,
+    "lon": 33.09922,
+    "timezone": "Europe/Moscow",
+    "utcOffsetSeconds": 10800,
+    "descriptor": "The world's largest city north of the Arctic Circle, kept ice-free by a warm Atlantic current.",
+    "climateRegime": "subarctic"
+  },
+  {
+    "name": "Tromsø",
+    "country": "Norway",
+    "lat": 69.6489,
+    "lon": 18.95508,
+    "timezone": "Europe/Oslo",
+    "utcOffsetSeconds": 7200,
+    "descriptor": "A fjord-side city under the aurora oval, with two months of unbroken winter darkness.",
+    "climateRegime": "subarctic"
+  },
+  {
+    "name": "Fairbanks",
+    "country": "United States",
+    "lat": 64.83778,
+    "lon": -147.71638,
+    "timezone": "America/Anchorage",
+    "utcOffsetSeconds": -28800,
+    "descriptor": "Interior Alaska — summer brings near-endless daylight, winter brutal cold with almost none.",
+    "climateRegime": "subarctic"
+  },
+  {
+    "name": "Anchorage",
+    "country": "United States",
+    "lat": 61.21806,
+    "lon": -149.90028,
+    "timezone": "America/Anchorage",
+    "utcOffsetSeconds": -28800,
+    "descriptor": "Alaska's largest city, ringed by mountains where the Chugach range meets the sea.",
+    "climateRegime": "subarctic"
+  },
+  {
+    "name": "Iqaluit",
+    "country": "Canada",
+    "lat": 63.74697,
+    "lon": -68.51727,
+    "timezone": "America/Iqaluit",
+    "utcOffsetSeconds": -14400,
+    "descriptor": "The capital of Nunavut, on Baffin Island's Frobisher Bay in the Canadian Arctic.",
+    "climateRegime": "subarctic"
+  },
+  {
+    "name": "Yellowknife",
+    "country": "Canada",
+    "lat": 62.45411,
+    "lon": -114.37248,
+    "timezone": "America/Edmonton",
+    "utcOffsetSeconds": -21600,
+    "descriptor": "On the shore of Great Slave Lake, famous for some of the clearest aurora viewing on Earth.",
+    "climateRegime": "subarctic"
+  },
+  {
+    "name": "Whitehorse",
+    "country": "Canada",
+    "lat": 60.71611,
+    "lon": -135.05376,
+    "timezone": "America/Whitehorse",
+    "utcOffsetSeconds": -25200,
+    "descriptor": "The Yukon capital, in a valley along the Yukon River amid the northern boreal forest.",
+    "climateRegime": "subarctic"
+  },
+  {
+    "name": "Rovaniemi",
+    "country": "Finland",
+    "lat": 66.49897,
+    "lon": 25.68867,
+    "timezone": "Europe/Helsinki",
+    "utcOffsetSeconds": 10800,
+    "descriptor": "Sits almost exactly on the Arctic Circle in Finnish Lapland.",
+    "climateRegime": "subarctic"
+  },
+  {
+    "name": "Kiruna",
+    "country": "Sweden",
+    "lat": 67.85572,
+    "lon": 20.22513,
+    "timezone": "Europe/Stockholm",
+    "utcOffsetSeconds": 7200,
+    "descriptor": "Sweden's northernmost town, built beside the world's largest underground iron mine.",
+    "climateRegime": "subarctic"
+  },
+  {
+    "name": "Reykjavik",
+    "country": "Iceland",
+    "lat": 64.13548,
+    "lon": -21.89541,
+    "timezone": "Atlantic/Reykjavik",
+    "utcOffsetSeconds": 0,
+    "descriptor": "The northernmost national capital on Earth, warmed just enough by the Gulf Stream to stay ice-free.",
+    "climateRegime": "subarctic"
+  },
+  {
+    "name": "Akureyri",
+    "country": "Iceland",
+    "lat": 65.68353,
+    "lon": -18.0878,
+    "timezone": "Atlantic/Reykjavik",
+    "utcOffsetSeconds": 0,
+    "descriptor": "Iceland's second city, sheltered deep inside a long north-coast fjord.",
+    "climateRegime": "subarctic"
+  },
+  {
+    "name": "Ushuaia",
+    "country": "Argentina",
+    "lat": -54.81084,
+    "lon": -68.31591,
+    "timezone": "America/Argentina/Ushuaia",
+    "utcOffsetSeconds": -10800,
+    "descriptor": "The southernmost city of its size in the world, on the Beagle Channel at the tip of Tierra del Fuego.",
+    "climateRegime": "subarctic"
+  },
+  {
+    "name": "Punta Arenas",
+    "country": "Chile",
+    "lat": -53.16282,
+    "lon": -70.90922,
+    "timezone": "America/Punta_Arenas",
+    "utcOffsetSeconds": -10800,
+    "descriptor": "A windswept Patagonian port on the Strait of Magellan, near the edge of the Southern Ocean.",
+    "climateRegime": "subarctic"
+  },
+  {
+    "name": "Arkhangelsk",
+    "country": "Russia",
+    "lat": 64.5461,
+    "lon": 40.55183,
+    "timezone": "Europe/Moscow",
+    "utcOffsetSeconds": 10800,
+    "descriptor": "A White Sea port that was one of medieval Russia's only windows to the outside world.",
+    "climateRegime": "subarctic"
+  },
+  {
+    "name": "Magadan",
+    "country": "Russia",
+    "lat": 59.56274,
+    "lon": 150.80211,
+    "timezone": "Asia/Magadan",
+    "utcOffsetSeconds": 39600,
+    "descriptor": "A remote Sea of Okhotsk port in the Russian Far East, reachable mainly by air or sea.",
+    "climateRegime": "subarctic"
+  },
+  {
+    "name": "Sept-Îles",
+    "country": "Canada",
+    "lat": 50.20011,
+    "lon": -66.38208,
+    "timezone": "America/Toronto",
+    "utcOffsetSeconds": -14400,
+    "descriptor": "A North Shore port on the Gulf of St. Lawrence, named for the seven islands guarding its bay.",
+    "climateRegime": "subarctic"
+  },
+  {
+    "name": "Churchill",
+    "country": "Canada",
+    "lat": 58.76811,
+    "lon": -94.16674,
+    "timezone": "America/Winnipeg",
+    "utcOffsetSeconds": -18000,
+    "descriptor": "On Hudson Bay at the treeline — better known as the polar bear capital of the world.",
+    "climateRegime": "subarctic"
+  },
+  {
+    "name": "London",
+    "country": "United Kingdom",
+    "lat": 51.50853,
+    "lon": -0.12574,
+    "timezone": "Europe/London",
+    "utcOffsetSeconds": 3600,
+    "descriptor": "Britain's capital on the tidal Thames — famously changeable, rarely extreme.",
+    "climateRegime": "temperate-maritime"
+  },
+  {
+    "name": "Edinburgh",
+    "country": "United Kingdom",
+    "lat": 55.95206,
+    "lon": -3.19648,
+    "timezone": "Europe/London",
+    "utcOffsetSeconds": 3600,
+    "descriptor": "Built across extinct volcanic hills near the Firth of Forth, exposed to North Sea weather.",
+    "climateRegime": "temperate-maritime"
+  },
+  {
+    "name": "Glasgow",
+    "country": "United Kingdom",
+    "lat": 55.86515,
+    "lon": -4.25763,
+    "timezone": "Europe/London",
+    "utcOffsetSeconds": 3600,
+    "descriptor": "Scotland's largest city, on the River Clyde, among Europe's wetter major cities.",
+    "climateRegime": "temperate-maritime"
+  },
+  {
+    "name": "Cardiff",
+    "country": "United Kingdom",
+    "lat": 51.48,
+    "lon": -3.18,
+    "timezone": "Europe/London",
+    "utcOffsetSeconds": 3600,
+    "descriptor": "The Welsh capital, on the Bristol Channel, where mild Atlantic air meets the coast.",
+    "climateRegime": "temperate-maritime"
+  },
+  {
+    "name": "Dublin",
+    "country": "Ireland",
+    "lat": 53.33306,
+    "lon": -6.24889,
+    "timezone": "Europe/Dublin",
+    "utcOffsetSeconds": 3600,
+    "descriptor": "Ireland's capital on the Liffey, sheltered on the east coast from the worst Atlantic fronts.",
+    "climateRegime": "temperate-maritime"
+  },
+  {
+    "name": "Cork",
+    "country": "Ireland",
+    "lat": 51.89797,
+    "lon": -8.47061,
+    "timezone": "Europe/Dublin",
+    "utcOffsetSeconds": 3600,
+    "descriptor": "Ireland's second city, on the south coast, one of the country's mildest, wettest corners.",
+    "climateRegime": "temperate-maritime"
+  },
+  {
+    "name": "Amsterdam",
+    "country": "The Netherlands",
+    "lat": 52.37403,
+    "lon": 4.88969,
+    "timezone": "Europe/Amsterdam",
+    "utcOffsetSeconds": 7200,
+    "descriptor": "A canal city largely below sea level, at the mercy of North Sea storm surges.",
+    "climateRegime": "temperate-maritime"
+  },
+  {
+    "name": "Brussels",
+    "country": "Belgium",
+    "lat": 50.85045,
+    "lon": 4.34878,
+    "timezone": "Europe/Brussels",
+    "utcOffsetSeconds": 7200,
+    "descriptor": "A low-lying capital in the heart of maritime Western Europe, rain a near-constant companion.",
+    "climateRegime": "temperate-maritime"
+  },
+  {
+    "name": "Bergen",
+    "country": "Norway",
+    "lat": 60.39299,
+    "lon": 5.32415,
+    "timezone": "Europe/Oslo",
+    "utcOffsetSeconds": 7200,
+    "descriptor": "Ringed by seven mountains on the fjord coast — one of Europe's wettest cities.",
+    "climateRegime": "temperate-maritime"
+  },
+  {
+    "name": "Wellington",
+    "country": "New Zealand",
+    "lat": -41.28664,
+    "lon": 174.77557,
+    "timezone": "Pacific/Auckland",
+    "utcOffsetSeconds": 43200,
+    "descriptor": "New Zealand's capital, squeezed into Cook Strait's wind funnel — reliably the windiest city on Earth.",
+    "climateRegime": "temperate-maritime"
+  },
+  {
+    "name": "Auckland",
+    "country": "New Zealand",
+    "lat": -36.84853,
+    "lon": 174.76349,
+    "timezone": "Pacific/Auckland",
+    "utcOffsetSeconds": 43200,
+    "descriptor": "Built across dozens of extinct volcanoes on an isthmus between two harbours.",
+    "climateRegime": "temperate-maritime"
+  },
+  {
+    "name": "Christchurch",
+    "country": "New Zealand",
+    "lat": -43.53333,
+    "lon": 172.63333,
+    "timezone": "Pacific/Auckland",
+    "utcOffsetSeconds": 43200,
+    "descriptor": "On the Canterbury Plains, exposed to both nor'wester foehn winds and cold southerlies.",
+    "climateRegime": "temperate-maritime"
+  },
+  {
+    "name": "Vancouver",
+    "country": "Canada",
+    "lat": 49.24966,
+    "lon": -123.11934,
+    "timezone": "America/Vancouver",
+    "utcOffsetSeconds": -25200,
+    "descriptor": "Canada's mildest major city, wedged between the Coast Mountains and the Pacific.",
+    "climateRegime": "temperate-maritime"
+  },
+  {
+    "name": "Victoria",
+    "country": "Canada",
+    "lat": 48.4359,
+    "lon": -123.35155,
+    "timezone": "America/Vancouver",
+    "utcOffsetSeconds": -25200,
+    "descriptor": "On Vancouver Island, in the rain shadow that makes it Canada's driest major west-coast city.",
+    "climateRegime": "temperate-maritime"
+  },
+  {
+    "name": "Halifax",
+    "country": "Canada",
+    "lat": 44.64269,
+    "lon": -63.57688,
+    "timezone": "America/Halifax",
+    "utcOffsetSeconds": -10800,
+    "descriptor": "A fog-prone Atlantic harbour city, regularly in the path of ex-hurricanes moving north.",
+    "climateRegime": "temperate-maritime"
+  },
+  {
+    "name": "St. John's",
+    "country": "Canada",
+    "lat": 47.56494,
+    "lon": -52.70931,
+    "timezone": "America/St_Johns",
+    "utcOffsetSeconds": -9000,
+    "descriptor": "Newfoundland's capital — among the foggiest, windiest, snowiest cities in North America.",
+    "climateRegime": "temperate-maritime"
+  },
+  {
+    "name": "Seattle",
+    "country": "United States",
+    "lat": 47.60621,
+    "lon": -122.33207,
+    "timezone": "America/Los_Angeles",
+    "utcOffsetSeconds": -25200,
+    "descriptor": "Between Puget Sound and the Cascades, known for grey, drizzly winters more than downpours.",
+    "climateRegime": "temperate-maritime"
+  },
+  {
+    "name": "Portland",
+    "country": "United States",
+    "lat": 45.52345,
+    "lon": -122.67621,
+    "timezone": "America/Los_Angeles",
+    "utcOffsetSeconds": -25200,
+    "descriptor": "In Oregon's Willamette Valley, sheltered from the worst Pacific storms by the Coast Range.",
+    "climateRegime": "temperate-maritime"
+  },
+  {
+    "name": "Valdivia",
+    "country": "Chile",
+    "lat": -39.81422,
+    "lon": -73.24589,
+    "timezone": "America/Santiago",
+    "utcOffsetSeconds": -14400,
+    "descriptor": "One of Chile's rainiest cities, at the confluence of rivers near the Pacific coast.",
+    "climateRegime": "temperate-maritime"
+  },
+  {
+    "name": "Bariloche",
+    "country": "Argentina",
+    "lat": -41.14557,
+    "lon": -71.30822,
+    "timezone": "America/Argentina/Salta",
+    "utcOffsetSeconds": -10800,
+    "descriptor": "On a glacial lake in the Argentine Andes, with a distinctly alpine, changeable climate.",
+    "climateRegime": "temperate-maritime"
+  },
+  {
+    "name": "Paris",
+    "country": "France",
+    "lat": 48.85341,
+    "lon": 2.3488,
+    "timezone": "Europe/Paris",
+    "utcOffsetSeconds": 7200,
+    "descriptor": "On the Seine, far enough inland to soften — but not remove — maritime Atlantic influence.",
+    "climateRegime": "temperate-maritime"
+  },
+  {
+    "name": "Copenhagen",
+    "country": "Denmark",
+    "lat": 55.67594,
+    "lon": 12.56553,
+    "timezone": "Europe/Copenhagen",
+    "utcOffsetSeconds": 7200,
+    "descriptor": "Spread across islands between the Baltic and the Øresund strait.",
+    "climateRegime": "temperate-maritime"
+  },
+  {
+    "name": "Hobart",
+    "country": "Australia",
+    "lat": -42.87936,
+    "lon": 147.3294,
+    "timezone": "Australia/Hobart",
+    "utcOffsetSeconds": 36000,
+    "descriptor": "Australia's most southerly capital, beneath Mount Wellington, exposed to Southern Ocean fronts.",
+    "climateRegime": "temperate-maritime"
+  },
+  {
+    "name": "Melbourne",
+    "country": "Australia",
+    "lat": -37.814,
+    "lon": 144.96332,
+    "timezone": "Australia/Melbourne",
+    "utcOffsetSeconds": 36000,
+    "descriptor": "Famous for \"four seasons in one day\" as cold southerly and warm inland air trade places.",
+    "climateRegime": "temperate-maritime"
+  },
+  {
+    "name": "Port Elizabeth",
+    "country": "South Africa",
+    "lat": -33.96109,
+    "lon": 25.61494,
+    "timezone": "Africa/Johannesburg",
+    "utcOffsetSeconds": 7200,
+    "descriptor": "On South Africa's Eastern Cape coast, known locally as the windy city.",
+    "climateRegime": "temperate-maritime"
+  },
+  {
+    "name": "Moscow",
+    "country": "Russia",
+    "lat": 55.75204,
+    "lon": 37.61781,
+    "timezone": "Europe/Moscow",
+    "utcOffsetSeconds": 10800,
+    "descriptor": "Russia's capital, far enough from any ocean for genuinely cold winters and warm summers.",
+    "climateRegime": "temperate-continental"
+  },
+  {
+    "name": "Saint Petersburg",
+    "country": "Russia",
+    "lat": 59.93863,
+    "lon": 30.31413,
+    "timezone": "Europe/Moscow",
+    "utcOffsetSeconds": 10800,
+    "descriptor": "On the Neva delta at the head of the Gulf of Finland, famous for its \"white nights.\"",
+    "climateRegime": "temperate-continental"
+  },
+  {
+    "name": "Warsaw",
+    "country": "Poland",
+    "lat": 52.22977,
+    "lon": 21.01178,
+    "timezone": "Europe/Warsaw",
+    "utcOffsetSeconds": 7200,
+    "descriptor": "On the Vistula in the North European Plain, open to both Atlantic and continental air.",
+    "climateRegime": "temperate-continental"
+  },
+  {
+    "name": "Krakow",
+    "country": "Poland",
+    "lat": 50.06143,
+    "lon": 19.93658,
+    "timezone": "Europe/Warsaw",
+    "utcOffsetSeconds": 7200,
+    "descriptor": "Southern Poland's old royal capital, in the upper Vistula valley near the Carpathians.",
+    "climateRegime": "temperate-continental"
+  },
+  {
+    "name": "Berlin",
+    "country": "Germany",
+    "lat": 52.52437,
+    "lon": 13.41053,
+    "timezone": "Europe/Berlin",
+    "utcOffsetSeconds": 7200,
+    "descriptor": "Spread across a glacial lake plain, with sharper winter cold than Germany's west.",
+    "climateRegime": "temperate-continental"
+  },
+  {
+    "name": "Munich",
+    "country": "Germany",
+    "lat": 48.13743,
+    "lon": 11.57549,
+    "timezone": "Europe/Berlin",
+    "utcOffsetSeconds": 7200,
+    "descriptor": "On the edge of the Bavarian Alps, close enough to feel the warm alpine foehn wind.",
+    "climateRegime": "temperate-continental"
+  },
+  {
+    "name": "Vienna",
+    "country": "Austria",
+    "lat": 48.20849,
+    "lon": 16.37208,
+    "timezone": "Europe/Vienna",
+    "utcOffsetSeconds": 7200,
+    "descriptor": "At the eastern edge of the Alps where they meet the Danube basin.",
+    "climateRegime": "temperate-continental"
+  },
+  {
+    "name": "Prague",
+    "country": "Czechia",
+    "lat": 50.08804,
+    "lon": 14.42076,
+    "timezone": "Europe/Prague",
+    "utcOffsetSeconds": 7200,
+    "descriptor": "On the Vltava in a river basin that traps winter cold and summer heat alike.",
+    "climateRegime": "temperate-continental"
+  },
+  {
+    "name": "Budapest",
+    "country": "Hungary",
+    "lat": 47.49835,
+    "lon": 19.04045,
+    "timezone": "Europe/Budapest",
+    "utcOffsetSeconds": 7200,
+    "descriptor": "Split by the Danube where hilly Buda meets the flat Great Hungarian Plain.",
+    "climateRegime": "temperate-continental"
+  },
+  {
+    "name": "Bucharest",
+    "country": "Romania",
+    "lat": 44.43225,
+    "lon": 26.10626,
+    "timezone": "Europe/Bucharest",
+    "utcOffsetSeconds": 10800,
+    "descriptor": "On the edge of the Wallachian Plain, with sharply continental summers and winters.",
+    "climateRegime": "temperate-continental"
+  },
+  {
+    "name": "Kyiv",
+    "country": "Ukraine",
+    "lat": 50.45466,
+    "lon": 30.5238,
+    "timezone": "Europe/Kyiv",
+    "utcOffsetSeconds": 10800,
+    "descriptor": "On the Dnipro, deep enough in the continent for a full range of seasonal extremes.",
+    "climateRegime": "temperate-continental"
+  },
+  {
+    "name": "Minsk",
+    "country": "Belarus",
+    "lat": 53.90019,
+    "lon": 27.56653,
+    "timezone": "Europe/Minsk",
+    "utcOffsetSeconds": 10800,
+    "descriptor": "Belarus's capital on a low plain between the Baltic and Black Sea watersheds.",
+    "climateRegime": "temperate-continental"
+  },
+  {
+    "name": "Chicago",
+    "country": "United States",
+    "lat": 41.85003,
+    "lon": -87.65005,
+    "timezone": "America/Chicago",
+    "utcOffsetSeconds": -18000,
+    "descriptor": "On Lake Michigan's shore — the \"Windy City,\" swept by fronts off the Great Lakes and Plains.",
+    "climateRegime": "temperate-continental"
+  },
+  {
+    "name": "Minneapolis",
+    "country": "United States",
+    "lat": 44.97997,
+    "lon": -93.26384,
+    "timezone": "America/Chicago",
+    "utcOffsetSeconds": -18000,
+    "descriptor": "At the headwaters of the Mississippi, among the most temperature-volatile big US cities.",
+    "climateRegime": "temperate-continental"
+  },
+  {
+    "name": "Detroit",
+    "country": "United States",
+    "lat": 42.33143,
+    "lon": -83.04575,
+    "timezone": "America/Detroit",
+    "utcOffsetSeconds": -14400,
+    "descriptor": "On the strait between Lakes Erie and St. Clair, in the heart of the Great Lakes snowbelt.",
+    "climateRegime": "temperate-continental"
+  },
+  {
+    "name": "Denver",
+    "country": "United States",
+    "lat": 39.73915,
+    "lon": -104.9847,
+    "timezone": "America/Denver",
+    "utcOffsetSeconds": -21600,
+    "descriptor": "The Mile High City, where the Great Plains meet the Rockies — weather can flip in minutes.",
+    "climateRegime": "temperate-continental"
+  },
+  {
+    "name": "Boston",
+    "country": "United States",
+    "lat": 42.35843,
+    "lon": -71.05977,
+    "timezone": "America/New_York",
+    "utcOffsetSeconds": -14400,
+    "descriptor": "A New England harbour city, alternately warmed by the Gulf Stream and buried by nor'easters.",
+    "climateRegime": "temperate-continental"
+  },
+  {
+    "name": "Toronto",
+    "country": "Canada",
+    "lat": 43.70643,
+    "lon": -79.39864,
+    "timezone": "America/Toronto",
+    "utcOffsetSeconds": -14400,
+    "descriptor": "Canada's largest city, on Lake Ontario's north shore, moderated a little by the lake itself.",
+    "climateRegime": "temperate-continental"
+  },
+  {
+    "name": "Montreal",
+    "country": "Canada",
+    "lat": 45.50884,
+    "lon": -73.58781,
+    "timezone": "America/Toronto",
+    "utcOffsetSeconds": -14400,
+    "descriptor": "On an island in the St. Lawrence, with some of the snowiest winters of any major city its size.",
+    "climateRegime": "temperate-continental"
+  },
+  {
+    "name": "Winnipeg",
+    "country": "Canada",
+    "lat": 49.8844,
+    "lon": -97.14704,
+    "timezone": "America/Winnipeg",
+    "utcOffsetSeconds": -18000,
+    "descriptor": "On the open Canadian Prairies — among the coldest winter cities of its size on Earth.",
+    "climateRegime": "temperate-continental"
+  },
+  {
+    "name": "Calgary",
+    "country": "Canada",
+    "lat": 51.05011,
+    "lon": -114.08529,
+    "timezone": "America/Edmonton",
+    "utcOffsetSeconds": -21600,
+    "descriptor": "At the foot of the Rockies, famous for chinook winds that can raise the temperature 20°C in hours.",
+    "climateRegime": "temperate-continental"
+  },
+  {
+    "name": "Beijing",
+    "country": "China",
+    "lat": 39.9075,
+    "lon": 116.39723,
+    "timezone": "Asia/Shanghai",
+    "utcOffsetSeconds": 28800,
+    "descriptor": "China's capital on the North China Plain, dry cold winters giving way to a hot, humid monsoon summer.",
+    "climateRegime": "temperate-continental"
+  },
+  {
+    "name": "Harbin",
+    "country": "China",
+    "lat": 45.75,
+    "lon": 126.65,
+    "timezone": "Asia/Shanghai",
+    "utcOffsetSeconds": 28800,
+    "descriptor": "Northeast China's largest city, cold enough each winter to host a famous ice-sculpture festival.",
+    "climateRegime": "temperate-continental"
+  },
+  {
+    "name": "Xi'an",
+    "country": "China",
+    "lat": 34.25833,
+    "lon": 108.92861,
+    "timezone": "Asia/Shanghai",
+    "utcOffsetSeconds": 28800,
+    "descriptor": "In the Wei River valley, shielded by mountains from the wettest summer monsoon air.",
+    "climateRegime": "temperate-continental"
+  },
+  {
+    "name": "Seoul",
+    "country": "South Korea",
+    "lat": 37.566,
+    "lon": 126.9784,
+    "timezone": "Asia/Seoul",
+    "utcOffsetSeconds": 32400,
+    "descriptor": "On the Han River, with cold dry winters and a sharply monsoonal, humid summer.",
+    "climateRegime": "temperate-continental"
+  },
+  {
+    "name": "Pyongyang",
+    "country": "North Korea",
+    "lat": 39.03385,
+    "lon": 125.75432,
+    "timezone": "Asia/Pyongyang",
+    "utcOffsetSeconds": 32400,
+    "descriptor": "On the Taedong River, sharing the peninsula's continental winters and monsoon summers.",
+    "climateRegime": "temperate-continental"
+  },
+  {
+    "name": "Ulaanbaatar",
+    "country": "Mongolia",
+    "lat": 47.90771,
+    "lon": 106.88324,
+    "timezone": "Asia/Ulaanbaatar",
+    "utcOffsetSeconds": 28800,
+    "descriptor": "The coldest national capital on Earth, on a high steppe plateau far from any sea.",
+    "climateRegime": "temperate-continental"
+  },
+  {
+    "name": "Almaty",
+    "country": "Kazakhstan",
+    "lat": 43.25249,
+    "lon": 76.9115,
+    "timezone": "Asia/Almaty",
+    "utcOffsetSeconds": 18000,
+    "descriptor": "Kazakhstan's former capital, at the foot of the Tian Shan mountains.",
+    "climateRegime": "temperate-continental"
+  },
+  {
+    "name": "Astana",
+    "country": "Kazakhstan",
+    "lat": 51.1801,
+    "lon": 71.44598,
+    "timezone": "Asia/Almaty",
+    "utcOffsetSeconds": 18000,
+    "descriptor": "One of the coldest capital cities on Earth, on the open Kazakh steppe.",
+    "climateRegime": "temperate-continental"
+  },
+  {
+    "name": "Stockholm",
+    "country": "Sweden",
+    "lat": 59.32938,
+    "lon": 18.06871,
+    "timezone": "Europe/Stockholm",
+    "utcOffsetSeconds": 7200,
+    "descriptor": "Spread across an archipelago where the Baltic softens, but does not erase, continental winters.",
+    "climateRegime": "temperate-continental"
+  },
+  {
+    "name": "Oslo",
+    "country": "Norway",
+    "lat": 59.91273,
+    "lon": 10.74609,
+    "timezone": "Europe/Oslo",
+    "utcOffsetSeconds": 7200,
+    "descriptor": "At the head of a long fjord, sheltered enough for colder winters than coastal Norway.",
+    "climateRegime": "temperate-continental"
+  },
+  {
+    "name": "Helsinki",
+    "country": "Finland",
+    "lat": 60.16952,
+    "lon": 24.93545,
+    "timezone": "Europe/Helsinki",
+    "utcOffsetSeconds": 10800,
+    "descriptor": "On the Gulf of Finland, with a harsher winter than its latitude alone would suggest.",
+    "climateRegime": "temperate-continental"
+  },
+  {
+    "name": "Zurich",
+    "country": "Switzerland",
+    "lat": 47.36667,
+    "lon": 8.55,
+    "timezone": "Europe/Zurich",
+    "utcOffsetSeconds": 7200,
+    "descriptor": "By a lake at the foot of the Alps, prone to the Alps' own local wind, the foehn.",
+    "climateRegime": "temperate-continental"
+  },
+  {
+    "name": "Sofia",
+    "country": "Bulgaria",
+    "lat": 42.69751,
+    "lon": 23.32415,
+    "timezone": "Europe/Sofia",
+    "utcOffsetSeconds": 10800,
+    "descriptor": "On a high plain ringed by mountains, giving it colder winters than most of the Balkans.",
+    "climateRegime": "temperate-continental"
+  },
+  {
+    "name": "Belgrade",
+    "country": "Serbia",
+    "lat": 44.80401,
+    "lon": 20.46513,
+    "timezone": "Europe/Belgrade",
+    "utcOffsetSeconds": 7200,
+    "descriptor": "Where the Sava meets the Danube, exposed to the cold northerly košava wind.",
+    "climateRegime": "temperate-continental"
+  },
+  {
+    "name": "Zagreb",
+    "country": "Croatia",
+    "lat": 45.81444,
+    "lon": 15.97798,
+    "timezone": "Europe/Zagreb",
+    "utcOffsetSeconds": 7200,
+    "descriptor": "Croatia's capital on the Sava, in the continental interior well away from the Adriatic.",
+    "climateRegime": "temperate-continental"
+  },
+  {
+    "name": "Ljubljana",
+    "country": "Slovenia",
+    "lat": 46.05108,
+    "lon": 14.50513,
+    "timezone": "Europe/Ljubljana",
+    "utcOffsetSeconds": 7200,
+    "descriptor": "In a basin between the Alps and the Karst, prone to pooling winter fog and frost.",
+    "climateRegime": "temperate-continental"
+  },
+  {
+    "name": "Riga",
+    "country": "Latvia",
+    "lat": 56.946,
+    "lon": 24.10589,
+    "timezone": "Europe/Riga",
+    "utcOffsetSeconds": 10800,
+    "descriptor": "On the Gulf of Riga, with a Baltic climate midway between maritime and continental.",
+    "climateRegime": "temperate-continental"
+  },
+  {
+    "name": "Vilnius",
+    "country": "Lithuania",
+    "lat": 54.68916,
+    "lon": 25.2798,
+    "timezone": "Europe/Vilnius",
+    "utcOffsetSeconds": 10800,
+    "descriptor": "Lithuania's capital, inland enough for real continental winters despite Baltic proximity.",
+    "climateRegime": "temperate-continental"
+  },
+  {
+    "name": "Tallinn",
+    "country": "Estonia",
+    "lat": 59.43696,
+    "lon": 24.75353,
+    "timezone": "Europe/Tallinn",
+    "utcOffsetSeconds": 10800,
+    "descriptor": "On the Gulf of Finland, with the Baltic Sea softening but not removing sharp seasons.",
+    "climateRegime": "temperate-continental"
+  },
+  {
+    "name": "Chișinău",
+    "country": "Moldova",
+    "lat": 47.00902,
+    "lon": 28.85938,
+    "timezone": "Europe/Chisinau",
+    "utcOffsetSeconds": 10800,
+    "descriptor": "Moldova's capital on a hilly plain between the Prut and Dniester rivers.",
+    "climateRegime": "temperate-continental"
+  },
+  {
+    "name": "Sapporo",
+    "country": "Japan",
+    "lat": 43.06667,
+    "lon": 141.35,
+    "timezone": "Asia/Tokyo",
+    "utcOffsetSeconds": 32400,
+    "descriptor": "Northern Japan's largest city, on Hokkaido — famously heavy, powdery winter snowfall.",
+    "climateRegime": "temperate-continental"
+  },
+  {
+    "name": "Canberra",
+    "country": "Australia",
+    "lat": -35.28346,
+    "lon": 149.12807,
+    "timezone": "Australia/Sydney",
+    "utcOffsetSeconds": 36000,
+    "descriptor": "Australia's inland capital, high enough and far enough from the coast for a real four-season climate.",
+    "climateRegime": "temperate-continental"
+  },
+  {
+    "name": "Athens",
+    "country": "Greece",
+    "lat": 37.98376,
+    "lon": 23.72784,
+    "timezone": "Europe/Athens",
+    "utcOffsetSeconds": 10800,
+    "descriptor": "Ringed by hills near the Aegean, with the hot, dry summers that define the region's climate.",
+    "climateRegime": "mediterranean"
+  },
+  {
+    "name": "Thessaloniki",
+    "country": "Greece",
+    "lat": 40.64072,
+    "lon": 22.93493,
+    "timezone": "Europe/Athens",
+    "utcOffsetSeconds": 10800,
+    "descriptor": "On the Thermaic Gulf, catching the cold Balkan vardar wind more often than Athens does.",
+    "climateRegime": "mediterranean"
+  },
+  {
+    "name": "Rome",
+    "country": "Italy",
+    "lat": 41.89193,
+    "lon": 12.51133,
+    "timezone": "Europe/Rome",
+    "utcOffsetSeconds": 7200,
+    "descriptor": "On the Tiber, inland enough from the Tyrrhenian Sea for hot, dry summers and mild winters.",
+    "climateRegime": "mediterranean"
+  },
+  {
+    "name": "Naples",
+    "country": "Italy",
+    "lat": 40.85216,
+    "lon": 14.26811,
+    "timezone": "Europe/Rome",
+    "utcOffsetSeconds": 7200,
+    "descriptor": "On its famous bay beneath Vesuvius, with some of Italy's mildest winters.",
+    "climateRegime": "mediterranean"
+  },
+  {
+    "name": "Palermo",
+    "country": "Italy",
+    "lat": 38.1166,
+    "lon": 13.3636,
+    "timezone": "Europe/Rome",
+    "utcOffsetSeconds": 7200,
+    "descriptor": "Sicily's capital, catching the hot Saharan sirocco wind more often than mainland Italy.",
+    "climateRegime": "mediterranean"
+  },
+  {
+    "name": "Madrid",
+    "country": "Spain",
+    "lat": 40.4165,
+    "lon": -3.70256,
+    "timezone": "Europe/Madrid",
+    "utcOffsetSeconds": 7200,
+    "descriptor": "Europe's highest capital, on a plateau where continental extremes blunt the coastal Mediterranean pattern.",
+    "climateRegime": "mediterranean"
+  },
+  {
+    "name": "Barcelona",
+    "country": "Spain",
+    "lat": 41.38879,
+    "lon": 2.15899,
+    "timezone": "Europe/Madrid",
+    "utcOffsetSeconds": 7200,
+    "descriptor": "On the Catalan coast, with a true Mediterranean rhythm of dry summers, wetter winters.",
+    "climateRegime": "mediterranean"
+  },
+  {
+    "name": "Seville",
+    "country": "Spain",
+    "lat": 37.38283,
+    "lon": -5.97317,
+    "timezone": "Europe/Madrid",
+    "utcOffsetSeconds": 7200,
+    "descriptor": "In the Guadalquivir valley — regularly among the hottest cities in mainland Europe.",
+    "climateRegime": "mediterranean"
+  },
+  {
+    "name": "Lisbon",
+    "country": "Portugal",
+    "lat": 38.72509,
+    "lon": -9.1498,
+    "timezone": "Europe/Lisbon",
+    "utcOffsetSeconds": 3600,
+    "descriptor": "On the Tagus estuary, kept mild year-round by the nearby Atlantic.",
+    "climateRegime": "mediterranean"
+  },
+  {
+    "name": "Porto",
+    "country": "Portugal",
+    "lat": 41.1485,
+    "lon": -8.61097,
+    "timezone": "Europe/Lisbon",
+    "utcOffsetSeconds": 3600,
+    "descriptor": "Portugal's second city on the Douro, wetter than Lisbon thanks to its more northerly Atlantic coast.",
+    "climateRegime": "mediterranean"
+  },
+  {
+    "name": "Marseille",
+    "country": "France",
+    "lat": 43.29695,
+    "lon": 5.38107,
+    "timezone": "Europe/Paris",
+    "utcOffsetSeconds": 7200,
+    "descriptor": "On the Mediterranean coast, regularly swept by the cold, dry mistral wind from the north.",
+    "climateRegime": "mediterranean"
+  },
+  {
+    "name": "Nice",
+    "country": "France",
+    "lat": 43.70313,
+    "lon": 7.26608,
+    "timezone": "Europe/Paris",
+    "utcOffsetSeconds": 7200,
+    "descriptor": "On the French Riviera, sheltered by the Alps from the worst of that same mistral.",
+    "climateRegime": "mediterranean"
+  },
+  {
+    "name": "Valparaíso",
+    "country": "Chile",
+    "lat": -33.036,
+    "lon": -71.62963,
+    "timezone": "America/Santiago",
+    "utcOffsetSeconds": -14400,
+    "descriptor": "Pacific coast, 120 km west of Santiago — a cool Mediterranean climate driven by the Humboldt Current.",
+    "climateRegime": "mediterranean"
+  },
+  {
+    "name": "Santiago",
+    "country": "Chile",
+    "lat": -33.45694,
+    "lon": -70.64827,
+    "timezone": "America/Santiago",
+    "utcOffsetSeconds": -14400,
+    "descriptor": "Chile's capital in a valley between the Andes and the coastal range, sheltered from ocean influence.",
+    "climateRegime": "mediterranean"
+  },
+  {
+    "name": "Cape Town",
+    "country": "South Africa",
+    "lat": -33.92584,
+    "lon": 18.42322,
+    "timezone": "Africa/Johannesburg",
+    "utcOffsetSeconds": 7200,
+    "descriptor": "At the tip of Africa, the only true Mediterranean climate in the Southern Hemisphere outside Chile and Australia.",
+    "climateRegime": "mediterranean"
+  },
+  {
+    "name": "Perth",
+    "country": "Australia",
+    "lat": -31.95224,
+    "lon": 115.8614,
+    "timezone": "Australia/Perth",
+    "utcOffsetSeconds": 28800,
+    "descriptor": "On the Indian Ocean coast — the sea breeze known locally as the \"Fremantle Doctor\" cools summer afternoons.",
+    "climateRegime": "mediterranean"
+  },
+  {
+    "name": "Adelaide",
+    "country": "Australia",
+    "lat": -34.92866,
+    "lon": 138.59863,
+    "timezone": "Australia/Adelaide",
+    "utcOffsetSeconds": 34200,
+    "descriptor": "On the Gulf St Vincent plain, among the driest state capitals on the driest inhabited continent.",
+    "climateRegime": "mediterranean"
+  },
+  {
+    "name": "Los Angeles",
+    "country": "United States",
+    "lat": 34.05223,
+    "lon": -118.24368,
+    "timezone": "America/Los_Angeles",
+    "utcOffsetSeconds": -25200,
+    "descriptor": "Coastal Southern California, its dry summers and wet winters textbook Mediterranean.",
+    "climateRegime": "mediterranean"
+  },
+  {
+    "name": "San Diego",
+    "country": "United States",
+    "lat": 32.71571,
+    "lon": -117.16472,
+    "timezone": "America/Los_Angeles",
+    "utcOffsetSeconds": -25200,
+    "descriptor": "California's southernmost coastal city — some of the most consistently mild weather in the US.",
+    "climateRegime": "mediterranean"
+  },
+  {
+    "name": "San Francisco",
+    "country": "United States",
+    "lat": 37.77493,
+    "lon": -122.41942,
+    "timezone": "America/Los_Angeles",
+    "utcOffsetSeconds": -25200,
+    "descriptor": "On a peninsula where cold Pacific upwelling drives its famous summer fog.",
+    "climateRegime": "mediterranean"
+  },
+  {
+    "name": "Tijuana",
+    "country": "Mexico",
+    "lat": 32.5027,
+    "lon": -117.00371,
+    "timezone": "America/Tijuana",
+    "utcOffsetSeconds": -25200,
+    "descriptor": "Mexico's border with San Diego, sharing that same dry, mild coastal pattern.",
+    "climateRegime": "mediterranean"
+  },
+  {
+    "name": "Tunis",
+    "country": "Tunisia",
+    "lat": 36.81897,
+    "lon": 10.16579,
+    "timezone": "Africa/Tunis",
+    "utcOffsetSeconds": 3600,
+    "descriptor": "On a lagoon near the Mediterranean, at the northern tip of Africa.",
+    "climateRegime": "mediterranean"
+  },
+  {
+    "name": "Algiers",
+    "country": "Algeria",
+    "lat": 36.73225,
+    "lon": 3.08746,
+    "timezone": "Africa/Algiers",
+    "utcOffsetSeconds": 3600,
+    "descriptor": "A white city on the Bay of Algiers, backed by the Atlas Mountains.",
+    "climateRegime": "mediterranean"
+  },
+  {
+    "name": "Rabat",
+    "country": "Morocco",
+    "lat": 34.01325,
+    "lon": -6.83255,
+    "timezone": "Africa/Casablanca",
+    "utcOffsetSeconds": 3600,
+    "descriptor": "Morocco's Atlantic capital, cooled year-round by a cold offshore current.",
+    "climateRegime": "mediterranean"
+  },
+  {
+    "name": "Tripoli",
+    "country": "Libya",
+    "lat": 32.88743,
+    "lon": 13.18733,
+    "timezone": "Africa/Tripoli",
+    "utcOffsetSeconds": 7200,
+    "descriptor": "On the Libyan coast, where Mediterranean mild winters give way to Saharan-influenced summers.",
+    "climateRegime": "mediterranean"
+  },
+  {
+    "name": "Beirut",
+    "country": "Lebanon",
+    "lat": 33.89332,
+    "lon": 35.50157,
+    "timezone": "Asia/Beirut",
+    "utcOffsetSeconds": 10800,
+    "descriptor": "Between the Mediterranean and Mount Lebanon, which wrings out much of the region's winter rain.",
+    "climateRegime": "mediterranean"
+  },
+  {
+    "name": "Tel Aviv",
+    "country": "Israel",
+    "lat": 32.08088,
+    "lon": 34.78057,
+    "timezone": "Asia/Jerusalem",
+    "utcOffsetSeconds": 10800,
+    "descriptor": "On the Israeli coastal plain, with humid Mediterranean summers softened by sea breeze.",
+    "climateRegime": "mediterranean"
+  },
+  {
+    "name": "Jerusalem",
+    "country": "Israel",
+    "lat": 31.76904,
+    "lon": 35.21633,
+    "timezone": "Asia/Jerusalem",
+    "utcOffsetSeconds": 10800,
+    "descriptor": "High in the Judean Hills, cooler and occasionally snowy compared to the coastal plain below.",
+    "climateRegime": "mediterranean"
+  },
+  {
+    "name": "İzmir",
+    "country": "Republic of Türkiye",
+    "lat": 38.41273,
+    "lon": 27.13838,
+    "timezone": "Europe/Istanbul",
+    "utcOffsetSeconds": 10800,
+    "descriptor": "On Turkey's Aegean coast, with classically hot, dry Mediterranean summers.",
+    "climateRegime": "mediterranean"
+  },
+  {
+    "name": "Cairo",
+    "country": "Egypt",
+    "lat": 30.06263,
+    "lon": 31.24967,
+    "timezone": "Africa/Cairo",
+    "utcOffsetSeconds": 10800,
+    "descriptor": "On the Nile at the edge of the Sahara — one of the driest major cities on Earth.",
+    "climateRegime": "arid"
+  },
+  {
+    "name": "Riyadh",
+    "country": "Saudi Arabia",
+    "lat": 24.68773,
+    "lon": 46.72185,
+    "timezone": "Asia/Riyadh",
+    "utcOffsetSeconds": 10800,
+    "descriptor": "Deep in the Arabian interior, with some of the widest day-to-night temperature swings anywhere.",
+    "climateRegime": "arid"
+  },
+  {
+    "name": "Jeddah",
+    "country": "Saudi Arabia",
+    "lat": 21.49012,
+    "lon": 39.18624,
+    "timezone": "Asia/Riyadh",
+    "utcOffsetSeconds": 10800,
+    "descriptor": "On the Red Sea coast, humid as well as hot — a harsher combination than inland desert cities.",
+    "climateRegime": "arid"
+  },
+  {
+    "name": "Dubai",
+    "country": "United Arab Emirates",
+    "lat": 25.07725,
+    "lon": 55.30927,
+    "timezone": "Asia/Dubai",
+    "utcOffsetSeconds": 14400,
+    "descriptor": "On the Persian Gulf, where extreme heat meets extreme humidity for much of the year.",
+    "climateRegime": "arid"
+  },
+  {
+    "name": "Abu Dhabi",
+    "country": "United Arab Emirates",
+    "lat": 24.45118,
+    "lon": 54.39696,
+    "timezone": "Asia/Dubai",
+    "utcOffsetSeconds": 14400,
+    "descriptor": "The UAE's capital on a Gulf island, sharing Dubai's punishing summer humidity.",
+    "climateRegime": "arid"
+  },
+  {
+    "name": "Doha",
+    "country": "Qatar",
+    "lat": 25.28545,
+    "lon": 51.53096,
+    "timezone": "Asia/Qatar",
+    "utcOffsetSeconds": 10800,
+    "descriptor": "On a low peninsula in the Persian Gulf, among the hottest capital cities on Earth in summer.",
+    "climateRegime": "arid"
+  },
+  {
+    "name": "Kuwait City",
+    "country": "Kuwait",
+    "lat": 29.367,
+    "lon": 47.97429,
+    "timezone": "Asia/Kuwait",
+    "utcOffsetSeconds": 10800,
+    "descriptor": "At the head of the Persian Gulf — summer highs here are among the hottest reliably recorded anywhere.",
+    "climateRegime": "arid"
+  },
+  {
+    "name": "Baghdad",
+    "country": "Iraq",
+    "lat": 33.34058,
+    "lon": 44.40088,
+    "timezone": "Asia/Baghdad",
+    "utcOffsetSeconds": 10800,
+    "descriptor": "On the Tigris in the Mesopotamian plain, scorching and almost rainless in summer.",
+    "climateRegime": "arid"
+  },
+  {
+    "name": "Tehran",
+    "country": "Iran",
+    "lat": 35.69439,
+    "lon": 51.42151,
+    "timezone": "Asia/Tehran",
+    "utcOffsetSeconds": 12600,
+    "descriptor": "At the foot of the Alborz mountains, whose snowmelt is the city's main water source.",
+    "climateRegime": "arid"
+  },
+  {
+    "name": "Ashgabat",
+    "country": "Turkmenistan",
+    "lat": 37.95,
+    "lon": 58.38333,
+    "timezone": "Asia/Ashgabat",
+    "utcOffsetSeconds": 18000,
+    "descriptor": "On the edge of the Karakum desert, one of the driest capital cities in Central Asia.",
+    "climateRegime": "arid"
+  },
+  {
+    "name": "Phoenix",
+    "country": "United States",
+    "lat": 33.44838,
+    "lon": -112.07404,
+    "timezone": "America/Phoenix",
+    "utcOffsetSeconds": -25200,
+    "descriptor": "In the Sonoran Desert — among the hottest major metro areas in the US.",
+    "climateRegime": "arid"
+  },
+  {
+    "name": "Las Vegas",
+    "country": "United States",
+    "lat": 36.17497,
+    "lon": -115.13722,
+    "timezone": "America/Los_Angeles",
+    "utcOffsetSeconds": -25200,
+    "descriptor": "In a desert valley ringed by mountains, with huge day-to-night temperature swings.",
+    "climateRegime": "arid"
+  },
+  {
+    "name": "Alice Springs",
+    "country": "Australia",
+    "lat": -23.69748,
+    "lon": 133.88362,
+    "timezone": "Australia/Darwin",
+    "utcOffsetSeconds": 34200,
+    "descriptor": "The Red Centre — Australia's classic desert-interior extreme, hot days and cold desert nights.",
+    "climateRegime": "arid"
+  },
+  {
+    "name": "Timbuktu",
+    "country": "Mali",
+    "lat": 16.77348,
+    "lon": -3.00742,
+    "timezone": "Africa/Bamako",
+    "utcOffsetSeconds": 0,
+    "descriptor": "On the southern edge of the Sahara, where the desert meets the Niger River floodplain.",
+    "climateRegime": "arid"
+  },
+  {
+    "name": "Nouakchott",
+    "country": "Mauritania",
+    "lat": 18.08581,
+    "lon": -15.9785,
+    "timezone": "Africa/Nouakchott",
+    "utcOffsetSeconds": 0,
+    "descriptor": "A young Atlantic coast capital, built where the Sahara runs down to the sea.",
+    "climateRegime": "arid"
+  },
+  {
+    "name": "Antofagasta",
+    "country": "Chile",
+    "lat": -23.65094,
+    "lon": -70.39752,
+    "timezone": "America/Santiago",
+    "utcOffsetSeconds": -14400,
+    "descriptor": "On the edge of the Atacama, the driest non-polar desert on Earth.",
+    "climateRegime": "arid"
+  },
+  {
+    "name": "Iquique",
+    "country": "Chile",
+    "lat": -20.21326,
+    "lon": -70.15027,
+    "timezone": "America/Santiago",
+    "utcOffsetSeconds": -14400,
+    "descriptor": "A coastal Atacama city, kept rainless by the cold Humboldt Current offshore.",
+    "climateRegime": "arid"
+  },
+  {
+    "name": "Windhoek",
+    "country": "Namibia",
+    "lat": -22.55941,
+    "lon": 17.08323,
+    "timezone": "Africa/Windhoek",
+    "utcOffsetSeconds": 7200,
+    "descriptor": "On a high plateau between the Namib and Kalahari deserts.",
+    "climateRegime": "arid"
+  },
+  {
+    "name": "Aswan",
+    "country": "Egypt",
+    "lat": 24.09082,
+    "lon": 32.89942,
+    "timezone": "Africa/Cairo",
+    "utcOffsetSeconds": 10800,
+    "descriptor": "On the Nile just below Lake Nasser — among the sunniest, driest cities on Earth.",
+    "climateRegime": "arid"
+  },
+  {
+    "name": "Muscat",
+    "country": "Oman",
+    "lat": 23.58413,
+    "lon": 58.40778,
+    "timezone": "Asia/Muscat",
+    "utcOffsetSeconds": 14400,
+    "descriptor": "Wedged between the Hajar Mountains and the Gulf of Oman, brutally humid in summer.",
+    "climateRegime": "arid"
+  },
+  {
+    "name": "Lima",
+    "country": "Peru",
+    "lat": -12.04318,
+    "lon": -77.02824,
+    "timezone": "America/Lima",
+    "utcOffsetSeconds": -18000,
+    "descriptor": "A coastal desert capital — the cold Humboldt Current keeps it dry despite the tropical latitude.",
+    "climateRegime": "arid"
+  },
+  {
+    "name": "Mendoza",
+    "country": "Argentina",
+    "lat": -32.88946,
+    "lon": -68.84582,
+    "timezone": "America/Argentina/Mendoza",
+    "utcOffsetSeconds": -10800,
+    "descriptor": "In the rain shadow of the Andes, an oasis city and wine region fed by mountain meltwater.",
+    "climateRegime": "arid"
+  },
+  {
+    "name": "Khartoum",
+    "country": "Sudan",
+    "lat": 15.55177,
+    "lon": 32.53241,
+    "timezone": "Africa/Khartoum",
+    "utcOffsetSeconds": 7200,
+    "descriptor": "Where the Blue and White Nile meet — one of the hottest capital cities on Earth.",
+    "climateRegime": "arid"
+  },
+  {
+    "name": "Djibouti",
+    "country": "Djibouti",
+    "lat": 11.58901,
+    "lon": 43.14503,
+    "timezone": "Africa/Djibouti",
+    "utcOffsetSeconds": 10800,
+    "descriptor": "On the Gulf of Aden — among the hottest, driest coastal capitals anywhere.",
+    "climateRegime": "arid"
+  },
+  {
+    "name": "Karachi",
+    "country": "Pakistan",
+    "lat": 24.8608,
+    "lon": 67.0104,
+    "timezone": "Asia/Karachi",
+    "utcOffsetSeconds": 18000,
+    "descriptor": "Pakistan's largest city, on the Arabian Sea coast where a weak monsoon barely reaches.",
+    "climateRegime": "semi-arid"
+  },
+  {
+    "name": "Lahore",
+    "country": "Pakistan",
+    "lat": 31.558,
+    "lon": 74.35071,
+    "timezone": "Asia/Karachi",
+    "utcOffsetSeconds": 18000,
+    "descriptor": "In the Punjab plain, with hot dry springs broken by a short, intense monsoon.",
+    "climateRegime": "semi-arid"
+  },
+  {
+    "name": "Ankara",
+    "country": "Republic of Türkiye",
+    "lat": 39.91987,
+    "lon": 32.85427,
+    "timezone": "Europe/Istanbul",
+    "utcOffsetSeconds": 10800,
+    "descriptor": "Turkey's capital on the Anatolian plateau, drier and more continental than the coasts.",
+    "climateRegime": "semi-arid"
+  },
+  {
+    "name": "Bishkek",
+    "country": "Kyrgyzstan",
+    "lat": 42.87,
+    "lon": 74.59,
+    "timezone": "Asia/Bishkek",
+    "utcOffsetSeconds": 21600,
+    "descriptor": "At the foot of the Tian Shan mountains on the edge of the Central Asian steppe.",
+    "climateRegime": "semi-arid"
+  },
+  {
+    "name": "Tashkent",
+    "country": "Uzbekistan",
+    "lat": 41.26465,
+    "lon": 69.21627,
+    "timezone": "Asia/Tashkent",
+    "utcOffsetSeconds": 18000,
+    "descriptor": "An oasis city in Central Asia, watered by mountain rivers feeding the dry steppe.",
+    "climateRegime": "semi-arid"
+  },
+  {
+    "name": "Amman",
+    "country": "Jordan",
+    "lat": 31.95522,
+    "lon": 35.94503,
+    "timezone": "Asia/Amman",
+    "utcOffsetSeconds": 10800,
+    "descriptor": "Jordan's capital, built across hills on the edge where the Fertile Crescent gives way to desert.",
+    "climateRegime": "semi-arid"
+  },
+  {
+    "name": "Marrakesh",
+    "country": "Morocco",
+    "lat": 31.63416,
+    "lon": -7.99994,
+    "timezone": "Africa/Casablanca",
+    "utcOffsetSeconds": 3600,
+    "descriptor": "Below the High Atlas, whose snowmelt is the difference between this and true desert.",
+    "climateRegime": "semi-arid"
+  },
+  {
+    "name": "Kano",
+    "country": "Nigeria",
+    "lat": 12.00012,
+    "lon": 8.51672,
+    "timezone": "Africa/Lagos",
+    "utcOffsetSeconds": 3600,
+    "descriptor": "Northern Nigeria's Sahel edge — a short wet season sandwiched between long dry ones.",
+    "climateRegime": "semi-arid"
+  },
+  {
+    "name": "Ouagadougou",
+    "country": "Burkina Faso",
+    "lat": 12.36566,
+    "lon": -1.53388,
+    "timezone": "Africa/Ouagadougou",
+    "utcOffsetSeconds": 0,
+    "descriptor": "Burkina Faso's capital on the Sahel, where the harmattan wind carries Saharan dust much of the year.",
+    "climateRegime": "semi-arid"
+  },
+  {
+    "name": "N'Djamena",
+    "country": "Chad",
+    "lat": 12.10672,
+    "lon": 15.0444,
+    "timezone": "Africa/Ndjamena",
+    "utcOffsetSeconds": 3600,
+    "descriptor": "Where the Chari and Logone rivers meet, on the southern fringe of the Sahara.",
+    "climateRegime": "semi-arid"
+  },
+  {
+    "name": "Albuquerque",
+    "country": "United States",
+    "lat": 35.08449,
+    "lon": -106.65114,
+    "timezone": "America/Denver",
+    "utcOffsetSeconds": -21600,
+    "descriptor": "In the Rio Grande valley, high desert with huge day-to-night temperature swings.",
+    "climateRegime": "semi-arid"
+  },
+  {
+    "name": "El Paso",
+    "country": "United States",
+    "lat": 31.75872,
+    "lon": -106.48693,
+    "timezone": "America/Denver",
+    "utcOffsetSeconds": -21600,
+    "descriptor": "On the Rio Grande at the US-Mexico border, in the Chihuahuan Desert.",
+    "climateRegime": "semi-arid"
+  },
+  {
+    "name": "Salt Lake City",
+    "country": "United States",
+    "lat": 40.76078,
+    "lon": -111.89105,
+    "timezone": "America/Denver",
+    "utcOffsetSeconds": -21600,
+    "descriptor": "Between the Wasatch Range and the Great Salt Lake, which locally amplifies winter snowfall.",
+    "climateRegime": "semi-arid"
+  },
+  {
+    "name": "Monterrey",
+    "country": "Mexico",
+    "lat": 25.68435,
+    "lon": -100.31721,
+    "timezone": "America/Monterrey",
+    "utcOffsetSeconds": -21600,
+    "descriptor": "In a valley ringed by the Sierra Madre Oriental, prone to sharp heat and occasional cold snaps.",
+    "climateRegime": "semi-arid"
+  },
+  {
+    "name": "Córdoba",
+    "country": "Argentina",
+    "lat": -31.40648,
+    "lon": -64.18853,
+    "timezone": "America/Argentina/Cordoba",
+    "utcOffsetSeconds": -10800,
+    "descriptor": "In the Pampas foothills, with a drier, more continental climate than coastal Argentina.",
+    "climateRegime": "semi-arid"
+  },
+  {
+    "name": "Mogadishu",
+    "country": "Somalia",
+    "lat": 2.03711,
+    "lon": 45.34375,
+    "timezone": "Africa/Mogadishu",
+    "utcOffsetSeconds": 10800,
+    "descriptor": "On the Indian Ocean coast — kept surprisingly dry by a current running counter to the monsoon.",
+    "climateRegime": "semi-arid"
+  },
+  {
+    "name": "Dakar",
+    "country": "Senegal",
+    "lat": 14.6937,
+    "lon": -17.44406,
+    "timezone": "Africa/Dakar",
+    "utcOffsetSeconds": 0,
+    "descriptor": "Africa's westernmost capital, at the edge of the Sahel where the harmattan and monsoon contest the year.",
+    "climateRegime": "semi-arid"
+  },
+  {
+    "name": "Luanda",
+    "country": "Angola",
+    "lat": -8.83682,
+    "lon": 13.23432,
+    "timezone": "Africa/Luanda",
+    "utcOffsetSeconds": 3600,
+    "descriptor": "Angola's capital on the South Atlantic coast, kept dry by the same cold current that shapes the Namib.",
+    "climateRegime": "semi-arid"
+  },
+  {
+    "name": "Gaborone",
+    "country": "Botswana",
+    "lat": -24.65451,
+    "lon": 25.90859,
+    "timezone": "Africa/Gaborone",
+    "utcOffsetSeconds": 7200,
+    "descriptor": "On the edge of the Kalahari, with sharply seasonal, unreliable rains.",
+    "climateRegime": "semi-arid"
+  },
+  {
+    "name": "Bloemfontein",
+    "country": "South Africa",
+    "lat": -29.12107,
+    "lon": 26.214,
+    "timezone": "Africa/Johannesburg",
+    "utcOffsetSeconds": 7200,
+    "descriptor": "South Africa's judicial capital, on the high, dry central plateau.",
+    "climateRegime": "semi-arid"
+  },
+  {
+    "name": "Damascus",
+    "country": "Syria",
+    "lat": 33.5102,
+    "lon": 36.29128,
+    "timezone": "Asia/Damascus",
+    "utcOffsetSeconds": 10800,
+    "descriptor": "One of the oldest continuously inhabited cities on Earth, in the rain shadow of Mount Lebanon.",
+    "climateRegime": "semi-arid"
+  },
+  {
+    "name": "Dushanbe",
+    "country": "Tajikistan",
+    "lat": 38.53575,
+    "lon": 68.77905,
+    "timezone": "Asia/Dushanbe",
+    "utcOffsetSeconds": 18000,
+    "descriptor": "In a valley at the foot of the Pamir mountains, Central Asia's highest range.",
+    "climateRegime": "semi-arid"
+  },
+  {
+    "name": "Jaipur",
+    "country": "India",
+    "lat": 26.91962,
+    "lon": 75.78781,
+    "timezone": "Asia/Kolkata",
+    "utcOffsetSeconds": 19800,
+    "descriptor": "Rajasthan's Pink City, on the fringe of the Thar Desert.",
+    "climateRegime": "semi-arid"
+  },
+  {
+    "name": "Hyderabad",
+    "country": "India",
+    "lat": 17.38405,
+    "lon": 78.45636,
+    "timezone": "Asia/Kolkata",
+    "utcOffsetSeconds": 19800,
+    "descriptor": "On the Deccan Plateau, drier and more moderate than India's coastal cities.",
+    "climateRegime": "semi-arid"
+  },
+  {
+    "name": "Yerevan",
+    "country": "Armenia",
+    "lat": 40.17765,
+    "lon": 44.5126,
+    "timezone": "Asia/Yerevan",
+    "utcOffsetSeconds": 14400,
+    "descriptor": "On a high volcanic plateau within sight of Mount Ararat.",
+    "climateRegime": "semi-arid"
+  },
+  {
+    "name": "Baku",
+    "country": "Azerbaijan",
+    "lat": 40.37767,
+    "lon": 49.89201,
+    "timezone": "Asia/Baku",
+    "utcOffsetSeconds": 14400,
+    "descriptor": "On the Caspian Sea, one of the windiest capitals on Earth thanks to a funnelling coastal wind.",
+    "climateRegime": "semi-arid"
+  },
+  {
+    "name": "Mumbai",
+    "country": "India",
+    "lat": 19.07283,
+    "lon": 72.88261,
+    "timezone": "Asia/Kolkata",
+    "utcOffsetSeconds": 19800,
+    "descriptor": "India's financial capital, on the Arabian Sea, hit hard each year by the southwest monsoon.",
+    "climateRegime": "tropical-monsoon"
+  },
+  {
+    "name": "Chennai",
+    "country": "India",
+    "lat": 13.08784,
+    "lon": 80.27847,
+    "timezone": "Asia/Kolkata",
+    "utcOffsetSeconds": 19800,
+    "descriptor": "On India's southeast coast, drawing most of its rain from the later northeast monsoon.",
+    "climateRegime": "tropical-monsoon"
+  },
+  {
+    "name": "Kolkata",
+    "country": "India",
+    "lat": 22.56263,
+    "lon": 88.36304,
+    "timezone": "Asia/Kolkata",
+    "utcOffsetSeconds": 19800,
+    "descriptor": "On the Hooghly delta, humid year-round with an intense monsoon peak.",
+    "climateRegime": "tropical-monsoon"
+  },
+  {
+    "name": "Panaji",
+    "country": "India",
+    "lat": 15.49574,
+    "lon": 73.82624,
+    "timezone": "Asia/Kolkata",
+    "utcOffsetSeconds": 19800,
+    "descriptor": "Goa's capital on India's west coast, drenched by the full force of the southwest monsoon.",
+    "climateRegime": "tropical-monsoon"
+  },
+  {
+    "name": "Dhaka",
+    "country": "Bangladesh",
+    "lat": 23.7104,
+    "lon": 90.40744,
+    "timezone": "Asia/Dhaka",
+    "utcOffsetSeconds": 21600,
+    "descriptor": "In the Ganges-Brahmaputra delta — among the most flood-prone, monsoon-dependent cities on Earth.",
+    "climateRegime": "tropical-monsoon"
+  },
+  {
+    "name": "Yangon",
+    "country": "Myanmar",
+    "lat": 16.80528,
+    "lon": 96.15611,
+    "timezone": "Asia/Yangon",
+    "utcOffsetSeconds": 23400,
+    "descriptor": "On the Irrawaddy delta, one of the wettest monsoon-driven cities in Southeast Asia.",
+    "climateRegime": "tropical-monsoon"
+  },
+  {
+    "name": "Manila",
+    "country": "Philippines",
+    "lat": 14.6042,
+    "lon": 120.9822,
+    "timezone": "Asia/Manila",
+    "utcOffsetSeconds": 28800,
+    "descriptor": "On Manila Bay, hit by both the summer monsoon and a steady run of Pacific typhoons.",
+    "climateRegime": "tropical-monsoon"
+  },
+  {
+    "name": "Cebu City",
+    "country": "Philippines",
+    "lat": 10.31672,
+    "lon": 123.89071,
+    "timezone": "Asia/Manila",
+    "utcOffsetSeconds": 28800,
+    "descriptor": "A central Philippine island city, in the direct path of the western Pacific typhoon belt.",
+    "climateRegime": "tropical-monsoon"
+  },
+  {
+    "name": "Miami",
+    "country": "United States",
+    "lat": 25.77427,
+    "lon": -80.19366,
+    "timezone": "America/New_York",
+    "utcOffsetSeconds": -14400,
+    "descriptor": "South Florida's coast — a genuine wet-season/dry-season monsoon rhythm, plus Atlantic hurricanes.",
+    "climateRegime": "tropical-monsoon"
+  },
+  {
+    "name": "Havana",
+    "country": "Cuba",
+    "lat": 23.13302,
+    "lon": -82.38304,
+    "timezone": "America/Havana",
+    "utcOffsetSeconds": -14400,
+    "descriptor": "Cuba's capital on the Straits of Florida, at the mercy of the Atlantic hurricane season.",
+    "climateRegime": "tropical-monsoon"
+  },
+  {
+    "name": "Colombo",
+    "country": "Sri Lanka",
+    "lat": 6.93548,
+    "lon": 79.84868,
+    "timezone": "Asia/Colombo",
+    "utcOffsetSeconds": 19800,
+    "descriptor": "Sri Lanka's coast catches both the southwest and northeast monsoons in turn.",
+    "climateRegime": "tropical-monsoon"
+  },
+  {
+    "name": "Santo Domingo",
+    "country": "Dominican Republic",
+    "lat": 18.47186,
+    "lon": -69.89232,
+    "timezone": "America/Santo_Domingo",
+    "utcOffsetSeconds": -14400,
+    "descriptor": "On the Caribbean coast of Hispaniola, squarely in the Atlantic hurricane belt.",
+    "climateRegime": "tropical-monsoon"
+  },
+  {
+    "name": "San Juan",
+    "country": "Puerto Rico",
+    "lat": 18.46633,
+    "lon": -66.10572,
+    "timezone": "America/Puerto_Rico",
+    "utcOffsetSeconds": -14400,
+    "descriptor": "On the Atlantic side of Puerto Rico, warm year-round and hurricane-exposed in late summer.",
+    "climateRegime": "tropical-monsoon"
+  },
+  {
+    "name": "Conakry",
+    "country": "Guinea",
+    "lat": 9.53795,
+    "lon": -13.67729,
+    "timezone": "Africa/Conakry",
+    "utcOffsetSeconds": 0,
+    "descriptor": "One of West Africa's wettest capitals — a single, intense monsoon season most of the year's rain falls in.",
+    "climateRegime": "tropical-monsoon"
+  },
+  {
+    "name": "Freetown",
+    "country": "Sierra Leone",
+    "lat": 8.48714,
+    "lon": -13.2356,
+    "timezone": "Africa/Freetown",
+    "utcOffsetSeconds": 0,
+    "descriptor": "On a peninsula that catches the full force of the West African monsoon.",
+    "climateRegime": "tropical-monsoon"
+  },
+  {
+    "name": "Monrovia",
+    "country": "Liberia",
+    "lat": 6.30054,
+    "lon": -10.7969,
+    "timezone": "Africa/Monrovia",
+    "utcOffsetSeconds": 0,
+    "descriptor": "On the Atlantic coast — regularly among the wettest capital cities in the world.",
+    "climateRegime": "tropical-monsoon"
+  },
+  {
+    "name": "Jakarta",
+    "country": "Indonesia",
+    "lat": -6.21462,
+    "lon": 106.84513,
+    "timezone": "Asia/Jakarta",
+    "utcOffsetSeconds": 25200,
+    "descriptor": "Indonesia's capital on Java's coast, hot and humid year-round with a sharply wetter monsoon season.",
+    "climateRegime": "tropical-monsoon"
+  },
+  {
+    "name": "Singapore",
+    "country": "Singapore",
+    "lat": 1.28967,
+    "lon": 103.85007,
+    "timezone": "Asia/Singapore",
+    "utcOffsetSeconds": 28800,
+    "descriptor": "Almost exactly on the equator — uniformly hot and humid with rain nearly every month.",
+    "climateRegime": "tropical-rainforest"
+  },
+  {
+    "name": "Kuala Lumpur",
+    "country": "Malaysia",
+    "lat": 3.1412,
+    "lon": 101.68653,
+    "timezone": "Asia/Kuala_Lumpur",
+    "utcOffsetSeconds": 28800,
+    "descriptor": "Malaysia's capital, equatorial and humid with no real dry season.",
+    "climateRegime": "tropical-rainforest"
+  },
+  {
+    "name": "Manaus",
+    "country": "Brazil",
+    "lat": -3.10194,
+    "lon": -60.025,
+    "timezone": "America/Manaus",
+    "utcOffsetSeconds": -14400,
+    "descriptor": "Deep in the Amazon at the meeting of two great rivers, humid and warm year-round.",
+    "climateRegime": "tropical-rainforest"
+  },
+  {
+    "name": "Belém",
+    "country": "Brazil",
+    "lat": -1.45583,
+    "lon": -48.50444,
+    "timezone": "America/Belem",
+    "utcOffsetSeconds": -10800,
+    "descriptor": "Near the mouth of the Amazon — famously, a heavy afternoon downpour arrives almost like clockwork.",
+    "climateRegime": "tropical-rainforest"
+  },
+  {
+    "name": "Kinshasa",
+    "country": "Democratic Republic of Congo",
+    "lat": -4.32758,
+    "lon": 15.31357,
+    "timezone": "Africa/Kinshasa",
+    "utcOffsetSeconds": 3600,
+    "descriptor": "On the Congo River, deep in the second-largest rainforest on Earth.",
+    "climateRegime": "tropical-rainforest"
+  },
+  {
+    "name": "Libreville",
+    "country": "Gabon",
+    "lat": 0.39241,
+    "lon": 9.45356,
+    "timezone": "Africa/Libreville",
+    "utcOffsetSeconds": 3600,
+    "descriptor": "On the Gabon Estuary, surrounded by dense equatorial rainforest.",
+    "climateRegime": "tropical-rainforest"
+  },
+  {
+    "name": "Medan",
+    "country": "Indonesia",
+    "lat": 3.58333,
+    "lon": 98.66667,
+    "timezone": "Asia/Jakarta",
+    "utcOffsetSeconds": 25200,
+    "descriptor": "Sumatra's largest city, hot and humid with rain spread through most of the year.",
+    "climateRegime": "tropical-rainforest"
+  },
+  {
+    "name": "Pontianak",
+    "country": "Indonesia",
+    "lat": -0.03194,
+    "lon": 109.325,
+    "timezone": "Asia/Pontianak",
+    "utcOffsetSeconds": 25200,
+    "descriptor": "Sits almost exactly on the equator on Borneo, giving it two wet peaks a year instead of one.",
+    "climateRegime": "tropical-rainforest"
+  },
+  {
+    "name": "Douala",
+    "country": "Cameroon",
+    "lat": 4.04827,
+    "lon": 9.70428,
+    "timezone": "Africa/Douala",
+    "utcOffsetSeconds": 3600,
+    "descriptor": "Cameroon's main port, at the edge of one of the wettest regions on the African continent.",
+    "climateRegime": "tropical-rainforest"
+  },
+  {
+    "name": "Iquitos",
+    "country": "Peru",
+    "lat": -3.74814,
+    "lon": -73.2529,
+    "timezone": "America/Lima",
+    "utcOffsetSeconds": -18000,
+    "descriptor": "The largest city in the world unreachable by road, deep in the Peruvian Amazon.",
+    "climateRegime": "tropical-rainforest"
+  },
+  {
+    "name": "Cayenne",
+    "country": "French Guiana",
+    "lat": 4.9381,
+    "lon": -52.33455,
+    "timezone": "America/Cayenne",
+    "utcOffsetSeconds": -10800,
+    "descriptor": "On the northeast coast of South America, in unbroken equatorial rainforest.",
+    "climateRegime": "tropical-rainforest"
+  },
+  {
+    "name": "Yaoundé",
+    "country": "Cameroon",
+    "lat": 3.86667,
+    "lon": 11.51667,
+    "timezone": "Africa/Douala",
+    "utcOffsetSeconds": 3600,
+    "descriptor": "Cameroon's hilly capital, humid and green year-round.",
+    "climateRegime": "tropical-rainforest"
+  },
+  {
+    "name": "Bandar Seri Begawan",
+    "country": "Brunei",
+    "lat": 4.89035,
+    "lon": 114.94006,
+    "timezone": "Asia/Brunei",
+    "utcOffsetSeconds": 28800,
+    "descriptor": "Brunei's capital on Borneo, equatorial and humid with rain in every month.",
+    "climateRegime": "tropical-rainforest"
+  },
+  {
+    "name": "Panama City",
+    "country": "Panama",
+    "lat": 8.9936,
+    "lon": -79.51973,
+    "timezone": "America/Panama",
+    "utcOffsetSeconds": -18000,
+    "descriptor": "Where the isthmus narrows between two oceans — a distinct wet and dry season either side of the equatorial belt.",
+    "climateRegime": "tropical-rainforest"
+  },
+  {
+    "name": "Georgetown",
+    "country": "Guyana",
+    "lat": 6.80448,
+    "lon": -58.15527,
+    "timezone": "America/Guyana",
+    "utcOffsetSeconds": -14400,
+    "descriptor": "On the Atlantic coast of South America, mostly below sea level and kept dry by sea walls.",
+    "climateRegime": "tropical-rainforest"
+  },
+  {
+    "name": "Paramaribo",
+    "country": "Suriname",
+    "lat": 5.86638,
+    "lon": -55.16682,
+    "timezone": "America/Paramaribo",
+    "utcOffsetSeconds": -10800,
+    "descriptor": "On the Suriname River near the Atlantic, deep in the Guiana rainforest belt.",
+    "climateRegime": "tropical-rainforest"
+  },
+  {
+    "name": "Bangkok",
+    "country": "Thailand",
+    "lat": 13.75398,
+    "lon": 100.50144,
+    "timezone": "Asia/Bangkok",
+    "utcOffsetSeconds": 25200,
+    "descriptor": "Thailand's capital on the Chao Phraya delta, with a hot dry season and a heavy summer monsoon.",
+    "climateRegime": "tropical-savanna"
+  },
+  {
+    "name": "Lagos",
+    "country": "Nigeria",
+    "lat": 6.45407,
+    "lon": 3.39467,
+    "timezone": "Africa/Lagos",
+    "utcOffsetSeconds": 3600,
+    "descriptor": "Africa's largest city, on a lagoon coast with a long wet season and a shorter, drier one.",
+    "climateRegime": "tropical-savanna"
+  },
+  {
+    "name": "Accra",
+    "country": "Ghana",
+    "lat": 5.55602,
+    "lon": -0.1969,
+    "timezone": "Africa/Accra",
+    "utcOffsetSeconds": 0,
+    "descriptor": "Ghana's capital on the Gulf of Guinea, drier than much of coastal West Africa thanks to a cool offshore current.",
+    "climateRegime": "tropical-savanna"
+  },
+  {
+    "name": "Abidjan",
+    "country": "Ivory Coast",
+    "lat": 5.35444,
+    "lon": -4.00167,
+    "timezone": "Africa/Abidjan",
+    "utcOffsetSeconds": 0,
+    "descriptor": "Ivory Coast's largest city on a lagoon coast, with two distinct wet seasons a year.",
+    "climateRegime": "tropical-savanna"
+  },
+  {
+    "name": "Dar es Salaam",
+    "country": "Tanzania",
+    "lat": -6.82349,
+    "lon": 39.26951,
+    "timezone": "Africa/Dar_es_Salaam",
+    "utcOffsetSeconds": 10800,
+    "descriptor": "Swahili coast, with a long and a short rainy season either side of the dry months.",
+    "climateRegime": "tropical-savanna"
+  },
+  {
+    "name": "Darwin",
+    "country": "Australia",
+    "lat": -12.46113,
+    "lon": 130.84184,
+    "timezone": "Australia/Darwin",
+    "utcOffsetSeconds": 34200,
+    "descriptor": "Australia's tropical north — a hard-edged wet season and dry season, almost no in-between.",
+    "climateRegime": "tropical-savanna"
+  },
+  {
+    "name": "Caracas",
+    "country": "Venezuela",
+    "lat": 10.48801,
+    "lon": -66.87919,
+    "timezone": "America/Caracas",
+    "utcOffsetSeconds": -14400,
+    "descriptor": "In a valley near the Caribbean coast, its elevation taking the edge off equatorial heat.",
+    "climateRegime": "tropical-savanna"
+  },
+  {
+    "name": "Bamako",
+    "country": "Mali",
+    "lat": 12.60915,
+    "lon": -7.97522,
+    "timezone": "Africa/Bamako",
+    "utcOffsetSeconds": 0,
+    "descriptor": "Mali's capital on the Niger River, at the southern edge of the Sahel.",
+    "climateRegime": "tropical-savanna"
+  },
+  {
+    "name": "Lusaka",
+    "country": "Zambia",
+    "lat": -15.40669,
+    "lon": 28.28713,
+    "timezone": "Africa/Lusaka",
+    "utcOffsetSeconds": 7200,
+    "descriptor": "On a high plateau, giving it milder temperatures than its tropical latitude would suggest.",
+    "climateRegime": "tropical-savanna"
+  },
+  {
+    "name": "Harare",
+    "country": "Zimbabwe",
+    "lat": -17.82772,
+    "lon": 31.05337,
+    "timezone": "Africa/Harare",
+    "utcOffsetSeconds": 7200,
+    "descriptor": "Zimbabwe's capital at over 1,400m elevation — mild for its latitude, with a single summer wet season.",
+    "climateRegime": "tropical-savanna"
+  },
+  {
+    "name": "Phnom Penh",
+    "country": "Cambodia",
+    "lat": 11.56245,
+    "lon": 104.91601,
+    "timezone": "Asia/Phnom_Penh",
+    "utcOffsetSeconds": 25200,
+    "descriptor": "Where the Mekong and Tonlé Sap rivers meet, with a sharp monsoon-driven wet season.",
+    "climateRegime": "tropical-savanna"
+  },
+  {
+    "name": "Vientiane",
+    "country": "Laos",
+    "lat": 17.96667,
+    "lon": 102.6,
+    "timezone": "Asia/Vientiane",
+    "utcOffsetSeconds": 25200,
+    "descriptor": "Laos's capital on the Mekong, hot and dry for much of the year but drenched in monsoon season.",
+    "climateRegime": "tropical-savanna"
+  },
+  {
+    "name": "Cairns",
+    "country": "Australia",
+    "lat": -16.92366,
+    "lon": 145.76613,
+    "timezone": "Australia/Brisbane",
+    "utcOffsetSeconds": 36000,
+    "descriptor": "Australia's tropical northeast, gateway to the Great Barrier Reef, with a hard wet-dry seasonal split.",
+    "climateRegime": "tropical-savanna"
+  },
+  {
+    "name": "Managua",
+    "country": "Nicaragua",
+    "lat": 12.13282,
+    "lon": -86.2504,
+    "timezone": "America/Managua",
+    "utcOffsetSeconds": -21600,
+    "descriptor": "Nicaragua's capital on a lakeshore, with a clear rainy season from May to October.",
+    "climateRegime": "tropical-savanna"
+  },
+  {
+    "name": "Belmopan",
+    "country": "Belize",
+    "lat": 17.25376,
+    "lon": -88.76401,
+    "timezone": "America/Belize",
+    "utcOffsetSeconds": -21600,
+    "descriptor": "Belize's small inland capital, humid with a long Caribbean-influenced wet season.",
+    "climateRegime": "tropical-savanna"
+  },
+  {
+    "name": "San Salvador",
+    "country": "El Salvador",
+    "lat": 13.68935,
+    "lon": -89.18718,
+    "timezone": "America/El_Salvador",
+    "utcOffsetSeconds": -21600,
+    "descriptor": "In a volcanic highland valley, with a sharply defined wet and dry season.",
+    "climateRegime": "tropical-savanna"
+  },
+  {
+    "name": "Kingston",
+    "country": "Jamaica",
+    "lat": 17.99702,
+    "lon": -76.79358,
+    "timezone": "America/Jamaica",
+    "utcOffsetSeconds": -18000,
+    "descriptor": "On a natural harbour backed by the Blue Mountains, in the Caribbean hurricane belt.",
+    "climateRegime": "tropical-savanna"
+  },
+  {
+    "name": "Port-au-Prince",
+    "country": "Haiti",
+    "lat": 18.54349,
+    "lon": -72.33881,
+    "timezone": "America/Port-au-Prince",
+    "utcOffsetSeconds": -14400,
+    "descriptor": "On a bay in the Caribbean, sharing the region's hurricane exposure.",
+    "climateRegime": "tropical-savanna"
+  },
+  {
+    "name": "Mérida",
+    "country": "Mexico",
+    "lat": 20.967,
+    "lon": -89.62318,
+    "timezone": "America/Merida",
+    "utcOffsetSeconds": -21600,
+    "descriptor": "Yucatán's capital, flat limestone country with a long dry season and a hot, humid wet one.",
+    "climateRegime": "tropical-savanna"
+  },
+  {
+    "name": "Guayaquil",
+    "country": "Ecuador",
+    "lat": -2.19616,
+    "lon": -79.88621,
+    "timezone": "America/Guayaquil",
+    "utcOffsetSeconds": -18000,
+    "descriptor": "Ecuador's largest city, near the coast where the warm and cold Pacific currents meet and shift seasonally.",
+    "climateRegime": "tropical-savanna"
+  },
+  {
+    "name": "Brasília",
+    "country": "Brazil",
+    "lat": -15.77972,
+    "lon": -47.92972,
+    "timezone": "America/Sao_Paulo",
+    "utcOffsetSeconds": -10800,
+    "descriptor": "Brazil's purpose-built capital on the central plateau, with a sharply defined wet and dry season.",
+    "climateRegime": "tropical-savanna"
+  },
+  {
+    "name": "Kampala",
+    "country": "Uganda",
+    "lat": 0.31628,
+    "lon": 32.58219,
+    "timezone": "Africa/Kampala",
+    "utcOffsetSeconds": 10800,
+    "descriptor": "On hills near Lake Victoria, whose vast surface gives the city two distinct rainy seasons.",
+    "climateRegime": "tropical-savanna"
+  },
+  {
+    "name": "Bujumbura",
+    "country": "Burundi",
+    "lat": -3.38193,
+    "lon": 29.36142,
+    "timezone": "Africa/Bujumbura",
+    "utcOffsetSeconds": 7200,
+    "descriptor": "On Lake Tanganyika's northern shore, mild for the tropics thanks to elevation and the lake.",
+    "climateRegime": "tropical-savanna"
+  },
+  {
+    "name": "Abuja",
+    "country": "Nigeria",
+    "lat": 9.05785,
+    "lon": 7.49508,
+    "timezone": "Africa/Lagos",
+    "utcOffsetSeconds": 3600,
+    "descriptor": "Nigeria's purpose-built inland capital, drier than coastal Lagos with a clear harmattan dry season.",
+    "climateRegime": "tropical-savanna"
+  },
+  {
+    "name": "Antsiranana",
+    "country": "Madagascar",
+    "lat": -12.31732,
+    "lon": 49.29188,
+    "timezone": "Indian/Antananarivo",
+    "utcOffsetSeconds": 10800,
+    "descriptor": "Madagascar's northern tip, exposed to Indian Ocean cyclones each season.",
+    "climateRegime": "tropical-savanna"
+  },
+  {
+    "name": "Surabaya",
+    "country": "Indonesia",
+    "lat": -7.24917,
+    "lon": 112.75083,
+    "timezone": "Asia/Jakarta",
+    "utcOffsetSeconds": 25200,
+    "descriptor": "Indonesia's second city, on Java's north coast, with a more pronounced dry season than equatorial Jakarta.",
+    "climateRegime": "tropical-savanna"
+  },
+  {
+    "name": "Denpasar",
+    "country": "Indonesia",
+    "lat": -8.65,
+    "lon": 115.21667,
+    "timezone": "Asia/Makassar",
+    "utcOffsetSeconds": 28800,
+    "descriptor": "Bali's main city, with a clear wet season from November to March.",
+    "climateRegime": "tropical-savanna"
+  },
+  {
+    "name": "Ho Chi Minh City",
+    "country": "Vietnam",
+    "lat": 10.82302,
+    "lon": 106.62965,
+    "timezone": "Asia/Ho_Chi_Minh",
+    "utcOffsetSeconds": 25200,
+    "descriptor": "Vietnam's largest city on the Mekong delta's edge, hot year-round with a sharp monsoon wet season.",
+    "climateRegime": "tropical-savanna"
+  },
+  {
+    "name": "Dili",
+    "country": "Timor-Leste",
+    "lat": -8.55861,
+    "lon": 125.57361,
+    "timezone": "Asia/Dili",
+    "utcOffsetSeconds": 32400,
+    "descriptor": "Timor-Leste's small capital, drier than much of maritime Southeast Asia.",
+    "climateRegime": "tropical-savanna"
+  },
+  {
+    "name": "Port Moresby",
+    "country": "Papua New Guinea",
+    "lat": -9.47723,
+    "lon": 147.1509,
+    "timezone": "Pacific/Port_Moresby",
+    "utcOffsetSeconds": 36000,
+    "descriptor": "Papua New Guinea's capital, in a rare dry pocket on an otherwise very wet coastline.",
+    "climateRegime": "tropical-savanna"
+  },
+  {
+    "name": "New Orleans",
+    "country": "United States",
+    "lat": 29.95465,
+    "lon": -90.07507,
+    "timezone": "America/Chicago",
+    "utcOffsetSeconds": -18000,
+    "descriptor": "Below sea level on the Mississippi delta, humid year-round and squarely in hurricane alley.",
+    "climateRegime": "humid-subtropical"
+  },
+  {
+    "name": "Houston",
+    "country": "United States",
+    "lat": 29.76328,
+    "lon": -95.36327,
+    "timezone": "America/Chicago",
+    "utcOffsetSeconds": -18000,
+    "descriptor": "On the Gulf coastal plain, hot and humid with a real risk of both flooding rain and hurricanes.",
+    "climateRegime": "humid-subtropical"
+  },
+  {
+    "name": "Atlanta",
+    "country": "United States",
+    "lat": 33.749,
+    "lon": -84.38798,
+    "timezone": "America/New_York",
+    "utcOffsetSeconds": -14400,
+    "descriptor": "In the Piedmont foothills, humid subtropical with real winter cold snaps.",
+    "climateRegime": "humid-subtropical"
+  },
+  {
+    "name": "New York",
+    "country": "United States",
+    "lat": 40.71427,
+    "lon": -74.00597,
+    "timezone": "America/New_York",
+    "utcOffsetSeconds": -14400,
+    "descriptor": "The US's largest city, at the boundary where subtropical summers meet continental winters.",
+    "climateRegime": "humid-subtropical"
+  },
+  {
+    "name": "Washington, D.C.",
+    "country": "United States",
+    "lat": 38.89511,
+    "lon": -77.03637,
+    "timezone": "America/New_York",
+    "utcOffsetSeconds": -14400,
+    "descriptor": "The US capital on the Potomac — humid, swampy summers by design of its site.",
+    "climateRegime": "humid-subtropical"
+  },
+  {
+    "name": "Dallas",
+    "country": "United States",
+    "lat": 32.78306,
+    "lon": -96.80667,
+    "timezone": "America/Chicago",
+    "utcOffsetSeconds": -18000,
+    "descriptor": "On the North Texas plains, prone to sharp swings as fronts collide with Gulf moisture.",
+    "climateRegime": "humid-subtropical"
+  },
+  {
+    "name": "Nashville",
+    "country": "United States",
+    "lat": 36.16589,
+    "lon": -86.78444,
+    "timezone": "America/Chicago",
+    "utcOffsetSeconds": -18000,
+    "descriptor": "In a Tennessee river basin, with humid summers and changeable winters.",
+    "climateRegime": "humid-subtropical"
+  },
+  {
+    "name": "Shanghai",
+    "country": "China",
+    "lat": 31.22222,
+    "lon": 121.45806,
+    "timezone": "Asia/Shanghai",
+    "utcOffsetSeconds": 28800,
+    "descriptor": "China's largest city, on the Yangtze delta, humid year-round with a monsoon-driven summer peak.",
+    "climateRegime": "humid-subtropical"
+  },
+  {
+    "name": "Guangzhou",
+    "country": "China",
+    "lat": 23.11667,
+    "lon": 113.25,
+    "timezone": "Asia/Shanghai",
+    "utcOffsetSeconds": 28800,
+    "descriptor": "On the Pearl River delta, hot and humid with real typhoon exposure in summer and autumn.",
+    "climateRegime": "humid-subtropical"
+  },
+  {
+    "name": "Tokyo",
+    "country": "Japan",
+    "lat": 35.6895,
+    "lon": 139.69171,
+    "timezone": "Asia/Tokyo",
+    "utcOffsetSeconds": 32400,
+    "descriptor": "Japan's capital on the Kanto plain, humid summers and a real risk of typhoons each autumn.",
+    "climateRegime": "humid-subtropical"
+  },
+  {
+    "name": "Osaka",
+    "country": "Japan",
+    "lat": 34.69379,
+    "lon": 135.50107,
+    "timezone": "Asia/Tokyo",
+    "utcOffsetSeconds": 32400,
+    "descriptor": "On Osaka Bay, sharing Tokyo's humid-summer, typhoon-exposed pattern.",
+    "climateRegime": "humid-subtropical"
+  },
+  {
+    "name": "Fukuoka",
+    "country": "Japan",
+    "lat": 33.6,
+    "lon": 130.41667,
+    "timezone": "Asia/Tokyo",
+    "utcOffsetSeconds": 32400,
+    "descriptor": "Kyushu's largest city, closest of Japan's big cities to the Asian mainland's weather systems.",
+    "climateRegime": "humid-subtropical"
+  },
+  {
+    "name": "Nagoya",
+    "country": "Japan",
+    "lat": 35.18147,
+    "lon": 136.9064,
+    "timezone": "Asia/Tokyo",
+    "utcOffsetSeconds": 32400,
+    "descriptor": "On Ise Bay between Tokyo and Osaka, hot and humid in summer, occasionally snowy in winter.",
+    "climateRegime": "humid-subtropical"
+  },
+  {
+    "name": "Busan",
+    "country": "South Korea",
+    "lat": 35.10168,
+    "lon": 129.03004,
+    "timezone": "Asia/Seoul",
+    "utcOffsetSeconds": 32400,
+    "descriptor": "South Korea's main port city, milder than inland Seoul thanks to the sea.",
+    "climateRegime": "humid-subtropical"
+  },
+  {
+    "name": "Sydney",
+    "country": "Australia",
+    "lat": -33.86785,
+    "lon": 151.20732,
+    "timezone": "Australia/Sydney",
+    "utcOffsetSeconds": 36000,
+    "descriptor": "Australia's largest city, around a famous harbour, mild and humid with occasional summer storms.",
+    "climateRegime": "humid-subtropical"
+  },
+  {
+    "name": "Brisbane",
+    "country": "Australia",
+    "lat": -27.46794,
+    "lon": 153.02809,
+    "timezone": "Australia/Brisbane",
+    "utcOffsetSeconds": 36000,
+    "descriptor": "Subtropical Queensland, hot humid summers and a real risk of tropical downpours.",
+    "climateRegime": "humid-subtropical"
+  },
+  {
+    "name": "Buenos Aires",
+    "country": "Argentina",
+    "lat": -34.61315,
+    "lon": -58.37723,
+    "timezone": "America/Argentina/Buenos_Aires",
+    "utcOffsetSeconds": -10800,
+    "descriptor": "On the Río de la Plata estuary, with the sudden cold-front squalls known locally as pamperos.",
+    "climateRegime": "humid-subtropical"
+  },
+  {
+    "name": "São Paulo",
+    "country": "Brazil",
+    "lat": -23.5475,
+    "lon": -46.63611,
+    "timezone": "America/Sao_Paulo",
+    "utcOffsetSeconds": -10800,
+    "descriptor": "South America's largest city, on a plateau that moderates what would otherwise be tropical heat.",
+    "climateRegime": "humid-subtropical"
+  },
+  {
+    "name": "Rio de Janeiro",
+    "country": "Brazil",
+    "lat": -22.90642,
+    "lon": -43.18223,
+    "timezone": "America/Sao_Paulo",
+    "utcOffsetSeconds": -10800,
+    "descriptor": "Between mountains and the sea, hot and humid with dramatic afternoon thunderstorms.",
+    "climateRegime": "humid-subtropical"
+  },
+  {
+    "name": "Salvador",
+    "country": "Brazil",
+    "lat": -12.97563,
+    "lon": -38.49096,
+    "timezone": "America/Bahia",
+    "utcOffsetSeconds": -10800,
+    "descriptor": "Brazil's first colonial capital, on a bay on the northeast coast, warm and humid year-round.",
+    "climateRegime": "humid-subtropical"
+  },
+  {
+    "name": "Fortaleza",
+    "country": "Brazil",
+    "lat": -3.71722,
+    "lon": -38.54306,
+    "timezone": "America/Fortaleza",
+    "utcOffsetSeconds": -10800,
+    "descriptor": "On Brazil's northeast coast, sunnier and drier than the more humid south.",
+    "climateRegime": "humid-subtropical"
+  },
+  {
+    "name": "Curitiba",
+    "country": "Brazil",
+    "lat": -25.42778,
+    "lon": -49.27306,
+    "timezone": "America/Sao_Paulo",
+    "utcOffsetSeconds": -10800,
+    "descriptor": "On a high southern Brazilian plateau, cooler and more changeable than the coast below.",
+    "climateRegime": "humid-subtropical"
+  },
+  {
+    "name": "Porto Alegre",
+    "country": "Brazil",
+    "lat": -30.03283,
+    "lon": -51.23019,
+    "timezone": "America/Sao_Paulo",
+    "utcOffsetSeconds": -10800,
+    "descriptor": "Near the Uruguayan border, with real seasonal swings unusual for Brazil.",
+    "climateRegime": "humid-subtropical"
+  },
+  {
+    "name": "New Delhi",
+    "country": "India",
+    "lat": 28.62137,
+    "lon": 77.2148,
+    "timezone": "Asia/Kolkata",
+    "utcOffsetSeconds": 19800,
+    "descriptor": "India's capital, with a scorching pre-monsoon summer, monsoon relief, then cool, foggy winters.",
+    "climateRegime": "humid-subtropical"
+  },
+  {
+    "name": "Durban",
+    "country": "South Africa",
+    "lat": -29.8579,
+    "lon": 31.0292,
+    "timezone": "Africa/Johannesburg",
+    "utcOffsetSeconds": 7200,
+    "descriptor": "South Africa's warm Indian Ocean coast, humid with rain spread through most of the year.",
+    "climateRegime": "humid-subtropical"
+  },
+  {
+    "name": "Maputo",
+    "country": "Mozambique",
+    "lat": -25.96553,
+    "lon": 32.58322,
+    "timezone": "Africa/Maputo",
+    "utcOffsetSeconds": 7200,
+    "descriptor": "Mozambique's capital on a bay, warm and humid with a distinct summer wet season.",
+    "climateRegime": "humid-subtropical"
+  },
+  {
+    "name": "Montevideo",
+    "country": "Uruguay",
+    "lat": -34.90328,
+    "lon": -56.18816,
+    "timezone": "America/Montevideo",
+    "utcOffsetSeconds": -10800,
+    "descriptor": "Uruguay's capital on the Río de la Plata, milder and more changeable than subtropical Brazil to its north.",
+    "climateRegime": "humid-subtropical"
+  },
+  {
+    "name": "Asunción",
+    "country": "Paraguay",
+    "lat": -25.28646,
+    "lon": -57.647,
+    "timezone": "America/Asuncion",
+    "utcOffsetSeconds": -10800,
+    "descriptor": "Paraguay's capital on the Paraguay River, hot and humid with sharp cold-front passages.",
+    "climateRegime": "humid-subtropical"
+  },
+  {
+    "name": "Taipei",
+    "country": "Taiwan",
+    "lat": 25.05306,
+    "lon": 121.52639,
+    "timezone": "Asia/Taipei",
+    "utcOffsetSeconds": 28800,
+    "descriptor": "In a basin ringed by hills, humid year-round and exposed to the Pacific typhoon track.",
+    "climateRegime": "humid-subtropical"
+  },
+  {
+    "name": "Hong Kong",
+    "country": "Hong Kong",
+    "lat": 22.27832,
+    "lon": 114.17469,
+    "timezone": "Asia/Hong_Kong",
+    "utcOffsetSeconds": 28800,
+    "descriptor": "A harbour city on the South China coast, humid with a real typhoon season each summer and autumn.",
+    "climateRegime": "humid-subtropical"
+  },
+  {
+    "name": "Islamabad",
+    "country": "Pakistan",
+    "lat": 33.72148,
+    "lon": 73.04329,
+    "timezone": "Asia/Karachi",
+    "utcOffsetSeconds": 18000,
+    "descriptor": "Pakistan's planned capital at the foot of the Margalla Hills, catching more monsoon rain than the plains below.",
+    "climateRegime": "humid-subtropical"
+  },
+  {
+    "name": "Hanoi",
+    "country": "Vietnam",
+    "lat": 21.0245,
+    "lon": 105.84117,
+    "timezone": "Asia/Bangkok",
+    "utcOffsetSeconds": 25200,
+    "descriptor": "Northern Vietnam's capital — unusually for the tropics, has a real cool, occasionally chilly winter.",
+    "climateRegime": "humid-subtropical"
+  },
+  {
+    "name": "Tbilisi",
+    "country": "Georgia",
+    "lat": 41.69143,
+    "lon": 44.83412,
+    "timezone": "Asia/Tbilisi",
+    "utcOffsetSeconds": 14400,
+    "descriptor": "Georgia's capital in a valley on the Mtkvari River, sheltered by the Caucasus on either side.",
+    "climateRegime": "humid-subtropical"
+  },
+  {
+    "name": "Bogotá",
+    "country": "Colombia",
+    "lat": 4.60971,
+    "lon": -74.08175,
+    "timezone": "America/Bogota",
+    "utcOffsetSeconds": -18000,
+    "descriptor": "On a high Andean plateau — near-constant spring-like temperatures year-round, latitude notwithstanding.",
+    "climateRegime": "highland"
+  },
+  {
+    "name": "Medellín",
+    "country": "Colombia",
+    "lat": 6.245,
+    "lon": -75.57151,
+    "timezone": "America/Bogota",
+    "utcOffsetSeconds": -18000,
+    "descriptor": "Known as the \"City of Eternal Spring\" for its mild, remarkably stable Andean valley climate.",
+    "climateRegime": "highland"
+  },
+  {
+    "name": "Quito",
+    "country": "Ecuador",
+    "lat": -0.22985,
+    "lon": -78.52495,
+    "timezone": "America/Guayaquil",
+    "utcOffsetSeconds": -18000,
+    "descriptor": "The second-highest capital city in the world, almost exactly on the equator yet cool from elevation alone.",
+    "climateRegime": "highland"
+  },
+  {
+    "name": "La Paz",
+    "country": "Bolivia",
+    "lat": -16.5,
+    "lon": -68.15,
+    "timezone": "America/La_Paz",
+    "utcOffsetSeconds": -14400,
+    "descriptor": "The world's highest administrative capital, over 3,600m up in the Andes — thin air, huge daily swings.",
+    "climateRegime": "highland"
+  },
+  {
+    "name": "Addis Ababa",
+    "country": "Ethiopia",
+    "lat": 9.02497,
+    "lon": 38.74689,
+    "timezone": "Africa/Addis_Ababa",
+    "utcOffsetSeconds": 10800,
+    "descriptor": "One of Africa's highest capitals, its elevation giving it mild temperatures despite a near-equatorial latitude.",
+    "climateRegime": "highland"
+  },
+  {
+    "name": "Mexico City",
+    "country": "Mexico",
+    "lat": 19.42847,
+    "lon": -99.12766,
+    "timezone": "America/Mexico_City",
+    "utcOffsetSeconds": -21600,
+    "descriptor": "In a high valley ringed by volcanoes — elevation keeps it far cooler than its latitude suggests.",
+    "climateRegime": "highland"
+  },
+  {
+    "name": "Cusco",
+    "country": "Peru",
+    "lat": -13.53188,
+    "lon": -71.96701,
+    "timezone": "America/Lima",
+    "utcOffsetSeconds": -18000,
+    "descriptor": "The old Inca capital, high in the Andes with thin air and sharp day-night temperature swings.",
+    "climateRegime": "highland"
+  },
+  {
+    "name": "Arequipa",
+    "country": "Peru",
+    "lat": -16.39899,
+    "lon": -71.53747,
+    "timezone": "America/Lima",
+    "utcOffsetSeconds": -18000,
+    "descriptor": "Below a volcano at over 2,300m, sunny and dry nearly year-round.",
+    "climateRegime": "highland"
+  },
+  {
+    "name": "Kathmandu",
+    "country": "Nepal",
+    "lat": 27.70169,
+    "lon": 85.3206,
+    "timezone": "Asia/Kathmandu",
+    "utcOffsetSeconds": 20700,
+    "descriptor": "Nepal's capital in a Himalayan valley, its climate a world apart from the peaks visible from it.",
+    "climateRegime": "highland"
+  },
+  {
+    "name": "Thimphu",
+    "country": "Bhutan",
+    "lat": 27.46609,
+    "lon": 89.64191,
+    "timezone": "Asia/Thimphu",
+    "utcOffsetSeconds": 21600,
+    "descriptor": "One of the world's highest capitals, tucked in a Himalayan valley with cold, dry winters.",
+    "climateRegime": "highland"
+  },
+  {
+    "name": "Johannesburg",
+    "country": "South Africa",
+    "lat": -26.20227,
+    "lon": 28.04363,
+    "timezone": "Africa/Johannesburg",
+    "utcOffsetSeconds": 7200,
+    "descriptor": "South Africa's largest city, high on the Highveld plateau, with crisp winters and thunderstorm summers.",
+    "climateRegime": "highland"
+  },
+  {
+    "name": "Nairobi",
+    "country": "Kenya",
+    "lat": -1.28333,
+    "lon": 36.81667,
+    "timezone": "Africa/Nairobi",
+    "utcOffsetSeconds": 10800,
+    "descriptor": "Nearly 1,800m up on the East African plateau — famously temperate despite sitting almost on the equator.",
+    "climateRegime": "highland"
+  },
+  {
+    "name": "Kigali",
+    "country": "Rwanda",
+    "lat": -1.94995,
+    "lon": 30.05885,
+    "timezone": "Africa/Kigali",
+    "utcOffsetSeconds": 7200,
+    "descriptor": "Rwanda's hilly capital, mild year-round thanks to its highland elevation.",
+    "climateRegime": "highland"
+  },
+  {
+    "name": "Lhasa",
+    "country": "China",
+    "lat": 29.65,
+    "lon": 91.1,
+    "timezone": "Asia/Shanghai",
+    "utcOffsetSeconds": 28800,
+    "descriptor": "The highest major city in the world, on the Tibetan Plateau — thin, dry, intensely sunny air.",
+    "climateRegime": "highland"
+  },
+  {
+    "name": "Leh",
+    "country": "India",
+    "lat": 34.16504,
+    "lon": 77.58402,
+    "timezone": "Asia/Kolkata",
+    "utcOffsetSeconds": 19800,
+    "descriptor": "A cold desert town high in the Indian Himalayas, cut off from monsoon moisture by the mountains around it.",
+    "climateRegime": "highland"
+  },
+  {
+    "name": "Bengaluru",
+    "country": "India",
+    "lat": 12.97194,
+    "lon": 77.59369,
+    "timezone": "Asia/Kolkata",
+    "utcOffsetSeconds": 19800,
+    "descriptor": "India's tech capital, on the Deccan Plateau — famously milder than the tropical coasts on either side.",
+    "climateRegime": "highland"
+  },
+  {
+    "name": "Sucre",
+    "country": "Bolivia",
+    "lat": -19.03332,
+    "lon": -65.26274,
+    "timezone": "America/La_Paz",
+    "utcOffsetSeconds": -14400,
+    "descriptor": "Bolivia's constitutional capital, lower and notably milder than La Paz further up the altiplano.",
+    "climateRegime": "highland"
+  },
+  {
+    "name": "Antananarivo",
+    "country": "Madagascar",
+    "lat": -18.91368,
+    "lon": 47.53613,
+    "timezone": "Indian/Antananarivo",
+    "utcOffsetSeconds": 10800,
+    "descriptor": "Madagascar's capital on the central highlands, cooler than the tropical coasts that ring the island.",
+    "climateRegime": "highland"
+  },
+  {
+    "name": "San José",
+    "country": "Costa Rica",
+    "lat": 9.93388,
+    "lon": -84.08489,
+    "timezone": "America/Costa_Rica",
+    "utcOffsetSeconds": -21600,
+    "descriptor": "In Costa Rica's Central Valley, its elevation buying near-perpetual mild \"eternal spring\" weather.",
+    "climateRegime": "highland"
+  },
+  {
+    "name": "Tegucigalpa",
+    "country": "Honduras",
+    "lat": 14.0818,
+    "lon": -87.20681,
+    "timezone": "America/Tegucigalpa",
+    "utcOffsetSeconds": -21600,
+    "descriptor": "Honduras's capital in a mountain valley, milder than the tropical coast.",
+    "climateRegime": "highland"
+  },
+  {
+    "name": "Guatemala City",
+    "country": "Guatemala",
+    "lat": 14.64072,
+    "lon": -90.51327,
+    "timezone": "America/Guatemala",
+    "utcOffsetSeconds": -21600,
+    "descriptor": "On a high volcanic plateau — locally known for weather closer to eternal spring than tropical heat.",
+    "climateRegime": "highland"
+  },
+  {
+    "name": "Guadalajara",
+    "country": "Mexico",
+    "lat": 20.67738,
+    "lon": -103.34749,
+    "timezone": "America/Mexico_City",
+    "utcOffsetSeconds": -21600,
+    "descriptor": "On a high plateau in western Mexico, mild for its latitude thanks to elevation.",
+    "climateRegime": "highland"
+  },
+  {
+    "name": "Asmara",
+    "country": "Eritrea",
+    "lat": 15.33805,
+    "lon": 38.93184,
+    "timezone": "Africa/Asmara",
+    "utcOffsetSeconds": 10800,
+    "descriptor": "On a highland plateau at over 2,300m — one of the mildest capitals anywhere near the equator.",
+    "climateRegime": "highland"
+  },
+  {
+    "name": "Sana'a",
+    "country": "Yemen",
+    "lat": 15.35452,
+    "lon": 44.20646,
+    "timezone": "Asia/Aden",
+    "utcOffsetSeconds": 10800,
+    "descriptor": "One of the highest capital cities in the world, in the Yemeni highlands with genuinely cool nights.",
+    "climateRegime": "highland"
+  },
+  {
+    "name": "Kabul",
+    "country": "Afghanistan",
+    "lat": 34.52813,
+    "lon": 69.17233,
+    "timezone": "Asia/Kabul",
+    "utcOffsetSeconds": 16200,
+    "descriptor": "High in a Hindu Kush valley — cold, snowy winters unusual for its latitude.",
+    "climateRegime": "highland"
+  },
+  {
+    "name": "Honolulu",
+    "country": "United States",
+    "lat": 21.30694,
+    "lon": -157.85834,
+    "timezone": "Pacific/Honolulu",
+    "utcOffsetSeconds": -36000,
+    "descriptor": "Hawai'i's capital, kept remarkably stable year-round by the surrounding Pacific and trade winds.",
+    "climateRegime": "oceanic-island"
+  },
+  {
+    "name": "Suva",
+    "country": "Fiji",
+    "lat": -18.13683,
+    "lon": 178.42531,
+    "timezone": "Pacific/Fiji",
+    "utcOffsetSeconds": 43200,
+    "descriptor": "Fiji's capital, warm and humid with a wetter season through the Southern Hemisphere summer.",
+    "climateRegime": "oceanic-island"
+  },
+  {
+    "name": "Papeete",
+    "country": "French Polynesia",
+    "lat": -17.5347,
+    "lon": -149.56844,
+    "timezone": "Pacific/Tahiti",
+    "utcOffsetSeconds": -36000,
+    "descriptor": "Tahiti's main town, warm and humid year-round with a wetter November-to-April season.",
+    "climateRegime": "oceanic-island"
+  },
+  {
+    "name": "Nassau",
+    "country": "Bahamas",
+    "lat": 25.05823,
+    "lon": -77.34306,
+    "timezone": "America/Nassau",
+    "utcOffsetSeconds": -14400,
+    "descriptor": "Warmed and cooled by the surrounding Atlantic — hurricane season is the real seasonal event here.",
+    "climateRegime": "oceanic-island"
+  },
+  {
+    "name": "Port Louis",
+    "country": "Mauritius",
+    "lat": -20.16194,
+    "lon": 57.49889,
+    "timezone": "Indian/Mauritius",
+    "utcOffsetSeconds": 14400,
+    "descriptor": "On a coral-fringed Indian Ocean island, warm year-round with a summer cyclone risk.",
+    "climateRegime": "oceanic-island"
+  },
+  {
+    "name": "Malé",
+    "country": "Maldives",
+    "lat": 4.17521,
+    "lon": 73.50916,
+    "timezone": "Indian/Maldives",
+    "utcOffsetSeconds": 18000,
+    "descriptor": "One of the lowest-lying capitals on Earth — a coral atoll where the ocean sets almost every condition.",
+    "climateRegime": "oceanic-island"
+  },
+  {
+    "name": "Funchal",
+    "country": "Portugal",
+    "lat": 32.66568,
+    "lon": -16.92547,
+    "timezone": "Atlantic/Madeira",
+    "utcOffsetSeconds": 3600,
+    "descriptor": "Madeira's capital, kept remarkably mild all year by the surrounding Atlantic.",
+    "climateRegime": "oceanic-island"
+  },
+  {
+    "name": "Hamilton",
+    "country": "Bermuda",
+    "lat": 32.34221,
+    "lon": -64.73019,
+    "timezone": "Atlantic/Bermuda",
+    "utcOffsetSeconds": -10800,
+    "descriptor": "A mid-Atlantic island, warmed by the Gulf Stream well north of the tropics.",
+    "climateRegime": "oceanic-island"
+  },
+  {
+    "name": "Apia",
+    "country": "Samoa",
+    "lat": -13.83333,
+    "lon": -171.76666,
+    "timezone": "Pacific/Apia",
+    "utcOffsetSeconds": 46800,
+    "descriptor": "Samoa's capital, warm year-round with a wetter season and real cyclone risk in the Southern summer.",
+    "climateRegime": "oceanic-island"
+  },
+  {
+    "name": "Port Vila",
+    "country": "Vanuatu",
+    "lat": -17.73648,
+    "lon": 168.31366,
+    "timezone": "Pacific/Efate",
+    "utcOffsetSeconds": 39600,
+    "descriptor": "A South Pacific island capital, in the path of the region's cyclone season each year.",
+    "climateRegime": "oceanic-island"
+  },
+  {
+    "name": "Majuro",
+    "country": "Marshall Islands",
+    "lat": 7.08971,
+    "lon": 171.38026,
+    "timezone": "Pacific/Majuro",
+    "utcOffsetSeconds": 43200,
+    "descriptor": "A low coral atoll in the central Pacific — among the most exposed inhabited places to sea-level rise.",
+    "climateRegime": "oceanic-island"
+  },
+  {
+    "name": "Nuku'alofa",
+    "country": "Tonga",
+    "lat": -21.13683,
+    "lon": -175.20114,
+    "timezone": "Pacific/Tongatapu",
+    "utcOffsetSeconds": 46800,
+    "descriptor": "Tonga's capital, warm year-round with real tropical cyclone risk each Southern summer.",
+    "climateRegime": "oceanic-island"
+  },
+  {
+    "name": "Saint-Denis",
+    "country": "Réunion",
+    "lat": -20.88231,
+    "lon": 55.4504,
+    "timezone": "Indian/Reunion",
+    "utcOffsetSeconds": 14400,
+    "descriptor": "On a volcanic Indian Ocean island, warm coasts giving way to a much cooler, wetter interior.",
+    "climateRegime": "oceanic-island"
+  },
+  {
+    "name": "Praia",
+    "country": "Cabo Verde",
+    "lat": 14.93152,
+    "lon": -23.51254,
+    "timezone": "Atlantic/Cape_Verde",
+    "utcOffsetSeconds": -3600,
+    "descriptor": "On a volcanic Atlantic archipelago, dry for its tropical latitude thanks to a cool offshore current.",
+    "climateRegime": "oceanic-island"
+  },
+  {
+    "name": "Bridgetown",
+    "country": "Barbados",
+    "lat": 13.10732,
+    "lon": -59.62021,
+    "timezone": "America/Barbados",
+    "utcOffsetSeconds": -14400,
+    "descriptor": "The easternmost Caribbean island — first in line for tropical waves crossing the Atlantic.",
+    "climateRegime": "oceanic-island"
+  },
+  {
+    "name": "Charlotte Amalie",
+    "country": "U.S. Virgin Islands",
+    "lat": 18.3419,
+    "lon": -64.9307,
+    "timezone": "America/St_Thomas",
+    "utcOffsetSeconds": -14400,
+    "descriptor": "A Caribbean harbour town, warm year-round with real hurricane exposure.",
+    "climateRegime": "oceanic-island"
+  },
+  {
+    "name": "Stanley",
+    "country": "Falkland Islands",
+    "lat": -51.69382,
+    "lon": -57.85701,
+    "timezone": "Atlantic/Stanley",
+    "utcOffsetSeconds": -10800,
+    "descriptor": "A remote South Atlantic outpost, cool, windy and changeable nearly every day of the year.",
+    "climateRegime": "oceanic-island"
+  },
+  {
+    "name": "Nouméa",
+    "country": "New Caledonia",
+    "lat": -22.27407,
+    "lon": 166.44884,
+    "timezone": "Pacific/Noumea",
+    "utcOffsetSeconds": 39600,
+    "descriptor": "A South Pacific capital on a lagoon, warm year-round with a summer cyclone season.",
+    "climateRegime": "oceanic-island"
+  },
+  {
+    "name": "Victoria",
+    "country": "Seychelles",
+    "lat": -4.62001,
+    "lon": 55.45501,
+    "timezone": "Indian/Mahe",
+    "utcOffsetSeconds": 14400,
+    "descriptor": "One of the smallest national capitals on Earth, on a granite island just south of the equator.",
+    "climateRegime": "oceanic-island"
+  }
+]
