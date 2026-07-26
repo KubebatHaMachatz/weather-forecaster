@@ -96,6 +96,32 @@ describe('fetchArchive', () => {
     }
   })
 
+  it('throws OpenMeteoApiError, not OpenMeteoParseError, for a non-2xx response with a non-JSON body', async () => {
+    server.use(
+      http.get(
+        'https://archive-api.open-meteo.com/v1/archive',
+        () =>
+          new HttpResponse('<html><head><title>504 Gateway Timeout</title></head></html>', {
+            status: 504,
+            headers: { 'content-type': 'text/html' },
+          }),
+      ),
+    )
+
+    expect.assertions(2)
+    try {
+      await fetchArchive({
+        ...VALPARAISO,
+        startDate: '2026-07-25',
+        endDate: '2026-07-25',
+        hourly: ['temperature_2m'],
+      })
+    } catch (err) {
+      expect(err).toBeInstanceOf(OpenMeteoApiError)
+      expect((err as OpenMeteoApiError).status).toBe(504)
+    }
+  })
+
   it('throws OpenMeteoParseError when the response does not match the expected shape', async () => {
     server.use(
       http.get('https://archive-api.open-meteo.com/v1/archive', () =>

@@ -123,6 +123,37 @@ describe('fetchForecast', () => {
     )
   })
 
+  /**
+   * Regression test for a bug found in code review: a non-2xx response with
+   * a non-JSON body (e.g. an HTML error page from a proxy sitting in front
+   * of the API — plausible on a mobile network, the exact environment
+   * DESIGN §9.6 already worries about) was being misclassified as
+   * OpenMeteoParseError ("the shape is wrong") when response.status was
+   * never even consulted. It must surface as OpenMeteoApiError instead —
+   * this is an API/network failure, not evidence our code's assumptions
+   * about a successful response are stale.
+   */
+  it('throws OpenMeteoApiError, not OpenMeteoParseError, for a non-2xx response with a non-JSON body', async () => {
+    server.use(
+      http.get(
+        'https://api.open-meteo.com/v1/forecast',
+        () =>
+          new HttpResponse('<html><head><title>502 Bad Gateway</title></head></html>', {
+            status: 502,
+            headers: { 'content-type': 'text/html' },
+          }),
+      ),
+    )
+
+    expect.assertions(2)
+    try {
+      await fetchForecast({ ...VALPARAISO, hourly: ['temperature_2m'] })
+    } catch (err) {
+      expect(err).toBeInstanceOf(OpenMeteoApiError)
+      expect((err as OpenMeteoApiError).status).toBe(502)
+    }
+  })
+
   it('throws OpenMeteoParseError when a 2xx body does not match the expected shape', async () => {
     server.use(
       http.get('https://api.open-meteo.com/v1/forecast', () =>
