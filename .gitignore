@@ -6,3 +6,19 @@ web-build/
 .DS_Store
 coverage/
 .claude/
+
+# Expo native projects: regenerated on demand via `npx expo prebuild`
+# (DESIGN §11 — managed workflow, not committed native code).
+/android
+/ios
+expo-env.d.ts
+*.tsbuildinfo
+.kotlin/
+.metro-health-check*
+*.orig.*
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+.env*.local

@@ -1,0 +1,20 @@
+// @ts-nocheck — vendored via `npx gluestack-ui add`, regenerated on update; not hand-maintained to this project's exactOptionalPropertyTypes.
+import React from 'react';
+import { boxStyle } from './styles';
+
+import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
+
+type IBoxProps = React.ComponentPropsWithoutRef<'div'> &
+  VariantProps<typeof boxStyle> & { className?: string };
+
+const Box = React.forwardRef<HTMLDivElement, IBoxProps>(function Box(
+  { className, ...props },
+  ref
+) {
+  return (
+    <div ref={ref} className={boxStyle({ class: className })} {...props} />
+  );
+});
+
+Box.displayName = 'Box';
+export { Box };
