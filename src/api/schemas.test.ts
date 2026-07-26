@@ -42,6 +42,25 @@ const REALISTIC_MULTI_MODEL = {
   },
 }
 
+// Not spike-verified (the spike never exercised `current`) — modelled on
+// Open-Meteo's documented current-conditions shape: a single snapshot, not a
+// time series, with `time`/`interval` plus one value per requested variable.
+const REALISTIC_CURRENT = {
+  latitude: -33.05,
+  longitude: -71.62,
+  generationtime_ms: 0.12,
+  utc_offset_seconds: -14400,
+  timezone: 'America/Santiago',
+  timezone_abbreviation: 'GMT-4',
+  elevation: 56,
+  current_units: { time: 'iso8601', interval: 'seconds', temperature_2m: '°C' },
+  current: {
+    time: '2026-07-26T07:30',
+    interval: 900,
+    temperature_2m: 15.3,
+  },
+}
+
 const REALISTIC_ARCHIVE = {
   latitude: -33.05,
   longitude: -71.62,
@@ -124,6 +143,43 @@ describe('openMeteoEnvelopeSchema', () => {
     expect(() =>
       openMeteoEnvelopeSchema.parse({ ...REALISTIC_SINGLE_VARIABLE, latitude: 'north' }),
     ).toThrow()
+  })
+
+  /**
+   * Regression test for a review finding: ForecastParams.current (forecast.ts)
+   * is a real, wired-up query parameter, but the envelope schema had no
+   * `current`/`current_units` field — Zod's default key-stripping silently
+   * discarded whatever the API returned for it, with zero test coverage.
+   */
+  it('parses a current-conditions response and keeps the current block', () => {
+    const result = openMeteoEnvelopeSchema.parse(REALISTIC_CURRENT)
+    expect(result.current?.time).toBe('2026-07-26T07:30')
+    expect(result.current?.interval).toBe(900)
+    expect(result.current?.temperature_2m).toBe(15.3)
+  })
+
+  it('rejects a current block with no time field', () => {
+    const broken = {
+      ...REALISTIC_CURRENT,
+      current: { interval: 900, temperature_2m: 15.3 },
+    }
+    expect(() => openMeteoEnvelopeSchema.parse(broken)).toThrow()
+  })
+
+  it('rejects a current block with no interval field', () => {
+    const broken = {
+      ...REALISTIC_CURRENT,
+      current: { time: '2026-07-26T07:30', temperature_2m: 15.3 },
+    }
+    expect(() => openMeteoEnvelopeSchema.parse(broken)).toThrow()
+  })
+
+  it('accepts a null current variable, matching the nullable convention used elsewhere', () => {
+    const result = openMeteoEnvelopeSchema.parse({
+      ...REALISTIC_CURRENT,
+      current: { ...REALISTIC_CURRENT.current, temperature_2m: null },
+    })
+    expect(result.current?.temperature_2m).toBeNull()
   })
 })
 

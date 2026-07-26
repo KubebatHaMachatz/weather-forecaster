@@ -1,5 +1,10 @@
-import { assertLatLon } from '../geo/coordinates.js'
-import { fetchOpenMeteo, type OpenMeteoResult } from './client.js'
+import {
+  fetchOpenMeteo,
+  setJoinedIfPresent,
+  setLatLonParams,
+  setTimezone,
+  type OpenMeteoResult,
+} from './client.js'
 
 /**
  * The archive endpoint (DESIGN §9.1) is the single canonical oracle: it
@@ -25,20 +30,13 @@ export interface ArchiveParams {
 const ARCHIVE_URL = 'https://archive-api.open-meteo.com/v1/archive'
 
 export async function fetchArchive(params: ArchiveParams): Promise<OpenMeteoResult> {
-  assertLatLon({ lat: params.latitude, lon: params.longitude })
-
   const url = new URL(ARCHIVE_URL)
-  url.searchParams.set('latitude', String(params.latitude))
-  url.searchParams.set('longitude', String(params.longitude))
+  setLatLonParams(url, { lat: params.latitude, lon: params.longitude })
   url.searchParams.set('start_date', params.startDate)
   url.searchParams.set('end_date', params.endDate)
-  if (params.hourly && params.hourly.length > 0) {
-    url.searchParams.set('hourly', params.hourly.join(','))
-  }
-  if (params.daily && params.daily.length > 0) {
-    url.searchParams.set('daily', params.daily.join(','))
-  }
-  url.searchParams.set('timezone', params.timezone ?? 'auto')
+  setJoinedIfPresent(url, 'hourly', params.hourly)
+  setJoinedIfPresent(url, 'daily', params.daily)
+  setTimezone(url, params.timezone)
 
   return fetchOpenMeteo(url)
 }

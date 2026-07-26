@@ -24,11 +24,23 @@ const dailyBlockSchema = z
   .catchall(timeSeriesSchema)
 
 /**
- * `hourly_units`/`daily_units` map each variable to a unit string, keyed the
- * same dynamic way. Not validated field-by-field — units are for display,
- * not correctness — so this only enforces that every value is a string.
+ * `hourly_units`/`daily_units`/`current_units` map each variable to a unit
+ * string, keyed the same dynamic way. Not validated field-by-field — units
+ * are for display, not correctness — so this only enforces that every value
+ * is a string.
  */
 const unitsBlockSchema = z.record(z.string(), z.string())
+
+/**
+ * `current` (the Persistence instrument, DESIGN §4 — "what the value is
+ * today") is a single snapshot, not a time series: `time` + `interval`
+ * (seconds) plus one nullable-number value per requested variable. Not
+ * spike-verified — the spike never exercised this parameter — modelled on
+ * Open-Meteo's documented shape instead.
+ */
+const currentBlockSchema = z
+  .object({ time: z.string(), interval: z.number() })
+  .catchall(z.number().nullable())
 
 export const openMeteoEnvelopeSchema = z.object({
   latitude: z.number(),
@@ -40,6 +52,8 @@ export const openMeteoEnvelopeSchema = z.object({
   // Confirmed present on forecast responses (SPIKE.md §4); not confirmed on
   // archive responses, so left optional rather than assumed.
   elevation: z.number().optional(),
+  current_units: unitsBlockSchema.optional(),
+  current: currentBlockSchema.optional(),
   hourly_units: unitsBlockSchema.optional(),
   hourly: hourlyBlockSchema.optional(),
   daily_units: unitsBlockSchema.optional(),

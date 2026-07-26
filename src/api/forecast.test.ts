@@ -3,6 +3,7 @@ import { afterAll, afterEach, beforeAll, describe, expect, it } from 'vitest'
 import { OpenMeteoApiError, OpenMeteoParseError } from './errors.js'
 import { fetchForecast } from './forecast.js'
 import {
+  forecastCurrentFixture,
   forecastMultiModelFixture,
   forecastSingleVariableFixture,
   futureDateErrorFixture,
@@ -35,6 +36,24 @@ describe('fetchForecast', () => {
     expect(result.data.hourly?.temperature_2m_bom_access_global).toEqual(
       forecastMultiModelFixture.hourly.temperature_2m_bom_access_global,
     )
+  })
+
+  /**
+   * Regression test for a review finding: `current` was a real, wired-up
+   * parameter (below) with no schema field to receive it, so the requested
+   * data was silently discarded end-to-end with nothing to catch it.
+   */
+  it('parses a current-conditions response end-to-end (the Persistence instrument, DESIGN §4)', async () => {
+    server.use(
+      http.get('https://api.open-meteo.com/v1/forecast', () =>
+        HttpResponse.json(forecastCurrentFixture),
+      ),
+    )
+
+    const result = await fetchForecast({ ...VALPARAISO, current: ['temperature_2m'] })
+
+    expect(result.data.current?.temperature_2m).toBe(forecastCurrentFixture.current.temperature_2m)
+    expect(result.data.current?.time).toBe(forecastCurrentFixture.current.time)
   })
 
   it('sends latitude, longitude, hourly and timezone as query parameters', async () => {
@@ -145,12 +164,15 @@ describe('fetchForecast', () => {
       ),
     )
 
-    expect.assertions(2)
+    expect.assertions(3)
     try {
       await fetchForecast({ ...VALPARAISO, hourly: ['temperature_2m'] })
     } catch (err) {
       expect(err).toBeInstanceOf(OpenMeteoApiError)
       expect((err as OpenMeteoApiError).status).toBe(502)
+      // Regression: the SyntaxError from the failed JSON.parse used to be
+      // silently discarded by a bare `catch {}` with nowhere to put it.
+      expect((err as OpenMeteoApiError).cause).toBeInstanceOf(SyntaxError)
     }
   })
 
@@ -180,5 +202,11 @@ describe('fetchForecast', () => {
     await expect(
       fetchForecast({ latitude: 200, longitude: 0, hourly: ['temperature_2m'] }),
     ).rejects.toThrow(/latitude/i)
+  })
+
+  it('rejects an out-of-range longitude before making a request', async () => {
+    await expect(
+      fetchForecast({ latitude: 0, longitude: 500, hourly: ['temperature_2m'] }),
+    ).rejects.toThrow(/longitude/i)
   })
 })

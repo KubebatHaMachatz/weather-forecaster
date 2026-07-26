@@ -1,5 +1,10 @@
-import { assertLatLon } from '../geo/coordinates.js'
-import { fetchOpenMeteo, type OpenMeteoResult } from './client.js'
+import {
+  fetchOpenMeteo,
+  setJoinedIfPresent,
+  setLatLonParams,
+  setTimezone,
+  type OpenMeteoResult,
+} from './client.js'
 
 /**
  * The forecast endpoint (DESIGN §9.1) serves every live instrument: Barometer
@@ -29,27 +34,18 @@ export interface ForecastParams {
 const FORECAST_URL = 'https://api.open-meteo.com/v1/forecast'
 
 export async function fetchForecast(params: ForecastParams): Promise<OpenMeteoResult> {
-  assertLatLon({ lat: params.latitude, lon: params.longitude })
-
   const url = new URL(FORECAST_URL)
-  url.searchParams.set('latitude', String(params.latitude))
-  url.searchParams.set('longitude', String(params.longitude))
-  if (params.hourly && params.hourly.length > 0) {
-    url.searchParams.set('hourly', params.hourly.join(','))
-  }
-  if (params.current && params.current.length > 0) {
-    url.searchParams.set('current', params.current.join(','))
-  }
-  if (params.models && params.models.length > 0) {
-    url.searchParams.set('models', params.models.join(','))
-  }
+  setLatLonParams(url, { lat: params.latitude, lon: params.longitude })
+  setJoinedIfPresent(url, 'hourly', params.hourly)
+  setJoinedIfPresent(url, 'current', params.current)
+  setJoinedIfPresent(url, 'models', params.models)
   if (params.pastDays !== undefined) {
     url.searchParams.set('past_days', String(params.pastDays))
   }
   if (params.forecastDays !== undefined) {
     url.searchParams.set('forecast_days', String(params.forecastDays))
   }
-  url.searchParams.set('timezone', params.timezone ?? 'auto')
+  setTimezone(url, params.timezone)
 
   return fetchOpenMeteo(url)
 }

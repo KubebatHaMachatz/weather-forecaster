@@ -24,6 +24,35 @@ export const forecastSingleVariableFixture = {
   },
 }
 
+// Not spike-verified (the spike never exercised `current`) — modelled on
+// Open-Meteo's documented current-conditions shape: a single snapshot with
+// `time`/`interval` plus one value per requested variable, not a time series.
+export const forecastCurrentFixture = {
+  latitude: -33.05,
+  longitude: -71.62,
+  generationtime_ms: 0.12,
+  utc_offset_seconds: -14400,
+  timezone: 'America/Santiago',
+  timezone_abbreviation: 'GMT-4',
+  elevation: 56,
+  current_units: { time: 'iso8601', interval: 'seconds', temperature_2m: '°C' },
+  current: {
+    time: '2026-07-26T07:30',
+    interval: 900,
+    temperature_2m: 15.3,
+  },
+}
+
+/**
+ * 48 hourly timestamps starting at `2026-07-26T00:00`, rolling over to
+ * `2026-07-27` at hour 24 — real Date arithmetic rather than `i % 24` on a
+ * fixed date string, which previously produced two duplicate copies of one
+ * day instead of two distinct days (caught by fixtures.test.ts).
+ */
+const FORTY_EIGHT_HOURLY_TIMESTAMPS = Array.from({ length: 48 }, (_, i) =>
+  new Date(Date.UTC(2026, 6, 26, i)).toISOString().slice(0, 16),
+)
+
 // SPIKE.md §2: seven named models in one call, verbatim including the
 // bom_access_global null (no regional coverage at this station).
 export const forecastMultiModelFixture = {
@@ -36,7 +65,7 @@ export const forecastMultiModelFixture = {
   elevation: 56,
   hourly_units: { time: 'iso8601' },
   hourly: {
-    time: Array.from({ length: 48 }, (_, i) => `2026-07-26T${String(i % 24).padStart(2, '0')}:00`),
+    time: FORTY_EIGHT_HOURLY_TIMESTAMPS,
     temperature_2m_ecmwf_ifs025: Array.from({ length: 48 }, () => 12.0),
     temperature_2m_icon_seamless: Array.from({ length: 48 }, () => 13.3),
     temperature_2m_gfs_seamless: Array.from({ length: 48 }, () => 13.8),

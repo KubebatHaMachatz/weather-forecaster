@@ -149,4 +149,15 @@ describe('fetchArchive', () => {
       }),
     ).rejects.toThrow(/latitude/i)
   })
+
+  it('rejects an out-of-range longitude before making a request', async () => {
+    await expect(
+      fetchArchive({
+        latitude: 0,
+        longitude: 500,
+        startDate: '2026-07-25',
+        endDate: '2026-07-25',
+      }),
+    ).rejects.toThrow(/longitude/i)
+  })
 })
