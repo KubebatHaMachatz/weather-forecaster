@@ -61,10 +61,12 @@ function sampleTerms(samples: readonly number[], observation: number): SampleTer
     absoluteError += Math.abs(x - observation)
   }
 
+  // entries() yields a properly typed [index, value] pair, which avoids the
+  // non-null assertion that plain indexing needs under noUncheckedIndexedAccess.
   const sorted = [...samples].sort((a, b) => a - b)
   let halfPairwiseSpread = 0
-  for (let i = 0; i < n; i++) {
-    halfPairwiseSpread += sorted[i]! * (2 * i - n + 1)
+  for (const [i, value] of sorted.entries()) {
+    halfPairwiseSpread += value * (2 * i - n + 1)
   }
 
   return { n, meanAbsoluteError: absoluteError / n, halfPairwiseSpread }

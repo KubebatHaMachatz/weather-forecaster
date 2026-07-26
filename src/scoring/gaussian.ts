@@ -12,18 +12,33 @@ const LN_GAMMA_HALF = 0.5723649429247001 // ln Γ(1/2) = ln √π
 const EPSILON = 1e-16
 const TINY = 1e-300
 
+/**
+ * Both routines below iterate until a convergence criterion is met, with an
+ * iteration cap only as a guard against a non-terminating loop. If the cap is
+ * ever actually reached the result would be silently inaccurate, which for erf
+ * means a quietly wrong CRPS and no other symptom — so it throws instead.
+ * gaussian.test.ts exercises the full input range to confirm these caps are
+ * comfortably sufficient in practice.
+ */
+const MAX_SERIES_TERMS = 200
+const MAX_FRACTION_DEPTH = 300
+
 /** Lower regularised incomplete gamma P(1/2, x), by series. Converges fast for small x. */
 function lowerGammaHalf(x: number): number {
   let ap = 0.5
   let del = 1 / ap
   let sum = del
-  for (let n = 0; n < 200; n++) {
+  for (let n = 0; n < MAX_SERIES_TERMS; n++) {
     ap += 1
     del *= x / ap
     sum += del
-    if (Math.abs(del) < Math.abs(sum) * EPSILON) break
+    if (Math.abs(del) < Math.abs(sum) * EPSILON) {
+      return sum * Math.exp(-x + 0.5 * Math.log(x) - LN_GAMMA_HALF)
+    }
   }
-  return sum * Math.exp(-x + 0.5 * Math.log(x) - LN_GAMMA_HALF)
+  throw new Error(
+    `incomplete gamma series did not converge for x=${x} within ${MAX_SERIES_TERMS} terms`,
+  )
 }
 
 /** Upper regularised incomplete gamma Q(1/2, x), by continued fraction. Better for large x. */
@@ -32,7 +47,7 @@ function upperGammaHalf(x: number): number {
   let c = 1 / TINY
   let d = 1 / b
   let h = d
-  for (let i = 1; i <= 300; i++) {
+  for (let i = 1; i <= MAX_FRACTION_DEPTH; i++) {
     const an = -i * (i - 0.5)
     b += 2
     d = an * d + b
@@ -42,9 +57,13 @@ function upperGammaHalf(x: number): number {
     d = 1 / d
     const del = d * c
     h *= del
-    if (Math.abs(del - 1) < EPSILON) break
+    if (Math.abs(del - 1) < EPSILON) {
+      return Math.exp(-x + 0.5 * Math.log(x) - LN_GAMMA_HALF) * h
+    }
   }
-  return Math.exp(-x + 0.5 * Math.log(x) - LN_GAMMA_HALF) * h
+  throw new Error(
+    `incomplete gamma continued fraction did not converge for x=${x} within ${MAX_FRACTION_DEPTH} iterations`,
+  )
 }
 
 export function erf(x: number): number {
