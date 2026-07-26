@@ -1,0 +1,145 @@
+import { createRandom, hashString, seedFromDate } from './prng.js'
+import { formatStation, type Station } from '../geo/station.js'
+
+/**
+ * Generation of the daily Call (DESIGN §2).
+ *
+ * Pure function of the date. This is the whole reason the game needs no
+ * backend: there is no shared state to synchronise because every device
+ * derives the same puzzle from the same calendar day.
+ */
+
+/**
+ * v1 ships question types 1-4 only; types 5-8 are deferred (DESIGN §12).
+ * Appending to this list changes what past dates would generate, so treat it
+ * as versioned content rather than a free edit.
+ */
+export const QUESTION_TYPES = [
+  'point-temperature',
+  'daily-extreme',
+  'precipitation',
+  'gust-exceedance',
+] as const
+
+export type QuestionType = (typeof QUESTION_TYPES)[number]
+
+export interface Call {
+  /** The day the Call is issued. */
+  readonly date: string
+  /** The day being forecast — always the day after issue. */
+  readonly targetDate: string
+  readonly station: Station
+  readonly questionType: QuestionType
+  readonly signalBudget: number
+  /** Local hour being asked about; only set for questions about a moment. */
+  readonly targetHourLocal?: number
+  /** Pre-rendered "City, Country" per the §2.2 rule. */
+  readonly stationLabel: string
+}
+
+const ISO_DATE = /^\d{4}-\d{2}-\d{2}$/
+
+function assertDate(date: string): void {
+  if (!ISO_DATE.test(date)) {
+    throw new RangeError(`date must be formatted YYYY-MM-DD, received "${date}"`)
+  }
+  const [year, month, day] = date.split('-').map(Number) as [number, number, number]
+  const parsed = new Date(Date.UTC(year, month - 1, day))
+  if (
+    parsed.getUTCFullYear() !== year ||
+    parsed.getUTCMonth() !== month - 1 ||
+    parsed.getUTCDate() !== day
+  ) {
+    throw new RangeError(`date is not a real calendar date: "${date}"`)
+  }
+}
+
+/** The following calendar day, leap- and year-boundary aware. */
+export function nextDate(date: string): string {
+  assertDate(date)
+  const [year, month, day] = date.split('-').map(Number) as [number, number, number]
+  const next = new Date(Date.UTC(year, month - 1, day + 1))
+  return next.toISOString().slice(0, 10)
+}
+
+/**
+ * Hours that make for interesting temperature questions: near the daily
+ * maximum, near the minimum, and the shoulders in between. Asking about 03:00
+ * every other day would be both dull and nearly always the same answer.
+ */
+const TARGET_HOURS = [6, 9, 12, 15, 18, 21] as const
+
+/**
+ * Deterministic pseudo-random score for a (date, station) pair — the basis
+ * for picking which station a Call targets, in pickStation below.
+ *
+ * The date and the two identity fields are hashed SEPARATELY and then mixed
+ * numerically, rather than concatenated into one string first: concatenation
+ * would let two different (country, name) pairs alias to the same identity
+ * ("Chile"+"Arica" and "Chil"+"eArica" both flatten to "ChileArica" — see
+ * daily.test.ts). hashString is charCodeAt-based with no ICU dependency, so
+ * the result is stable across devices and locales — unlike the
+ * String.localeCompare()-based sort this replaced, which made station
+ * selection depend on the device's default locale.
+ */
+function stationScore(date: string, station: Station): number {
+  const mixed =
+    (hashString(date) ^
+      Math.imul(hashString(station.country), 0x9e3779b1) ^
+      Math.imul(hashString(station.name), 0x85ebca77)) >>>
+    0
+  return createRandom(mixed).next()
+}
+
+/**
+ * Picks the station with the highest score for this date.
+ *
+ * This is a stronger guarantee than "order doesn't matter". Because each
+ * station's score depends only on its own identity and the date — never on
+ * which other stations happen to be in the list — adding a station to the
+ * bundled JSON can only ever change a date's result to that new station. It
+ * can never flip some unrelated date over to a different, pre-existing
+ * station, the way sorting the list and picking by index used to (and did —
+ * see the append-stability test in daily.test.ts).
+ */
+function pickStation(date: string, stations: readonly Station[]): Station {
+  let winner: Station | undefined
+  let winnerScore = -Infinity
+  for (const candidate of stations) {
+    const score = stationScore(date, candidate)
+    if (score > winnerScore) {
+      winner = candidate
+      winnerScore = score
+    }
+  }
+  // Non-null: the caller guarantees stations.length > 0, so the loop above
+  // always assigns winner at least once.
+  return winner!
+}
+
+export function generateCall(date: string, stations: readonly Station[]): Call {
+  assertDate(date)
+  if (stations.length === 0) {
+    throw new RangeError('cannot generate a Call with an empty station list')
+  }
+
+  const station = pickStation(date, stations)
+
+  const random = createRandom(seedFromDate(date))
+  const questionType = random.pick(QUESTION_TYPES)
+  const signalBudget = 8 + random.int(5) // 8-12 inclusive
+
+  const call: Call = {
+    date,
+    targetDate: nextDate(date),
+    station,
+    questionType,
+    signalBudget,
+    stationLabel: formatStation(station),
+    ...(questionType === 'point-temperature'
+      ? { targetHourLocal: random.pick(TARGET_HOURS) }
+      : {}),
+  }
+
+  return call
+}
