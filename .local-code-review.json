@@ -1,0 +1,6 @@
+{
+  "test_command": "npm test",
+  "lint_command": "npm run typecheck",
+  "max_diff_chars": 200000,
+  "max_file_context_chars": 60000
+}
