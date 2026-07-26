@@ -1,5 +1,34 @@
 import { describe, expect, it } from 'vitest'
-import { createRandom, seedFromDate } from './prng.js'
+import { createRandom, hashString, seedFromDate } from './prng.js'
+
+describe('hashString', () => {
+  it('is deterministic', () => {
+    expect(hashString('Chile')).toBe(hashString('Chile'))
+  })
+
+  it('differs for different strings', () => {
+    expect(hashString('Chile')).not.toBe(hashString('China'))
+  })
+
+  it('is sensitive to non-ASCII input', () => {
+    // These previously fed a locale-aware comparator (ICU collation, which
+    // treats diacritics specially and can even be absent on-device under
+    // Hermes). hashString instead reads raw UTF-16 code units via
+    // charCodeAt, so it is unaffected by locale, collation, or ICU presence.
+    expect(hashString('Åre')).not.toBe(hashString('Are'))
+    expect(hashString('Åre')).not.toBe(hashString('Zre'))
+  })
+
+  it('produces an unsigned 32-bit integer', () => {
+    for (const s of ['', 'a', 'Reykjavík', 'Ürümqi']) {
+      const h = hashString(s)
+      expect(Number.isInteger(h)).toBe(true)
+      expect(h).toBeGreaterThanOrEqual(0)
+      expect(h).toBeLessThanOrEqual(0xffffffff)
+    }
+  })
+
+})
 
 describe('seedFromDate', () => {
   it('is deterministic', () => {

@@ -11,19 +11,29 @@
  * and free to change, this one is frozen.
  */
 
-/** FNV-1a, 32-bit. Chosen for being tiny, well-specified and easy to re-implement. */
-export function seedFromDate(isoDate: string): number {
-  if (!/^\d{4}-\d{2}-\d{2}$/.test(isoDate)) {
-    throw new RangeError(`seed date must be formatted YYYY-MM-DD, received "${isoDate}"`)
-  }
-
+/**
+ * FNV-1a, 32-bit. Chosen for being tiny, well-specified and easy to
+ * re-implement. Reads raw UTF-16 code units via charCodeAt, so it is
+ * unaffected by locale, collation, or whether ICU is even present on the
+ * runtime (Hermes often ships without it) — unlike String.localeCompare,
+ * which is exactly what made the daily Call's station selection
+ * locale-dependent before this function existed (see daily.ts).
+ */
+export function hashString(value: string): number {
   let hash = 0x811c9dc5
-  for (let i = 0; i < isoDate.length; i++) {
-    hash ^= isoDate.charCodeAt(i)
+  for (let i = 0; i < value.length; i++) {
+    hash ^= value.charCodeAt(i)
     // hash *= 16777619, via shifts to stay in 32-bit integer space
     hash = Math.imul(hash, 0x01000193) >>> 0
   }
   return hash >>> 0
+}
+
+export function seedFromDate(isoDate: string): number {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(isoDate)) {
+    throw new RangeError(`seed date must be formatted YYYY-MM-DD, received "${isoDate}"`)
+  }
+  return hashString(isoDate)
 }
 
 export interface Random {

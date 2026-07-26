@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'vitest'
+import { afterEach, describe, expect, it, vi } from 'vitest'
 import { generateCall, nextDate, QUESTION_TYPES } from './daily.js'
 import type { Station } from '../geo/station.js'
 
@@ -16,6 +16,10 @@ const station = (name: string, country: string, lat: number, lon: number): Stati
   timezone: 'UTC',
   utcOffsetSeconds: 0,
   descriptor: `${name} descriptor`,
+})
+
+afterEach(() => {
+  vi.restoreAllMocks()
 })
 
 const STATIONS: Station[] = [
@@ -119,6 +123,84 @@ describe('generateCall', () => {
   it('does not depend on the order of the station list', () => {
     const reversed = [...STATIONS].reverse()
     expect(generateCall('2026-07-27', reversed)).toEqual(generateCall('2026-07-27', STATIONS))
+  })
+
+  /**
+   * Regression test for a real bug: station selection used to sort with
+   * String.localeCompare() and no explicit locale, so the sort — and
+   * therefore which station got picked — depended on the device's default
+   * locale (reproduced live: an en-US device and an sv-SE device picked
+   * different stations from a list containing multiple Swedish stations with
+   * diacritics, on 12 of 12 dates tried). Fixed by hashing station identity
+   * directly (charCodeAt-based, no ICU) instead of comparing with a
+   * locale-aware comparator.
+   *
+   * An earlier version of this test tried to prove the fix by checking that
+   * selection was stable across several input orderings of a
+   * diacritic-heavy list — but that doesn't actually distinguish the fixed
+   * code from the bug: sorting with *any* comparator, locale-aware or not,
+   * produces an output that is independent of input order by definition, so
+   * that test passed even before the fix and proved nothing. The only test
+   * that actually distinguishes "used a locale-aware comparator" from
+   * "didn't" is checking whether one was ever called.
+   */
+  it('never calls a locale-aware string comparator', () => {
+    const spy = vi.spyOn(String.prototype, 'localeCompare')
+    for (let day = 1; day <= 30; day++) {
+      generateCall(`2026-10-${String(day).padStart(2, '0')}`, STATIONS)
+    }
+    expect(spy).not.toHaveBeenCalled()
+  })
+
+  /**
+   * Regression test for a second bug found alongside the locale one: the old
+   * implementation sorted the list and picked by index, which only guards
+   * against reordering — appending a station (the realistic edit to a
+   * growing station list, DESIGN §9.5) shifted indices and silently changed
+   * what earlier dates had generated. Reproduced live: adding one station to
+   * a six-station list changed the result for 2 of 5 consecutive historical
+   * dates.
+   *
+   * The fix selects by per-station score rather than position, which gives a
+   * much stronger guarantee than "order doesn't matter": adding a station can
+   * only ever change a date's result to that new station, never to some other
+   * pre-existing station it had nothing to do with.
+   */
+  it('lets a newly added station steal days, but never disturbs an unrelated pick', () => {
+    const before = STATIONS
+    const after = [...STATIONS, station('Cairo', 'Egypt', 30.04, 31.24)]
+
+    for (let day = 1; day <= 90; day++) {
+      const date = `2026-01-${String((day % 28) + 1).padStart(2, '0')}`
+      const pickedBefore = generateCall(date, before).station.name
+      const pickedAfter = generateCall(date, after).station.name
+
+      if (pickedBefore !== pickedAfter) {
+        expect(pickedAfter).toBe('Cairo')
+      }
+    }
+  })
+
+  /**
+   * Design-invariant test, not a reproduction of a specific historical bug:
+   * two (country, name) pairs that would collapse to the identical string if
+   * identity were built by naive concatenation ("Chile"+"Arica" ===
+   * "Chil"+"eArica" === "ChileArica"). Station selection must treat country
+   * and name as a genuine 2-field identity, not a flattened string, or two
+   * real stations could someday be silently aliased into one.
+   */
+  it('treats "Chile"+"Arica" and "Chil"+"eArica" as distinct station identities', () => {
+    const a = station('Arica', 'Chile', -18.48, -70.31)
+    const b = station('eArica', 'Chil', -18.48, -70.31)
+    const list = [a, b]
+
+    const picks = new Set(
+      Array.from({ length: 60 }, (_, i) =>
+        generateCall(`2026-05-${String((i % 28) + 1).padStart(2, '0')}`, list).station.name,
+      ),
+    )
+    // If the two collided into one identity, only one name would ever appear.
+    expect(picks.size).toBe(2)
   })
 
   it('spreads across the whole station list over time', () => {
