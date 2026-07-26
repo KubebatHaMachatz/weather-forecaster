@@ -100,4 +100,29 @@ describe('pickBest', () => {
     const { ambiguous } = pickBest(results, 'Solo', 'Canada')
     expect(ambiguous).toBe(false)
   })
+
+  /**
+   * Regression test for a review finding: the ambiguous check only looked at
+   * the whole-pool fallback tier, not the exact-name-match tier — so two
+   * unrelated places that both happen to share the query's exact name, both
+   * with population: null, passed through as ambiguous: false even though
+   * nothing broke the tie.
+   */
+  it('flags ambiguous when multiple exact-name matches have no population to break the tie', () => {
+    const results = [
+      { name: 'Springfield', country: 'United States', country_code: 'US', feature_code: 'PPL', population: null },
+      { name: 'Springfield', country: 'United States', country_code: 'US', feature_code: 'PPL', population: null },
+    ]
+    const { ambiguous } = pickBest(results, 'Springfield', 'United States')
+    expect(ambiguous).toBe(true)
+  })
+
+  it('does not flag ambiguous when one exact-name match has real population data', () => {
+    const results = [
+      { name: 'Springfield', country: 'United States', country_code: 'US', feature_code: 'PPL', population: null },
+      { name: 'Springfield', country: 'United States', country_code: 'US', feature_code: 'PPL', population: 12000 },
+    ]
+    const { ambiguous } = pickBest(results, 'Springfield', 'United States')
+    expect(ambiguous).toBe(false)
+  })
 })

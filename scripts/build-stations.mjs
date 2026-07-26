@@ -125,14 +125,20 @@ async function geocode(name) {
  *   4. If nothing matched the expected country, fall back to the same
  *      preference order over the whole result set (flagged for review).
  *
- * Returns `ambiguous: true` when NONE of capital, exact-name, or population
- * data provided a real signal — i.e. the final population sort compared
- * `0 ?? 0` for every candidate and, because Array.prototype.sort is stable,
- * silently returned whichever result the API happened to list first. This
- * was a review finding: that case previously produced no diagnostic at all
- * (countryMatched stays true), unlike a genuine country mismatch — a
- * silent, unflagged recurrence of exactly the bug class this function was
- * built to catch.
+ * Returns `ambiguous: true` whenever population is the ONLY thing that could
+ * have broken a tie and every remaining candidate has `population: null` —
+ * checked independently in both the exact-name-match tier and the final
+ * whole-pool tier, since either can hold more than one candidate (two
+ * unrelated places sharing the query's exact name is just as real a tie as
+ * two unrelated places with no name match at all). In that case the
+ * population sort compares `0 ?? 0` for every pair and, because
+ * Array.prototype.sort is stable, silently returns whichever result the API
+ * happened to list first. This was a review finding: that case previously
+ * produced no diagnostic at all (countryMatched stays true), unlike a
+ * genuine country mismatch — a silent, unflagged recurrence of exactly the
+ * bug class this function was built to catch. A follow-up review finding
+ * caught that the first fix only checked this in the whole-pool tier, missing
+ * the identical tie inside the exact-name-match tier.
  */
 export function pickBest(results, queryName, expectedCountry) {
   const matching = results.filter((r) => countryMatches(expectedCountry, r))
@@ -145,7 +151,8 @@ export function pickBest(results, queryName, expectedCountry) {
   const exact = pool.filter((r) => normalise(r.name) === normalise(queryName))
   if (exact.length > 0) {
     const byPopulation = [...exact].sort((a, b) => (b.population ?? 0) - (a.population ?? 0))
-    return { record: byPopulation[0], countryMatched, ambiguous: false }
+    const ambiguous = exact.length > 1 && exact.every((r) => r.population === null || r.population === undefined)
+    return { record: byPopulation[0], countryMatched, ambiguous }
   }
 
   const byPopulation = [...pool].sort((a, b) => (b.population ?? 0) - (a.population ?? 0))
