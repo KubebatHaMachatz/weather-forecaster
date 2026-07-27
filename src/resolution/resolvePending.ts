@@ -27,6 +27,26 @@ const STORAGE_KEY = 'ensemble.history.calls'
 const PLACEHOLDER_CLIMATOLOGY = { mean: 15, sd: 8 }
 
 /**
+ * How many Calls a single run will resolve.
+ *
+ * A player returning after a fortnight has a fortnight of pending Calls,
+ * and DESIGN §9.6 makes the daily call budget "a hard architectural
+ * constraint, not an optimisation" — firing fourteen archive requests in
+ * one burst would blow it. The remainder carries over to later runs, which
+ * is exactly the catch-up §9.7 describes ("resolution happens on next
+ * launch... nothing is ever lost"). Oldest-first, so the backlog drains in
+ * order.
+ */
+export const MAX_RESOLUTIONS_PER_RUN = 3
+
+/**
+ * The run currently in flight. History resolves on focus, so a quick
+ * blur/focus can start a second run while the first is still fetching —
+ * doubling requests against the same budget.
+ */
+let inFlight: Promise<void> | null = null
+
+/**
  * The committed, unscored Calls whose target date is now strictly past at
  * the station — oldest first, so a backlog resolves in the order it was
  * created.
@@ -60,8 +80,23 @@ export async function resolvePending(
   fetchTruth: (entry: CallHistoryEntry) => Promise<Truth | null>,
   offsetFor: (entry: CallHistoryEntry) => number = () => 0,
 ): Promise<void> {
+  if (inFlight !== null) return inFlight
+  inFlight = runResolution(storage, now, fetchTruth, offsetFor)
+  try {
+    await inFlight
+  } finally {
+    inFlight = null
+  }
+}
+
+async function runResolution(
+  storage: KeyValueStorage,
+  now: Date,
+  fetchTruth: (entry: CallHistoryEntry) => Promise<Truth | null>,
+  offsetFor: (entry: CallHistoryEntry) => number,
+): Promise<void> {
   const history = await loadCallHistory(storage)
-  const resolvable = pendingResolvable(history, now, offsetFor)
+  const resolvable = pendingResolvable(history, now, offsetFor).slice(0, MAX_RESOLUTIONS_PER_RUN)
   if (resolvable.length === 0) return
 
   const scores = new Map<string, number>()

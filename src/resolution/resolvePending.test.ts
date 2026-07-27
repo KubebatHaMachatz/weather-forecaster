@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from 'vitest'
-import { pendingResolvable, resolvePending } from './resolvePending.js'
+import { MAX_RESOLUTIONS_PER_RUN, pendingResolvable, resolvePending } from './resolvePending.js'
 import type { CallHistoryEntry } from '../history/callHistory.js'
 import type { KeyValueStorage } from '../settings/unitSystemStorage.js'
 
@@ -151,5 +151,61 @@ describe('resolvePending', () => {
   it('is a no-op on an empty history', async () => {
     const storage = createFakeStorage()
     await expect(resolvePending(storage, now, async () => null)).resolves.toBeUndefined()
+  })
+
+  /**
+   * A player returning after a fortnight has a fortnight of pending Calls.
+   * DESIGN §9.7 expects that backlog to catch up over time, but §9.6 makes
+   * the daily call budget "a hard architectural constraint" — so a single
+   * run must not fire fourteen archive requests at once. The rest carry
+   * over to later runs, which is exactly what §9.7 describes.
+   */
+  it('caps how many Calls one run resolves, so a backlog cannot burst', async () => {
+    const backlog = Array.from({ length: 14 }, (_, i) => committed(`2026-07-${String(i + 1).padStart(2, '0')}`))
+    const storage = createFakeStorage({ 'ensemble.history.calls': JSON.stringify(backlog) })
+    const fetchTruth = vi.fn(async () => ({ kind: 'occurred', occurred: true }) as const)
+
+    await resolvePending(storage, new Date('2026-08-01T12:00:00Z'), fetchTruth)
+    expect(fetchTruth.mock.calls.length).toBeLessThanOrEqual(MAX_RESOLUTIONS_PER_RUN)
+  })
+
+  it('works through the backlog oldest-first across successive runs', async () => {
+    const backlog = Array.from({ length: 8 }, (_, i) => committed(`2026-07-${String(i + 1).padStart(2, '0')}`))
+    const storage = createFakeStorage({ 'ensemble.history.calls': JSON.stringify(backlog) })
+    const at = new Date('2026-08-01T12:00:00Z')
+
+    await resolvePending(storage, at, async () => ({ kind: 'occurred', occurred: true }))
+    const afterFirst = JSON.parse((await storage.getItem('ensemble.history.calls'))!)
+    const scoredDates = afterFirst.filter((e: { skill?: number }) => e.skill !== undefined).map((e: { date: string }) => e.date)
+    expect(scoredDates).toEqual(['2026-07-01', '2026-07-02', '2026-07-03'].slice(0, scoredDates.length))
+
+    await resolvePending(storage, at, async () => ({ kind: 'occurred', occurred: true }))
+    const afterSecond = JSON.parse((await storage.getItem('ensemble.history.calls'))!)
+    expect(afterSecond.filter((e: { skill?: number }) => e.skill !== undefined).length).toBeGreaterThan(scoredDates.length)
+  })
+
+  /**
+   * History resolves on focus, so a quick blur/focus can start a second run
+   * while the first is still fetching — doubling requests against the same
+   * budget. Same in-flight collapse the clock sync already uses.
+   */
+  it('collapses concurrent runs into one', async () => {
+    const storage = createFakeStorage({
+      'ensemble.history.calls': JSON.stringify([committed('2026-07-27')]),
+    })
+    let release: (t: { kind: 'occurred'; occurred: boolean }) => void = () => {}
+    const fetchTruth = vi.fn(
+      () => new Promise<{ kind: 'occurred'; occurred: boolean }>((resolve) => { release = resolve }),
+    )
+
+    const both = Promise.all([
+      resolvePending(storage, now, fetchTruth),
+      resolvePending(storage, now, fetchTruth),
+    ])
+    while (fetchTruth.mock.calls.length === 0) await Promise.resolve()
+    release({ kind: 'occurred', occurred: true })
+    await both
+
+    expect(fetchTruth).toHaveBeenCalledTimes(1)
   })
 })
