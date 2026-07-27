@@ -52,6 +52,19 @@ export default function AttributionScreen() {
           </Box>
         ))}
       </VStack>
+
+      <Heading size="md" className="mt-8">
+        Station photographs
+      </Heading>
+      <Text className="mt-1 leading-6 text-muted-foreground">
+        Banner photographs come from{' '}
+        <Link href="https://commons.wikimedia.org" className="text-primary underline">
+          Wikimedia Commons
+        </Link>{' '}
+        and Wikipedia. Each is used under its own Creative Commons licence, credited to its
+        photographer on the image itself. Photographs whose licence could not be read are not
+        used at all.
+      </Text>
     </Box>
   )
 }
