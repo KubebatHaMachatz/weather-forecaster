@@ -45,6 +45,12 @@ export default function HistoryScreen() {
     )
   }
 
+  // Device clock, with the same caveat todayLocalDate documents — and it
+  // bites a little harder here, since the streak is a progression reward
+  // that a moved clock could otherwise be used to farm. Future-dated
+  // records are already ignored by currentStreak/rollingMeanSkill, which
+  // blunts the obvious version of that; the real fix is still the trusted
+  // clock (DESIGN §10).
   const today = todayLocalDate()
   const streak = currentStreak(
     history.map((entry) => entry.date),

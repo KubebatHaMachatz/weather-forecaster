@@ -62,6 +62,12 @@ export async function loadCallHistory(storage: KeyValueStorage): Promise<CallHis
  * and there is exactly one Call per day, so a repeated write is a duplicate
  * event, not an update. Letting it through would also double-count the day
  * in the streak.
+ *
+ * This is a read-modify-write, so two truly concurrent calls could have one
+ * clobber the other. Not guarded, because the game commits at most one Call
+ * per day from a single UI thread — there is no second writer. If a
+ * background resolution path ever writes scores here, this needs a real
+ * read-modify-write guard rather than an assumption.
  */
 export async function recordCall(storage: KeyValueStorage, entry: CallHistoryEntry): Promise<void> {
   const history = await loadCallHistory(storage)
