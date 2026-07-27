@@ -1,5 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Box } from '../components/ui/box'
 import { Heading } from '../components/ui/heading'
 import { Text } from '../components/ui/text'
@@ -17,11 +17,16 @@ const UNIT_SYSTEM_LABELS: Record<UnitSystem, string> = {
 
 export default function SettingsScreen() {
   const [unitSystem, setUnitSystem] = useState<UnitSystem>(DEFAULT_UNIT_SYSTEM)
+  // Guards against the initial load resolving *after* the user has already
+  // tapped an option — without this, a fast tap during the brief window
+  // before loadUnitSystem resolves gets silently reverted back to whatever
+  // was previously on disk once that stale read lands.
+  const userSelectedRef = useRef(false)
 
   useEffect(() => {
     let cancelled = false
     loadUnitSystem(AsyncStorage).then((stored) => {
-      if (!cancelled) setUnitSystem(stored)
+      if (!cancelled && !userSelectedRef.current) setUnitSystem(stored)
     })
     return () => {
       cancelled = true
@@ -29,6 +34,7 @@ export default function SettingsScreen() {
   }, [])
 
   const selectUnitSystem = (next: UnitSystem) => {
+    userSelectedRef.current = true
     setUnitSystem(next)
     void saveUnitSystem(AsyncStorage, next)
   }
