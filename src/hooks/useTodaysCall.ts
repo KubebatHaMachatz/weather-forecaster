@@ -18,7 +18,7 @@ import stationsRaw from '../../assets/stations.json'
  * the trusted clock before any commit/scoring flow ships, and this is called
  * out here rather than left as a silently-wrong "it works" default.
  */
-function todayLocalDate(): string {
+export function todayLocalDate(): string {
   const now = new Date()
   const year = String(now.getFullYear()).padStart(4, '0')
   const month = String(now.getMonth() + 1).padStart(2, '0')
