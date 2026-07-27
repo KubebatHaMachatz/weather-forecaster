@@ -17,6 +17,7 @@ export default function RootLayout() {
         <Stack.Screen name="tutorial" options={{ title: 'Tutorial Call' }} />
         <Stack.Screen name="settings" options={{ title: 'Settings' }} />
         <Stack.Screen name="attribution" options={{ title: 'Data & Attribution' }} />
+        <Stack.Screen name="photo-credits" options={{ title: 'Photo credits' }} />
       </Stack>
     </GluestackUIProvider>
   )

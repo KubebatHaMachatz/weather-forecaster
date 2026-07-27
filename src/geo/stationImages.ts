@@ -1,22 +1,26 @@
 /**
- * Lookup for the bundled banner photos (assets/station-images.json,
- * produced by scripts/build-station-images.mjs).
+ * Lookup for the bundled banner photos (assets/station-images.json and
+ * assets/photos/, produced by scripts/download-station-photos.mjs).
  *
- * Only the URL is bundled, not the image bytes — the photo itself loads
- * from Wikimedia at display time. Every entry carries the licence facts CC
- * attribution requires, and the build script drops any image whose licence
- * it couldn't read, so an entry that exists is always creditable.
+ * The image BYTES are bundled, not just a URL: Wikimedia Commons' reuse
+ * guidance says directly embedding their URLs ("hotlinking") "is not
+ * recommended", and bundling also makes banners work offline.
+ *
+ * Every entry is creditable by construction — the pipeline drops any image
+ * whose licence it can't read, and any CC BY/BY-SA image whose author
+ * Commons doesn't record, since those licences require naming the author.
  */
 
 export interface StationImage {
-  /** Wikimedia thumbnail URL, pre-sized for a full-width banner. */
-  readonly url: string
-  /** The Wikipedia article the photo was taken from. */
+  /** File name within assets/photos/, resolved via STATION_PHOTO_ASSETS. */
+  readonly file: string
+  /** The Wikipedia article the photo was taken from — part of the credit. */
   readonly sourcePage: string
   /** e.g. "CC BY-SA 3.0". Always present — an image without one is never bundled. */
   readonly licence: string
-  /** Absent for a few files whose Commons metadata names no author. */
+  /** Present for every licence that requires attribution; absent only for CC0/public domain. */
   readonly artist?: string
+  /** Link to the licence text, which CC attribution requires. */
   readonly licenceUrl?: string
 }
 
@@ -39,7 +43,7 @@ function isStationImage(value: unknown): value is StationImage {
   if (typeof value !== 'object' || value === null) return false
   const candidate = value as Partial<StationImage>
   return (
-    typeof candidate.url === 'string' &&
+    typeof candidate.file === 'string' &&
     typeof candidate.sourcePage === 'string' &&
     typeof candidate.licence === 'string'
   )

@@ -1,4 +1,4 @@
-import { readFileSync } from 'node:fs'
+import { existsSync, readFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import { beforeAll, describe, expect, it } from 'vitest'
 import { stationImageFor, stationImageKey, type StationImage } from './stationImages.js'
@@ -15,6 +15,17 @@ const IMAGES_PATH = fileURLToPath(new URL('../../assets/station-images.json', im
 const STATIONS_PATH = fileURLToPath(new URL('../../assets/stations.json', import.meta.url))
 
 const rawImages: Record<string, StationImage> = JSON.parse(readFileSync(IMAGES_PATH, 'utf8'))
+
+/**
+ * The generated require() map is read as TEXT, not imported: its values are
+ * Metro asset requires for .jpg files, which only Metro can resolve. Parsing
+ * the keys still verifies the invariant that matters here — that the
+ * generated artifact and the manifest agree.
+ */
+const generatedKeys = new Set(
+  [...readFileSync(fileURLToPath(new URL('./stationPhotoAssets.ts', import.meta.url)), 'utf8')
+    .matchAll(/^\s*"((?:[^"\\]|\\.)*)":\s*require\(/gm)].map((m) => JSON.parse(`"${m[1]}"`)),
+)
 const rawStations: unknown[] = JSON.parse(readFileSync(STATIONS_PATH, 'utf8'))
 
 describe('assets/station-images.json', () => {
@@ -34,9 +45,10 @@ describe('assets/station-images.json', () => {
     expect(orphans).toEqual([])
   })
 
-  it('gives every entry an https Wikimedia URL', () => {
+  it('gives every entry a bundled photo file, not a remote URL', () => {
     for (const [key, image] of Object.entries(rawImages)) {
-      expect(image.url, key).toMatch(/^https:\/\/upload\.wikimedia\.org\//)
+      expect(image.file, key).toMatch(/^[a-z0-9-]+\.jpg$/)
+      expect(image, key).not.toHaveProperty('url')
     }
   })
 
@@ -66,35 +78,51 @@ describe('assets/station-images.json', () => {
    */
   it('contains no flags, seals, coats of arms, or other vector art', () => {
     for (const [key, image] of Object.entries(rawImages)) {
-      const filename = decodeURIComponent(image.url.split('/').pop() ?? '')
+      const filename = image.file
       expect(filename, key).not.toMatch(/\.svg/i)
       expect(filename.replace(/_/g, ' '), key).not.toMatch(/\b(flags?|seals?|coats? of arms|logos?)\b/i)
     }
   })
 
   /**
-   * Regression test for a bug that passed every build-time check and only
-   * failed on a real device: hand-rewriting a thumbnail URL's width yields
-   * a size Wikimedia refuses to serve (HTTP 400, "Use thumbnail sizes
-   * listed on w.wiki/GHai"). Widths must come from the API's own
-   * pithumbsize response, which lands on a served size — so the assertion
-   * is "big enough for a banner", not one specific number.
+   * Every manifest entry must have a real file on disk AND an entry in the
+   * generated require() map — a manifest row with no bundled asset renders
+   * the fallback, silently losing a photo we believed we shipped.
    */
-  /**
-   * A URL here is either a sized thumbnail (".../960px-Foo.jpg") or the
-   * ORIGINAL file (".../commons/1/1f/Foo.jpg"), because pithumbsize only
-   * scales down — a file narrower than the request comes back whole. Both
-   * are legitimate; what must never appear is a hand-built width, which
-   * Wikimedia refuses to serve (HTTP 400).
-   */
-  it('uses either an API-sized thumbnail or the original file, never a hand-built width', () => {
+  it('has a real file on disk for every entry', () => {
     for (const [key, image] of Object.entries(rawImages)) {
-      const width = /\/(\d+)px-/.exec(image.url)?.[1]
-      if (width !== undefined) {
-        expect(Number(width), `${key} (${image.url})`).toBeGreaterThanOrEqual(500)
-      } else {
-        expect(image.url, key).toMatch(/\/wikipedia\/[^/]+\/[0-9a-f]\/[0-9a-f]{2}\/[^/]+$/)
-      }
+      const path = fileURLToPath(new URL(`../../assets/photos/${image.file}`, import.meta.url))
+      expect(existsSync(path), `${key} -> ${image.file}`).toBe(true)
+    }
+  })
+
+  it('has a generated require() entry for every manifest entry', () => {
+    for (const key of Object.keys(rawImages)) {
+      expect(generatedKeys.has(key), key).toBe(true)
+    }
+  })
+
+  it('has no orphaned require() entry without a manifest row', () => {
+    for (const key of generatedKeys) {
+      expect(rawImages, key).toHaveProperty(key)
+    }
+  })
+
+  /**
+   * CC BY and CC BY-SA require naming the author. Only CC0 and public
+   * domain may ship without one, so anything else missing an artist means
+   * the pipeline's attribution gate failed.
+   */
+  it('names an author for every licence that requires attribution', () => {
+    for (const [key, image] of Object.entries(rawImages)) {
+      const exempt = /^(cc0|public domain)$/i.test(image.licence)
+      if (!exempt) expect(image.artist, `${key} (${image.licence})`).toBeTruthy()
+    }
+  })
+
+  it('uses only known free licences, never a vague custom grant', () => {
+    for (const [key, image] of Object.entries(rawImages)) {
+      expect(image.licence, key).toMatch(/^(cc[ -]by([ -]sa)?[ -]\d(\.\d)?|cc0|public domain|fal)/i)
     }
   })
 })

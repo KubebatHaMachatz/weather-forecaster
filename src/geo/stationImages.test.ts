@@ -4,7 +4,7 @@ import { stationImageKey, stationImageFor, type StationImage } from './stationIm
 const BUJUMBURA = { name: 'Bujumbura', country: 'Burundi' }
 
 const IMAGE: StationImage = {
-  url: 'https://upload.wikimedia.org/example.jpg',
+  file: 'bujumbura-burundi.jpg',
   sourcePage: 'https://en.wikipedia.org/wiki/Bujumbura',
   licence: 'CC BY-SA 3.0',
   artist: 'SteveRwanda',

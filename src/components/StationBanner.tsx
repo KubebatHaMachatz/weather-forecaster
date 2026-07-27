@@ -1,7 +1,7 @@
 import { Image } from 'expo-image'
-import { useState } from 'react'
 import { useWindowDimensions } from 'react-native'
 import type { StationImage } from '../geo/stationImages'
+import { STATION_PHOTO_ASSETS } from '../geo/stationPhotoAssets'
 import { Box } from './ui/box'
 import { Text } from './ui/text'
 
@@ -11,37 +11,24 @@ import { Text } from './ui/text'
  */
 const BANNER_ASPECT = 0.9 // height as a fraction of screen width
 
-/**
- * Wikimedia's User-Agent policy REQUIRES a descriptive agent identifying the
- * app; it answers 403 to the generic one Glide/OkHttp sends by default.
- * Found by running the app on a device and reading logcat — every banner
- * failed to its fallback until this header was set.
- * https://foundation.wikimedia.org/wiki/Policy:User-Agent_policy
- */
-const WIKIMEDIA_HEADERS = {
-  'User-Agent': 'EnsembleWeatherGame/0.1 (https://github.com/KubebatHaMachatz/weather-forecaster)',
-}
-
 interface StationBannerProps {
   readonly image: StationImage | null
+  /** Key into the bundled photo assets — the station's "name|country". */
+  readonly imageKey: string
   /** Shown when there's no photo, so the space still says something useful. */
   readonly fallbackLabel: string
 }
 
-export function StationBanner({ image, fallbackLabel }: StationBannerProps) {
+export function StationBanner({ image, imageKey, fallbackLabel }: StationBannerProps) {
   const { width } = useWindowDimensions()
   const height = width * BANNER_ASPECT
-  // A URL can 404 or the device can be offline; either way the alt state
-  // must look deliberate rather than showing a broken/blank box.
-  //
-  // Tracks WHICH url failed rather than a boolean: a plain `failed` flag
-  // would stay true after the image prop changed to a different station,
-  // permanently showing the fallback for a photo that was never tried.
-  // Comparing urls makes the reset automatic with no effect to forget.
-  const [failedUrl, setFailedUrl] = useState<string | null>(null)
-  const failed = image !== null && failedUrl === image.url
 
-  if (!image || failed) {
+  // Bundled, so there is no network fetch and no load failure to handle —
+  // but a manifest entry with no generated asset would still be a bug, and
+  // rendering nothing is better than rendering a broken box.
+  const asset = image === null ? undefined : STATION_PHOTO_ASSETS[imageKey]
+
+  if (image === null || asset === undefined) {
     return (
       <Box style={{ width, height }} className="items-center justify-center bg-muted">
         <Text className="px-6 text-center text-muted-foreground">{fallbackLabel}</Text>
@@ -52,26 +39,22 @@ export function StationBanner({ image, fallbackLabel }: StationBannerProps) {
   return (
     <Box style={{ width, height }}>
       <Image
-        source={{ uri: image.url, headers: WIKIMEDIA_HEADERS }}
+        source={asset}
         style={{ width, height }}
         contentFit="cover"
-        transition={200}
-        // Disk-cached: the same station shows all day, so reopening the app
-        // must not re-download the photo (and it keeps working offline once
-        // seen — the rest of this app is deliberately offline-friendly).
-        cachePolicy="disk"
-        onError={() => setFailedUrl(image.url)}
         accessibilityLabel={`Photograph of ${fallbackLabel}`}
       />
       {/*
-        CC BY / BY-SA require crediting the author on the image itself, not
-        only on a separate screen — hence this inline credit. The full
-        licence text and link live on the Attribution screen.
+        CC BY / BY-SA require the author's name AND the licence, credited on
+        the work itself rather than only on a separate screen. Commons'
+        credit-line guidance names author + licence designation + licence
+        link as the required elements, so the licence text is rendered here
+        and the Attribution screen carries the linked, full explanation.
       */}
       <Box className="absolute bottom-0 right-0 bg-background/70 px-2 py-1">
         <Text className="text-[10px] text-muted-foreground">
           {image.artist ? `${image.artist} · ` : ''}
-          {image.licence}
+          {image.licence} · Wikimedia Commons
         </Text>
       </Box>
     </Box>
