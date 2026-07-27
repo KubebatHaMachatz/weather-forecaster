@@ -6,7 +6,7 @@ import { ActivityIndicator, ScrollView } from 'react-native'
 import { loadCallHistory } from '../history/callHistory'
 import { isCommitted } from '../history/commitment'
 import { useTodaysCall } from '../hooks/useTodaysCall'
-import { stationImageFor, type StationImage } from '../geo/stationImages'
+import { stationImageFor, stationImageKey, type StationImage } from '../geo/stationImages'
 import stationImagesRaw from '../../assets/station-images.json'
 import { StationBanner } from '../components/StationBanner'
 import { Box } from '../components/ui/box'
@@ -99,7 +99,11 @@ export default function HomeScreen() {
     // Scrollable: the banner alone is ~90% of the screen width tall, so the
     // nav list below it would otherwise be unreachable on a short device.
     <ScrollView className="flex-1 bg-background" contentContainerStyle={{ paddingBottom: 48 }}>
-      <StationBanner image={image} fallbackLabel={call.stationLabel} />
+      <StationBanner
+        image={image}
+        imageKey={stationImageKey(call.station)}
+        fallbackLabel={call.stationLabel}
+      />
 
       <Box className="px-6 pt-6">
         <Text className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
