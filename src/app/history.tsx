@@ -5,7 +5,7 @@ import { ScrollView } from 'react-native'
 import { loadCallHistory, type CallHistoryEntry } from '../history/callHistory'
 import { currentStreak } from '../history/streak'
 import { rankFor, rollingMeanSkill } from '../history/rank'
-import { todayLocalDate } from '../hooks/useTodaysCall'
+import { useTodaysCall } from '../hooks/useTodaysCall'
 import { Box } from '../components/ui/box'
 import { Heading } from '../components/ui/heading'
 import { Text } from '../components/ui/text'
@@ -22,6 +22,10 @@ function Stat({ label, value }: { readonly label: string; readonly value: string
 
 export default function HistoryScreen() {
   const [history, setHistory] = useState<CallHistoryEntry[] | null>(null)
+  // Streak and rank are progression rewards, so the "today" they're measured
+  // against must be the TRUSTED date (DESIGN §10) — a device clock the
+  // player controls could otherwise be wound forward to farm a streak.
+  const clock = useTodaysCall()
 
   // Reloads on focus rather than only on mount: a Call committed on another
   // screen must show up here without restarting the app.
@@ -37,7 +41,7 @@ export default function HistoryScreen() {
     }, []),
   )
 
-  if (history === null) {
+  if (history === null || clock.status === 'loading') {
     return (
       <Box className="flex-1 bg-background px-6 pt-16">
         <Heading size="xl">History</Heading>
@@ -45,21 +49,25 @@ export default function HistoryScreen() {
     )
   }
 
-  // Device clock, with the same caveat todayLocalDate documents — and it
-  // bites a little harder here, since the streak is a progression reward
-  // that a moved clock could otherwise be used to farm. Future-dated
-  // records are already ignored by currentStreak/rollingMeanSkill, which
-  // blunts the obvious version of that; the real fix is still the trusted
-  // clock (DESIGN §10).
-  const today = todayLocalDate()
-  const streak = currentStreak(
-    history.map((entry) => entry.date),
-    today,
-  )
+  /**
+   * Without a trusted date, streak and rank are not computable — both are
+   * defined relative to "today", and DESIGN §10 rules out substituting the
+   * device clock. Past Calls are still shown, since those are facts already
+   * recorded; only the two time-relative stats are withheld.
+   */
+  const today = clock.status === 'ready' ? clock.date : null
+
+  const streak =
+    today === null
+      ? null
+      : currentStreak(
+          history.map((entry) => entry.date),
+          today,
+        )
   const scored = history
     .filter((entry): entry is CallHistoryEntry & { skill: number } => entry.skill !== undefined)
     .map((entry) => ({ date: entry.date, skill: entry.skill }))
-  const meanSkill = rollingMeanSkill(scored, today)
+  const meanSkill = today === null ? null : rollingMeanSkill(scored, today)
 
   return (
     <ScrollView className="flex-1 bg-background" contentContainerStyle={{ paddingBottom: 48 }}>
@@ -67,7 +75,12 @@ export default function HistoryScreen() {
         <Heading size="xl">History</Heading>
 
         <Box className="mt-6 flex-row gap-4">
-          <Stat label="Streak" value={streak === 1 ? '1 day' : `${streak} days`} />
+          <Stat
+            label="Streak"
+            // An em-dash, not "0 days": with no trusted date the streak is
+            // unknown, and 0 would be a claim we can't actually make.
+            value={streak === null ? '—' : streak === 1 ? '1 day' : `${streak} days`}
+          />
           <Stat
             label="Rank"
             // null mean skill means nothing has resolved yet — showing a
@@ -79,6 +92,12 @@ export default function HistoryScreen() {
         {meanSkill !== null && (
           <Text className="mt-2 text-muted-foreground">
             Rolling 30-day mean skill {meanSkill.toFixed(2)}
+          </Text>
+        )}
+        {today === null && (
+          <Text className="mt-2 text-muted-foreground">
+            Streak and rank need a connection — Ensemble takes the date from Open-Meteo, not from
+            your device.
           </Text>
         )}
 

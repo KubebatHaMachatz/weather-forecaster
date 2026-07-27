@@ -1,6 +1,6 @@
 import { Canvas, Circle, Path, Skia } from '@shopify/react-native-skia'
 import { useMemo, useState } from 'react'
-import { LayoutChangeEvent } from 'react-native'
+import { ActivityIndicator, LayoutChangeEvent } from 'react-native'
 import { useTodaysCall } from '../hooks/useTodaysCall'
 import { landRingsFromGeoJson, type MultiPolygonFeature } from '../geo/worldMap'
 import { projectVisibleSegments } from '../geo/globeOutline'
@@ -22,18 +22,20 @@ const HORIZON_COLOR = '#CBD5E1'
 const STATION_COLOR = '#0F172A'
 
 export default function ChartScreen() {
-  const call = useTodaysCall()
+  const state = useTodaysCall()
   const [size, setSize] = useState(0)
+
+  const centre = state.status === 'ready' ? state.call.station : null
 
   const rings = useMemo(() => landRingsFromGeoJson(worldGeoJson), [])
   const segments = useMemo(
-    () => projectVisibleSegments(rings, { lat: call.station.lat, lon: call.station.lon }),
-    [rings, call.station.lat, call.station.lon],
+    () => (centre === null ? [] : projectVisibleSegments(rings, { lat: centre.lat, lon: centre.lon })),
+    [rings, centre],
   )
 
   const radius = size / 2
   const coastlinePath = useMemo(() => {
-    if (radius <= 0) return null
+    if (radius <= 0 || segments.length === 0) return null
     // PathBuilder, not the older Skia.Path.Make() — the latter's
     // moveTo/lineTo log a deprecation warning on every render (seen in
     // logcat while verifying this screen on an emulator, not assumed).
@@ -53,10 +55,29 @@ export default function ChartScreen() {
     setSize(event.nativeEvent.layout.width)
   }
 
+  if (state.status === 'loading') {
+    return (
+      <Box className="flex-1 items-center justify-center bg-background">
+        <ActivityIndicator />
+      </Box>
+    )
+  }
+
+  if (state.status === 'unavailable') {
+    return (
+      <Box className="flex-1 bg-background px-6 pt-16">
+        <Heading size="xl">The Chart</Heading>
+        <Text className="mt-3 leading-6 text-muted-foreground">
+          The Chart centres on today&rsquo;s station, which needs a connection to establish first.
+        </Text>
+      </Box>
+    )
+  }
+
   return (
     <Box className="flex-1 bg-background px-6 pt-16">
       <Heading size="xl">The Chart</Heading>
-      <Text className="mt-1 text-muted-foreground">{call.stationLabel}, centered</Text>
+      <Text className="mt-1 text-muted-foreground">{state.call.stationLabel}, centered</Text>
 
       <Box className="mt-6 aspect-square w-full" onLayout={onLayout}>
         {size > 0 && (

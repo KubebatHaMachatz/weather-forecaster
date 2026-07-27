@@ -1,6 +1,6 @@
 import { Feather } from '@expo/vector-icons'
 import { Link } from 'expo-router'
-import { ScrollView } from 'react-native'
+import { ActivityIndicator, ScrollView } from 'react-native'
 import { useTodaysCall } from '../hooks/useTodaysCall'
 import { stationImageFor, type StationImage } from '../geo/stationImages'
 import stationImagesRaw from '../../assets/station-images.json'
@@ -24,8 +24,54 @@ const OTHER_SCREENS = [
   { href: '/attribution', label: 'Data & Attribution', icon: 'info' },
 ] as const
 
+function NavList() {
+  return (
+    <VStack space="md" className="mt-10">
+      {OTHER_SCREENS.map((screen) => (
+        <Link key={screen.href} href={screen.href} asChild>
+          <Button variant="link" className="self-start px-0">
+            <Feather name={screen.icon} size={18} color={NAV_ICON_COLOR} accessible={false} />
+            <ButtonText>{screen.label}</ButtonText>
+          </Button>
+        </Link>
+      ))}
+    </VStack>
+  )
+}
+
 export default function HomeScreen() {
-  const call = useTodaysCall()
+  const state = useTodaysCall()
+
+  if (state.status === 'loading') {
+    return (
+      <Box className="flex-1 items-center justify-center bg-background">
+        <ActivityIndicator />
+      </Box>
+    )
+  }
+
+  /**
+   * No trusted date is a real, reachable state — first launch with no
+   * network. DESIGN §10 forbids falling back to the device clock, so the
+   * only honest thing is to say so and offer a retry.
+   */
+  if (state.status === 'unavailable') {
+    return (
+      <Box className="flex-1 bg-background px-6 pt-24">
+        <Heading size="xl">Today&rsquo;s Call isn&rsquo;t available</Heading>
+        <Text className="mt-3 leading-6 text-muted-foreground">
+          Ensemble takes the date from Open-Meteo rather than from your device, so everyone gets
+          the same Call. That needs a connection at least once.
+        </Text>
+        <Button className="mt-6 self-start" onPress={state.retry}>
+          <ButtonText>Try again</ButtonText>
+        </Button>
+        <NavList />
+      </Box>
+    )
+  }
+
+  const { call } = state
   const image = stationImageFor(stationImages, call.station)
 
   return (
@@ -43,16 +89,7 @@ export default function HomeScreen() {
         </Heading>
         <Text className="mt-2 leading-6 text-foreground">{call.station.descriptor}</Text>
 
-        <VStack space="md" className="mt-10">
-          {OTHER_SCREENS.map((screen) => (
-            <Link key={screen.href} href={screen.href} asChild>
-              <Button variant="link" className="self-start px-0">
-                <Feather name={screen.icon} size={18} color={NAV_ICON_COLOR} accessible={false} />
-                <ButtonText>{screen.label}</ButtonText>
-              </Button>
-            </Link>
-          ))}
-        </VStack>
+        <NavList />
       </Box>
     </ScrollView>
   )
