@@ -50,7 +50,7 @@ export default function HomeScreen() {
         {OTHER_SCREENS.map((screen) => (
           <Link key={screen.href} href={screen.href} asChild>
             <Button variant="link" className="self-start px-0">
-              <Feather name={screen.icon} size={18} color={NAV_ICON_COLOR} />
+              <Feather name={screen.icon} size={18} color={NAV_ICON_COLOR} accessible={false} />
               <ButtonText>{screen.label}</ButtonText>
             </Button>
           </Link>
