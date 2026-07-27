@@ -88,6 +88,35 @@ describe('createTrustedClock', () => {
     expect(await clock.puzzleDate()).toBe('2026-07-27')
   })
 
+  /**
+   * Monotonicity means a bad observation is UNRECOVERABLE — the clock will
+   * never accept an earlier date to correct it. So an implausible one must
+   * be refused on the way in. A header claiming year 275760 (Date's maximum)
+   * would otherwise stick forever AND produce a 6-digit year that the
+   * YYYY-MM-DD contracts in daily.ts, streak.ts and rank.ts all reject.
+   */
+  it('refuses an absurdly far-future date rather than being bricked by it', async () => {
+    const storage = createFakeStorage()
+    const clock = createTrustedClock(storage)
+    await clock.observe(NOON_UTC)
+    await clock.observe(new Date(8.64e15)) // the maximum representable Date
+    expect(await clock.puzzleDate()).toBe('2026-07-27')
+  })
+
+  it('refuses a date from before this app could possibly have run', async () => {
+    const storage = createFakeStorage()
+    const clock = createTrustedClock(storage)
+    await clock.observe(new Date(0)) // 1970
+    expect(await clock.puzzleDate()).toBeNull()
+  })
+
+  it('always yields a four-digit year, as every date contract here requires', async () => {
+    const storage = createFakeStorage()
+    const clock = createTrustedClock(storage)
+    await clock.observe(NOON_UTC)
+    expect(await clock.puzzleDate()).toMatch(/^\d{4}-\d{2}-\d{2}$/)
+  })
+
   it('degrades to null when the persisted value is corrupt', async () => {
     const storage = createFakeStorage({ 'ensemble.clock.lastServerTime': 'not-a-number' })
     expect(await createTrustedClock(storage).puzzleDate()).toBeNull()

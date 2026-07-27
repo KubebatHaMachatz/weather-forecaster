@@ -18,6 +18,22 @@ import type { KeyValueStorage } from '../settings/unitSystemStorage.js'
 const STORAGE_KEY = 'ensemble.clock.lastServerTime'
 
 /**
+ * A date outside this window is not a clock reading, it's a broken header —
+ * from a misconfigured proxy, a CDN with a wild skew, or a corrupted value.
+ *
+ * Bounding it matters more than usual here because observations are
+ * MONOTONIC: a bad one can never be corrected by a later, saner one, so a
+ * single absurd header would brick the clock permanently. A year-275760
+ * date (Date's maximum) would also produce a six-digit year, which the
+ * YYYY-MM-DD contracts in daily.ts, streak.ts and rank.ts all reject.
+ *
+ * The window is deliberately loose — it only has to exclude the absurd, not
+ * police plausible drift.
+ */
+const EARLIEST_PLAUSIBLE = Date.UTC(2025, 0, 1)
+const LATEST_PLAUSIBLE = Date.UTC(2100, 0, 1)
+
+/**
  * The puzzle date for an instant, in UTC.
  *
  * UTC, not local time, because DESIGN §10 requires the same puzzle for
@@ -50,8 +66,13 @@ export function createTrustedClock(storage: KeyValueStorage): TrustedClock {
     if (raw === null) return null
     const time = Number(raw)
     // Corrupt or hand-edited storage degrades to "unknown", never to a
-    // guess — same reasoning as the missing-observation case.
-    return Number.isFinite(time) ? time : null
+    // guess — same reasoning as the missing-observation case. The
+    // plausibility bound is re-applied on READ as well as write: a value
+    // written by an older build (or edited on a rooted device) never went
+    // through the write-side check.
+    if (!Number.isFinite(time)) return null
+    if (time < EARLIEST_PLAUSIBLE || time >= LATEST_PLAUSIBLE) return null
+    return time
   }
 
   const now = async (): Promise<Date | null> => {
@@ -63,6 +84,7 @@ export function createTrustedClock(storage: KeyValueStorage): TrustedClock {
     async observe(serverDate: Date): Promise<void> {
       const time = serverDate.getTime()
       if (Number.isNaN(time)) return
+      if (time < EARLIEST_PLAUSIBLE || time >= LATEST_PLAUSIBLE) return
 
       // Monotonic: a response can be served from a cache with an older
       // Date header, and time going backwards would let a past puzzle
