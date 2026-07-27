@@ -25,8 +25,18 @@ const TEMPERATURE_AXIS = { min: -40, max: 50 }
 const SD_BOUNDS = { min: 0.5, max: 10 }
 
 const QUESTION_TEXT: Record<Call['questionType'], (call: Call) => string> = {
+  /**
+   * Never fabricate the hour. generateCall always sets targetHourLocal for
+   * this question type, so the fallback is unreachable — but defaulting to
+   * some plausible-looking hour would be the dangerous kind of wrong:
+   * resolution scores against the REAL targetHourLocal, so a made-up one
+   * would score the player on a different question than they were asked.
+   * Vaguer text is strictly better than confidently wrong text.
+   */
   'point-temperature': (call) =>
-    `What will the temperature be at ${String(call.targetHourLocal ?? 15).padStart(2, '0')}:00 local?`,
+    call.targetHourLocal === undefined
+      ? 'What will the temperature be at the target hour tomorrow?'
+      : `What will the temperature be at ${String(call.targetHourLocal).padStart(2, '0')}:00 local?`,
   'daily-extreme': () => 'What will tomorrow’s maximum temperature be?',
   precipitation: () => 'Will at least 0.2 mm of rain fall tomorrow?',
   'gust-exceedance': () => 'Will gusts exceed 40 km/h tomorrow?',
