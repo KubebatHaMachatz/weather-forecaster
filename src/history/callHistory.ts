@@ -1,5 +1,6 @@
 import { QUESTION_TYPES, type QuestionType } from '../puzzle/daily.js'
 import type { KeyValueStorage } from '../settings/unitSystemStorage.js'
+import type { StatedForecast } from './commitment.js'
 
 /**
  * A Call the player has actually made, persisted locally. This is the
@@ -16,6 +17,18 @@ export interface CallHistoryEntry {
   /** Pre-rendered "City, Country" — DESIGN §2.2 forbids showing a bare name. */
   readonly stationLabel: string
   readonly questionType: QuestionType
+  /**
+   * What the player stated. Absent only on a malformed or legacy record —
+   * a real commitment always carries one, since without it there is
+   * nothing to score.
+   */
+  readonly forecast?: StatedForecast
+  /**
+   * The TRUSTED instant of commitment (DESIGN §10: "written to SQLite with
+   * the trusted timestamp *before* any resolution data is reachable"), as
+   * epoch milliseconds.
+   */
+  readonly committedAt?: number
   /** Skill score once resolved; absent while the Call is still pending. */
   readonly skill?: number
 }
@@ -23,12 +36,33 @@ export interface CallHistoryEntry {
 const STORAGE_KEY = 'ensemble.history.calls'
 const ISO_DATE = /^\d{4}-\d{2}-\d{2}$/
 
+/**
+ * A stated forecast must be structurally sound AND numerically usable: an
+ * sd of 0 or a probability outside [0, 1] would make crpsGaussian/Brier
+ * produce nonsense rather than throw, which is the worse failure.
+ */
+function isStatedForecast(value: unknown): value is StatedForecast {
+  if (typeof value !== 'object' || value === null) return false
+  const candidate = value as Partial<StatedForecast> & { kind?: unknown }
+  if (candidate.kind === 'distribution') {
+    const { mean, sd } = candidate as { mean?: unknown; sd?: unknown }
+    return typeof mean === 'number' && Number.isFinite(mean) && typeof sd === 'number' && sd > 0
+  }
+  if (candidate.kind === 'probability') {
+    const { probability } = candidate as { probability?: unknown }
+    return typeof probability === 'number' && probability >= 0 && probability <= 1
+  }
+  return false
+}
+
 function isCallHistoryEntry(value: unknown): value is CallHistoryEntry {
   if (typeof value !== 'object' || value === null) return false
   const candidate = value as Partial<CallHistoryEntry>
   if (typeof candidate.date !== 'string' || !ISO_DATE.test(candidate.date)) return false
   if (typeof candidate.stationLabel !== 'string' || candidate.stationLabel.length === 0) return false
   if (!QUESTION_TYPES.includes(candidate.questionType as QuestionType)) return false
+  if (candidate.forecast !== undefined && !isStatedForecast(candidate.forecast)) return false
+  if (candidate.committedAt !== undefined && !Number.isFinite(candidate.committedAt)) return false
   if (candidate.skill !== undefined && !Number.isFinite(candidate.skill)) return false
   return true
 }

@@ -11,6 +11,7 @@ export default function RootLayout() {
         }}
       >
         <Stack.Screen name="index" options={{ title: 'Ensemble' }} />
+        <Stack.Screen name="call" options={{ title: 'The Call' }} />
         <Stack.Screen name="chart" options={{ title: 'The Chart' }} />
         <Stack.Screen name="history" options={{ title: 'History' }} />
         <Stack.Screen name="tutorial" options={{ title: 'Tutorial Call' }} />

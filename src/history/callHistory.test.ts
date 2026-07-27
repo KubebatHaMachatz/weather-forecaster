@@ -80,4 +80,66 @@ describe('recordCall', () => {
     await recordCall(storage, { ...ENTRY, skill: 0.42 })
     expect((await loadCallHistory(storage))[0]!.skill).toBeCloseTo(0.42, 10)
   })
+
+  it('round-trips a stated distribution and its commit timestamp', async () => {
+    const storage = createFakeStorage()
+    await recordCall(storage, {
+      ...ENTRY,
+      forecast: { kind: 'distribution', mean: 12.5, sd: 2 },
+      committedAt: 1_785_000_000_000,
+    })
+    const loaded = (await loadCallHistory(storage))[0]!
+    expect(loaded.forecast).toEqual({ kind: 'distribution', mean: 12.5, sd: 2 })
+    expect(loaded.committedAt).toBe(1_785_000_000_000)
+  })
+
+  it('round-trips a stated probability', async () => {
+    const storage = createFakeStorage()
+    await recordCall(storage, {
+      ...ENTRY,
+      questionType: 'precipitation',
+      forecast: { kind: 'probability', probability: 0.35 },
+    })
+    expect((await loadCallHistory(storage))[0]!.forecast).toEqual({
+      kind: 'probability',
+      probability: 0.35,
+    })
+  })
+})
+
+/**
+ * These are the shapes that make scoring produce nonsense rather than
+ * throw — a zero-width distribution, or a probability outside [0, 1]. They
+ * must be rejected at the storage boundary, since by the time crpsGaussian
+ * or a Brier score sees them there's nothing left to catch the error.
+ */
+describe('forecast validation on load', () => {
+  const withForecast = (forecast: unknown) =>
+    createFakeStorage({
+      'ensemble.history.calls': JSON.stringify([{ ...ENTRY, forecast }]),
+    })
+
+  it('drops an entry whose distribution has a zero or negative width', async () => {
+    expect(await loadCallHistory(withForecast({ kind: 'distribution', mean: 1, sd: 0 }))).toEqual([])
+    expect(await loadCallHistory(withForecast({ kind: 'distribution', mean: 1, sd: -2 }))).toEqual([])
+  })
+
+  it('drops an entry whose distribution is not numeric', async () => {
+    expect(await loadCallHistory(withForecast({ kind: 'distribution', mean: '12', sd: 2 }))).toEqual([])
+    expect(await loadCallHistory(withForecast({ kind: 'distribution', mean: Number.NaN, sd: 2 }))).toEqual([])
+  })
+
+  it('drops an entry whose probability falls outside [0, 1]', async () => {
+    expect(await loadCallHistory(withForecast({ kind: 'probability', probability: 1.5 }))).toEqual([])
+    expect(await loadCallHistory(withForecast({ kind: 'probability', probability: -0.1 }))).toEqual([])
+  })
+
+  it('drops an entry whose forecast kind is unrecognised', async () => {
+    expect(await loadCallHistory(withForecast({ kind: 'vibes', value: 7 }))).toEqual([])
+  })
+
+  it('keeps the certainty endpoints, which are legitimate answers', async () => {
+    expect(await loadCallHistory(withForecast({ kind: 'probability', probability: 0 }))).toHaveLength(1)
+    expect(await loadCallHistory(withForecast({ kind: 'probability', probability: 1 }))).toHaveLength(1)
+  })
 })

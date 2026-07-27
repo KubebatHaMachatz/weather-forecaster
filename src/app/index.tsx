@@ -1,6 +1,10 @@
+import AsyncStorage from '@react-native-async-storage/async-storage'
 import { Feather } from '@expo/vector-icons'
-import { Link } from 'expo-router'
+import { Link, useFocusEffect } from 'expo-router'
+import { useCallback, useState } from 'react'
 import { ActivityIndicator, ScrollView } from 'react-native'
+import { loadCallHistory } from '../history/callHistory'
+import { isCommitted } from '../history/commitment'
 import { useTodaysCall } from '../hooks/useTodaysCall'
 import { stationImageFor, type StationImage } from '../geo/stationImages'
 import stationImagesRaw from '../../assets/station-images.json'
@@ -41,6 +45,23 @@ function NavList() {
 
 export default function HomeScreen() {
   const state = useTodaysCall()
+  const [called, setCalled] = useState<boolean | null>(null)
+
+  // Re-checked on focus, so returning from the Call screen immediately
+  // reflects a commitment just made.
+  const date = state.status === 'ready' ? state.date : null
+  useFocusEffect(
+    useCallback(() => {
+      if (date === null) return
+      let cancelled = false
+      loadCallHistory(AsyncStorage).then((history) => {
+        if (!cancelled) setCalled(isCommitted(history, date))
+      })
+      return () => {
+        cancelled = true
+      }
+    }, [date]),
+  )
 
   if (state.status === 'loading') {
     return (
@@ -88,6 +109,14 @@ export default function HomeScreen() {
           {call.stationLabel}
         </Heading>
         <Text className="mt-2 leading-6 text-foreground">{call.station.descriptor}</Text>
+
+        <Link href="/call" asChild>
+          <Button className="mt-6">
+            <ButtonText>
+              {called === true ? 'See your Call' : 'Make today’s Call'}
+            </ButtonText>
+          </Button>
+        </Link>
 
         <NavList />
       </Box>
