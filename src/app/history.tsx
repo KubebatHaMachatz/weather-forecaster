@@ -5,6 +5,9 @@ import { ScrollView } from 'react-native'
 import { loadCallHistory, type CallHistoryEntry } from '../history/callHistory'
 import { currentStreak } from '../history/streak'
 import { rankFor, rollingMeanSkill } from '../history/rank'
+import { resolvePending } from '../resolution/resolvePending'
+import { fetchTruthForEntry, stationOffsetForEntry } from '../resolution/fetchTruth'
+import { createTrustedClock } from '../api/trustedClock'
 import { useTodaysCall } from '../hooks/useTodaysCall'
 import { Box } from '../components/ui/box'
 import { Heading } from '../components/ui/heading'
@@ -27,14 +30,29 @@ export default function HistoryScreen() {
   // player controls could otherwise be wound forward to farm a streak.
   const clock = useTodaysCall()
 
-  // Reloads on focus rather than only on mount: a Call committed on another
-  // screen must show up here without restarting the app.
+  /**
+   * Reloads on focus rather than only on mount: a Call committed on another
+   * screen must show up here without restarting the app.
+   *
+   * Resolution runs here too, and only here — it needs the TRUSTED instant
+   * (§9.2a's invariant is meaningless against a clock the player controls),
+   * and resolvePending already spends no request when nothing is due, so
+   * this respects the call budget without extra gating.
+   */
   useFocusEffect(
     useCallback(() => {
       let cancelled = false
-      loadCallHistory(AsyncStorage).then((loaded) => {
-        if (!cancelled) setHistory(loaded)
-      })
+      void (async () => {
+        const shown = await loadCallHistory(AsyncStorage)
+        if (!cancelled) setHistory(shown)
+
+        const trustedNow = await createTrustedClock(AsyncStorage).now()
+        if (trustedNow === null) return
+        await resolvePending(AsyncStorage, trustedNow, fetchTruthForEntry, stationOffsetForEntry)
+
+        const resolved = await loadCallHistory(AsyncStorage)
+        if (!cancelled) setHistory(resolved)
+      })()
       return () => {
         cancelled = true
       }
