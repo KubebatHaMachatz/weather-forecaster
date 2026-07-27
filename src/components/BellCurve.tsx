@@ -40,7 +40,14 @@ export function BellCurve({ mean, sd, axisMin, axisMax, width, height, truth }: 
     // fighting over.
     const peakDensity = points.reduce((max, p) => (p.density > max ? p.density : max), 0)
     const toX = (value: number) => ((value - axisMin) / (axisMax - axisMin)) * width
-    const toY = (density: number) => axisY - (density / peakDensity) * (axisY - 8)
+    // Guard the divide: a mean far outside [axisMin, axisMax] relative to sd
+    // makes every sampled density underflow to 0, and dividing by that
+    // yields NaN coordinates — which Skia does not handle gracefully. The
+    // tutorial's sliders clamp the mean onto the axis so this can't fire
+    // there, but this component takes those bounds as props and shouldn't
+    // depend on every future caller doing the same.
+    const toY =
+      peakDensity > 0 ? (density: number) => axisY - (density / peakDensity) * (axisY - 8) : () => axisY
 
     const builder = Skia.PathBuilder.Make()
     builder.moveTo(toX(axisMin), axisY)
