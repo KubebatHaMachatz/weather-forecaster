@@ -33,7 +33,13 @@ export function StationBanner({ image, fallbackLabel }: StationBannerProps) {
   const height = width * BANNER_ASPECT
   // A URL can 404 or the device can be offline; either way the alt state
   // must look deliberate rather than showing a broken/blank box.
-  const [failed, setFailed] = useState(false)
+  //
+  // Tracks WHICH url failed rather than a boolean: a plain `failed` flag
+  // would stay true after the image prop changed to a different station,
+  // permanently showing the fallback for a photo that was never tried.
+  // Comparing urls makes the reset automatic with no effect to forget.
+  const [failedUrl, setFailedUrl] = useState<string | null>(null)
+  const failed = image !== null && failedUrl === image.url
 
   if (!image || failed) {
     return (
@@ -54,7 +60,7 @@ export function StationBanner({ image, fallbackLabel }: StationBannerProps) {
         // must not re-download the photo (and it keeps working offline once
         // seen — the rest of this app is deliberately offline-friendly).
         cachePolicy="disk"
-        onError={() => setFailed(true)}
+        onError={() => setFailedUrl(image.url)}
         accessibilityLabel={`Photograph of ${fallbackLabel}`}
       />
       {/*

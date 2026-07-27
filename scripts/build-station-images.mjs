@@ -40,8 +40,15 @@ const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
 
 /**
  * Wikipedia article titles worth trying, most-likely first. The bare name
- * usually wins; the qualified forms rescue ambiguous ones ("Alert" alone is
- * a disambiguation page, "Alert, Nunavut" is the settlement).
+ * usually wins; the qualified form rescues ambiguous ones — "Alert" alone
+ * is a disambiguation page, while "Alert, Canada" redirects (via
+ * redirects=1) to the real "Alert, Nunavut" article.
+ *
+ * The admin1 candidate is currently unexercised: no station in
+ * assets/stations.json carries admin1, because assemble-stations.mjs
+ * deliberately omits it (DESIGN §2.2 reserves it for disambiguating
+ * genuinely colliding names, and this list has none). Kept because Station
+ * supports the field and this is the obvious place it would help.
  */
 export function titleCandidates(station) {
   const candidates = [station.name, `${station.name}, ${station.country}`]
