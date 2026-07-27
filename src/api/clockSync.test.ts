@@ -87,6 +87,48 @@ describe('syncTrustedClock', () => {
     expect(await clock.puzzleDate()).toBeNull()
   })
 
+  /**
+   * Three screens each call useTodaysCall, so several syncs can be in
+   * flight at once on a cold start — before any of them has stored a date
+   * for the others to skip on. DESIGN §9.6 makes the call budget "a hard
+   * architectural constraint", so these must collapse into one request
+   * rather than one per screen.
+   */
+  it('collapses concurrent syncs into a single request', async () => {
+    const clock = createTrustedClock(createFakeStorage())
+    let resolveFetch: (r: OpenMeteoResult) => void = () => {}
+    const fetcher = vi.fn(
+      () =>
+        new Promise<OpenMeteoResult>((resolve) => {
+          resolveFetch = resolve
+        }),
+    )
+
+    const all = Promise.all([
+      syncTrustedClock(clock, fetcher),
+      syncTrustedClock(clock, fetcher),
+      syncTrustedClock(clock, fetcher),
+    ])
+    // Let the pending clock.now() reads drain so the fetch is actually
+    // started — resolving before that would resolve nothing.
+    while (fetcher.mock.calls.length === 0) await Promise.resolve()
+    resolveFetch(result(new Date('2026-07-27T12:00:00Z')))
+    await all
+
+    expect(fetcher).toHaveBeenCalledTimes(1)
+    expect(await clock.puzzleDate()).toBe('2026-07-27')
+  })
+
+  it('allows a later sync once the in-flight one has settled', async () => {
+    const clock = createTrustedClock(createFakeStorage())
+    await syncTrustedClock(clock, async () => {
+      throw new Error('offline')
+    })
+    const fetcher = vi.fn(async () => result(new Date('2026-07-27T12:00:00Z')))
+    await syncTrustedClock(clock, fetcher)
+    expect(fetcher).toHaveBeenCalledTimes(1)
+  })
+
   it('does not throw when the response carries no Date header', async () => {
     const clock = createTrustedClock(createFakeStorage())
     await expect(syncTrustedClock(clock, async () => result(null))).resolves.toBeUndefined()

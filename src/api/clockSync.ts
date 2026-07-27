@@ -13,6 +13,16 @@ import { puzzleDateFrom, type TrustedClock } from './trustedClock.js'
  * can therefore do no more than trigger an extra request, which then
  * returns the real date anyway.
  */
+/**
+ * The sync currently in flight, if any.
+ *
+ * Three screens each call useTodaysCall, so on a cold start several syncs
+ * can begin before any has stored a date for the others to skip on —
+ * spending one request per screen. Sharing the in-flight promise collapses
+ * them into one, which DESIGN §9.6's call budget requires.
+ */
+let inFlight: Promise<void> | null = null
+
 export async function syncTrustedClock(
   clock: TrustedClock,
   fetchResult: () => Promise<OpenMeteoResult>,
@@ -21,18 +31,28 @@ export async function syncTrustedClock(
   const known = await clock.now()
   if (known !== null && !mayHaveRolledOver(known, deviceNow)) return
 
-  let result: OpenMeteoResult
-  try {
-    result = await fetchResult()
-  } catch {
-    // Offline is a normal state here (DESIGN §9.7): keep whatever trusted
-    // date we already had, and stay null if we had none. Never substitute
-    // the device clock.
-    return
-  }
+  if (inFlight !== null) return inFlight
 
-  if (result.serverDate !== null) {
-    await clock.observe(result.serverDate)
+  inFlight = (async () => {
+    let result: OpenMeteoResult
+    try {
+      result = await fetchResult()
+    } catch {
+      // Offline is a normal state here (DESIGN §9.7): keep whatever trusted
+      // date we already had, and stay null if we had none. Never substitute
+      // the device clock.
+      return
+    }
+    if (result.serverDate !== null) {
+      await clock.observe(result.serverDate)
+    }
+  })()
+
+  try {
+    await inFlight
+  } finally {
+    // Cleared even on failure, so an offline start doesn't block the retry.
+    inFlight = null
   }
 }
 
