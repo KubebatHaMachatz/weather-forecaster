@@ -1,9 +1,6 @@
 import { Feather } from '@expo/vector-icons'
 import { Link } from 'expo-router'
-import { useMemo } from 'react'
-import { generateCall } from '../puzzle/daily'
-import { validateStationList } from '../geo/stationData'
-import stationsRaw from '../../assets/stations.json'
+import { useTodaysCall } from '../hooks/useTodaysCall'
 import { Box } from '../components/ui/box'
 import { Heading } from '../components/ui/heading'
 import { Text } from '../components/ui/text'
@@ -12,15 +9,6 @@ import { Button, ButtonText } from '../components/ui/button'
 
 /** Matches --muted-foreground in src/global.css; readable on both light and dark backgrounds. */
 const NAV_ICON_COLOR = '#64748B'
-
-/** Device-local calendar date, YYYY-MM-DD — a display convenience only. */
-function todayLocalDate(): string {
-  const now = new Date()
-  const year = String(now.getFullYear()).padStart(4, '0')
-  const month = String(now.getMonth() + 1).padStart(2, '0')
-  const day = String(now.getDate()).padStart(2, '0')
-  return `${year}-${month}-${day}`
-}
 
 const OTHER_SCREENS = [
   { href: '/chart', label: 'The Chart', icon: 'globe' },
@@ -31,10 +19,7 @@ const OTHER_SCREENS = [
 ] as const
 
 export default function HomeScreen() {
-  const call = useMemo(() => {
-    const stations = validateStationList(stationsRaw)
-    return generateCall(todayLocalDate(), stations)
-  }, [])
+  const call = useTodaysCall()
 
   return (
     <Box className="flex-1 bg-background px-6 pt-24">
